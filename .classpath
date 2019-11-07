@@ -6,6 +6,10 @@
 			<attribute name="module" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="twitter4j-4/lib/twitter4j-core-4.0.7.jar"/>
+	<classpathentry kind="lib" path="twitter4j-4/lib/twitter4j-core-4.0.7.jar">
+		<attributes>
+			<attribute name="javadoc_location" value="file:/Users/juangoleniowski/Documents/MCIT/MCIT%20591/twitter4j-4/twitter4j-core/javadoc/"/>
+		</attributes>
+	</classpathentry>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
