@@ -1,3 +1,7 @@
+import java.util.Date;
+
+import twitter4j.User;
+
 /**
  * Defines an object Tweet with variables that will be used for data analysis
  * 
@@ -5,22 +9,26 @@
  *
  */
 public class Tweet {
-    private String user;
+    private User user;
     private int numberOfFollowers;
+    private String location;
     private String textInTweet;
-    private String tweetDate;
+    private Date tweetDate;
     private String candidate;
     private int influenceScore;
+    private int retweetedCount;
 
     // Constructor
-    public Tweet(String user, int numberOfFollowers, String textInTweet, String tweetDate, String candidate,
-	    int influencerScore) {
-	this.user = user;
+    public Tweet(User user2, int numberOfFollowers, String location, String textInTweet, Date tweetDate,
+	    String candidate, int influenceScore, int retweetedCount) {
+	this.user = user2;
 	this.numberOfFollowers = numberOfFollowers;
+	this.setLocation(location);
 	this.textInTweet = textInTweet;
 	this.tweetDate = tweetDate;
 	this.candidate = candidate;
 	this.influenceScore = influenceScore;
+	this.setRetweetedCount(retweetedCount);
     }
 
     /**
@@ -47,7 +55,7 @@ public class Tweet {
      * 
      * @return user
      */
-    public String getUser() {
+    public User getUser() {
 	return user;
     }
 
@@ -56,7 +64,7 @@ public class Tweet {
      * 
      * @param user
      */
-    public void setUser(String user) {
+    public void setUser(User user) {
 	this.user = user;
     }
 
@@ -101,7 +109,7 @@ public class Tweet {
      * 
      * @return date
      */
-    public String getTweetDate() {
+    public Date getTweetDate() {
 	return tweetDate;
     }
 
@@ -110,7 +118,7 @@ public class Tweet {
      * 
      * @param tweetDate
      */
-    public void setTweetDate(String tweetDate) {
+    public void setTweetDate(Date tweetDate) {
 	this.tweetDate = tweetDate;
     }
 
@@ -130,6 +138,22 @@ public class Tweet {
      */
     public void setCandidate(String candidate) {
 	this.candidate = candidate;
+    }
+
+    public String getLocation() {
+	return location;
+    }
+
+    public void setLocation(String location) {
+	this.location = location;
+    }
+
+    public int getRetweetedCount() {
+	return retweetedCount;
+    }
+
+    public void setRetweetedCount(int retweetedCount) {
+	this.retweetedCount = retweetedCount;
     }
 
 }
