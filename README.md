@@ -175,7 +175,7 @@ Timeline
   </tr>
   <tr>
    <td>
-<h2><strong>Responsibilities: </strong></h2>
+<h3>Responsibilities:</h3>
 
 
 <ul>
@@ -215,7 +215,7 @@ Timeline
 </ul>
    </td>
    <td>
-<h2><strong>Collaborators:</strong></h2>
+<h3>Collaborators:</h3>
 
 
 <ul>
@@ -227,7 +227,7 @@ Timeline
   </tr>
   <tr>
    <td colspan="2" >
-<h2><strong>Methods:</strong></h2>
+<h3>Methods:</h3>
 
 
 <ul>
@@ -253,7 +253,7 @@ Timeline
   </tr>
   <tr>
    <td colspan="2" >
-<h2><strong>Notes/questions:</strong></h2>
+<h3>Notes/questions:</h3>
 
 <ul>
 <li>For all method that measure ‘Top’ the number of results displayed should be dynamic</li>
@@ -271,16 +271,12 @@ Timeline
 <table>
   <tr>
    <td colspan="2" >
-<h2><strong>Class: </strong>Runner.java</h2>
-
-
+      <h2>Class:Runner.java</h2>
    </td>
   </tr>
   <tr>
    <td>
-<h2><strong>Responsibilities: </strong></h2>
-
-
+      <h3>Responsibilities:</h3>
 <ul>
 
 <li>Takes in user input from the user with keyword to analyze<em> (can be a word, username, or hashtag? Can it take in multiple?)</em>
@@ -294,7 +290,7 @@ Timeline
 </ul>
    </td>
    <td>
-<h2><strong>Collaborators:</strong></h2>
+<h3>Collaborators:</h3>
 
 
 <ul>
@@ -308,7 +304,7 @@ Timeline
   </tr>
   <tr>
    <td colspan="2" >
-<h2><strong>Methods:</strong></h2>
+<h3>Methods:</h3>
 
 
 
@@ -323,7 +319,7 @@ Timeline
   </tr>
   <tr>
    <td colspan="2" >
-<h2><strong>Notes:</strong></h2>
+<h3>Notes:</h3>
 
 
    </td>
