@@ -255,12 +255,12 @@ Timeline
    <td colspan="2" >
 <h2><strong>Notes/questions:</strong></h2>
 
+<ul>
+<li>For all method that measure ‘Top’ the number of results displayed should be dynamic</li>
 
-<h2><strong>- </strong>For all method that measure ‘Top’ the number of results displayed should be dynamic</h2>
 
-
-<h2>- Can we store in tweet the positive words and negative words (as ArrayLists?) individually from the body of the tweet? Ideally converted to all lowercase.</h2>
-
+<li>Can we store in tweet the positive words and negative words (as ArrayLists?) individually from the body of the tweet? Ideally converted to all lowercase.</li>
+</ul>
 
    </td>
   </tr>
@@ -311,12 +311,12 @@ Timeline
 <h2><strong>Methods:</strong></h2>
 
 
-<h2><strong><em>Main</em></strong></h2>
+
 
 
 <ul>
 
-<li>
+<li>Main
 </li>
 </ul>
    </td>
