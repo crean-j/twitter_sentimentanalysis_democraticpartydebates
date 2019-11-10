@@ -17,6 +17,7 @@ public class Tweet {
     private String candidate;
     private int influenceScore;
     private int retweetedCount;
+    private int sentimentScore;
 
     // Constructor
     public Tweet(User user2, int numberOfFollowers, String location, String textInTweet, Date tweetDate,
@@ -154,6 +155,14 @@ public class Tweet {
 
     public void setRetweetedCount(int retweetedCount) {
 	this.retweetedCount = retweetedCount;
+    }
+
+    public int getSentimentScore() {
+	return sentimentScore;
+    }
+
+    public void setSentimentScore(int sentimentScore) {
+	this.sentimentScore = sentimentScore;
     }
 
 }
