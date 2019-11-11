@@ -8,19 +8,20 @@ import java.util.Scanner;
  *
  */
 public class UserInteraction {
-    private String candidate;
-    private int year, month, day;
-    
-    //Constructor
+    private String candidate; // Candidate to be searched
+    private int year, month, day; // Date of the event
+    private String eventLabel; // Event name
+
+    // Constructor
     public UserInteraction() {
 	selectSearchTerm();
     }
 
     /**
-     * Ask user to select a candidate and a date.
+     * Ask user to select a candidate and a date. Pending to include code to label
+     * the event
      */
     public void selectSearchTerm() {
-//	String candidate = null;
 	Scanner scanner = new Scanner(System.in);
 	System.out.println("Select one of the candidatess to search: ");
 	System.out.println(
@@ -78,10 +79,10 @@ public class UserInteraction {
      * @return true if date is valid, false otherwise
      */
     private boolean validateDate(String optionSelected, int year, int month, int day) {
-	 if (optionSelected.length() != 8) {
-		System.out.println("Incorrect date entered. Please try again");
-		return false;
-	    }
+	if (optionSelected.length() != 8) {
+	    System.out.println("Incorrect date entered. Please try again");
+	    return false;
+	}
 	if (year != 2019 && year != 2020) {
 	    System.out.println("Incorrect year entered. Please enter the date again: ");
 	    return false;

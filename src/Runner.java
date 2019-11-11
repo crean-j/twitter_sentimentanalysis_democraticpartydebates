@@ -8,19 +8,19 @@ import java.util.ArrayList;
  * console responses as well as create a file with the report
  */
 public class Runner {
-	public static void main(String[] args) {
+    public static void main(String[] args) {
 
-	    	UserInteraction ui = new UserInteraction();
-		TwitterSearch ts = new TwitterSearch(ui.getCandidate(), ui.getYear(), ui.getMonth(), ui.getDay());
-		ArrayList<Tweet> result = ts.MainSearch();
-		
-		//test printing some fields from tweets
-		for (int i=0; i < result.size(); i++) {
-		    System.out.println(result.get(i).getUser().getId() + "\t" + result.get(i).getTextInTweet());
-		}
-		//DataAnalysis da = new DataAnalysis(tweets);
+	UserInteraction ui = new UserInteraction();
+	TwitterSearch ts = new TwitterSearch(ui.getCandidate(), ui.getYear(), ui.getMonth(), ui.getDay());
+	ArrayList<Tweet> result = ts.MainSearch();
 
-		//run analysis
-		//print output
+	// test printing some fields from tweets
+	for (int i = 0; i < result.size(); i++) {
+	    System.out.println(result.get(i).getUser().getId() + "\t" + result.get(i).getTextInTweet());
 	}
+	// DataAnalysis da = new DataAnalysis(tweets);
+
+	// run analysis
+	// print output
+    }
 }

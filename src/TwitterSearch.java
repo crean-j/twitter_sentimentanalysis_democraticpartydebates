@@ -24,14 +24,14 @@ import twitter4j.conf.ConfigurationBuilder;
  */
 public class TwitterSearch {
     private String candidate;
-    private int year, month, day;  
-    
+    private int year, month, day;
+
     /**
      * Constructor
      */
     public TwitterSearch(String candidate, int year, int month, int day) {
 	this.candidate = candidate;
-	this.year = year;	
+	this.year = year;
 	this.month = month;
 	this.day = day;
     }
@@ -59,13 +59,13 @@ public class TwitterSearch {
 	    for (Status status : result.getTweets()) {
 		String text = status.getRetweetedStatus() != null ? status.getRetweetedStatus().getText()
 			: status.getText();
-		//Added if condition to check the candidate name is in the main text
+		// Added if condition to check the candidate name is in the main text
 		if (text.contains(candidate)) {
-		Tweet tw = new Tweet(status.getUser(), status.getUser().getFriendsCount(),
-			status.getUser().getLocation(), text, status.getCreatedAt(), candidate, 0,
-			status.getRetweetCount());
-		queryResult.add(tw);
-	    }
+		    Tweet tw = new Tweet(status.getUser(), status.getUser().getFriendsCount(),
+			    status.getUser().getLocation(), text, status.getCreatedAt(), candidate, 0,
+			    status.getRetweetCount());
+		    queryResult.add(tw);
+		}
 	    }
 
 	} catch (TwitterException e) {
