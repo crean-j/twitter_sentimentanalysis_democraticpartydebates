@@ -24,145 +24,141 @@ public class Tweet {
 	    String candidate, int influenceScore, int retweetedCount) {
 	this.user = user2;
 	this.numberOfFollowers = numberOfFollowers;
-	this.setLocation(location);
+	this.location = location;
 	this.textInTweet = textInTweet;
 	this.tweetDate = tweetDate;
 	this.candidate = candidate;
 	this.influenceScore = influenceScore;
-	this.setRetweetedCount(retweetedCount);
+	this.retweetedCount= retweetedCount;
     }
 
     /**
-     * Get a score that measure how strong an influencer the tweet is
-     * 
-     * @return influence score
-     */
-    public int getInfluenceScore() {
-	return influenceScore;
-    }
-
-    /**
-     * sets an influence score for the tweet
-     * 
-     * @param influenceScore
-     */
-
-    public void setInfluenceScore(int influenceScore) {
-	this.influenceScore = influenceScore;
-    }
-
-    /**
-     * gets User
-     * 
-     * @return user
+     * @return the user
      */
     public User getUser() {
-	return user;
+        return user;
     }
 
     /**
-     * sets user
-     * 
-     * @param user
+     * @param user the user to set
      */
     public void setUser(User user) {
-	this.user = user;
+        this.user = user;
     }
 
     /**
-     * gets Number of Followers
-     * 
-     * @return Number of Followers
+     * @return the numberOfFollowers
      */
     public int getNumberOfFollowers() {
-	return numberOfFollowers;
+        return numberOfFollowers;
     }
 
     /**
-     * Sets Number of Followers
-     * 
-     * @param numberOfFollowers
+     * @param numberOfFollowers the numberOfFollowers to set
      */
     public void setNumberOfFollowers(int numberOfFollowers) {
-	this.numberOfFollowers = numberOfFollowers;
+        this.numberOfFollowers = numberOfFollowers;
     }
 
     /**
-     * Gets the text in a Tweet
-     * 
-     * @return text
+     * @return the location
+     */
+    public String getLocation() {
+        return location;
+    }
+
+    /**
+     * @param location the location to set
+     */
+    public void setLocation(String location) {
+        this.location = location;
+    }
+
+    /**
+     * @return the textInTweet
      */
     public String getTextInTweet() {
-	return textInTweet;
+        return textInTweet;
     }
 
     /**
-     * Sets Text in Tweet
-     * 
-     * @param textInTweet
+     * @param textInTweet the textInTweet to set
      */
     public void setTextInTweet(String textInTweet) {
-	this.textInTweet = textInTweet;
+        this.textInTweet = textInTweet;
     }
 
     /**
-     * gets Tweet Date
-     * 
-     * @return date
+     * @return the tweetDate
      */
     public Date getTweetDate() {
-	return tweetDate;
+        return tweetDate;
     }
 
     /**
-     * Sets Tweet date
-     * 
-     * @param tweetDate
+     * @param tweetDate the tweetDate to set
      */
     public void setTweetDate(Date tweetDate) {
-	this.tweetDate = tweetDate;
+        this.tweetDate = tweetDate;
     }
 
     /**
-     * Gets Candidate name
-     * 
-     * @return candiate name
+     * @return the candidate
      */
     public String getCandidate() {
-	return candidate;
+        return candidate;
     }
 
     /**
-     * Sets candidate name
-     * 
-     * @param candidate
+     * @param candidate the candidate to set
      */
     public void setCandidate(String candidate) {
-	this.candidate = candidate;
+        this.candidate = candidate;
     }
 
-    public String getLocation() {
-	return location;
+    /**
+     * @return the influenceScore
+     */
+    public int getInfluenceScore() {
+        return influenceScore;
     }
 
-    public void setLocation(String location) {
-	this.location = location;
+    /**
+     * @param influenceScore the influenceScore to set
+     */
+    public void setInfluenceScore(int influenceScore) {
+        this.influenceScore = influenceScore;
     }
 
+    /**
+     * @return the retweetedCount
+     */
     public int getRetweetedCount() {
-	return retweetedCount;
+        return retweetedCount;
     }
 
+    /**
+     * @param retweetedCount the retweetedCount to set
+     */
     public void setRetweetedCount(int retweetedCount) {
-	this.retweetedCount = retweetedCount;
+        this.retweetedCount = retweetedCount;
     }
 
+    /**
+     * @return the sentimentScore
+     */
     public int getSentimentScore() {
-	return sentimentScore;
+        return sentimentScore;
     }
 
+    /**
+     * @param sentimentScore the sentimentScore to set
+     */
     public void setSentimentScore(int sentimentScore) {
-	this.sentimentScore = sentimentScore;
+        this.sentimentScore = sentimentScore;
     }
-
+    
+    
 }
+
+    
