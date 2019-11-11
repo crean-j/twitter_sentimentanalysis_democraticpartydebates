@@ -10,8 +10,5 @@ class TwitterSearchTest {
     void testMainSearch() {
 	TwitterSearch ts = new TwitterSearch("Warren", 2019, 10, 10);
 	assertEquals(100, ts.MainSearch().size());
-	
-	
     }
-
 }

@@ -7,12 +7,11 @@
  */
 public class Runner {
 	public static void main(String[] args) {
-		//initialize Tweet tweets
-	//	DataAnalysis da = new DataAnalysis(tweets);
+
 	    	UserInteraction ui = new UserInteraction();
 		TwitterSearch ts = new TwitterSearch(ui.getCandidate(), ui.getYear(), ui.getMonth(), ui.getDay());
-		//System.out.println(ts);
-			
+		//	DataAnalysis da = new DataAnalysis(tweets);
+
 		//run analysis
 		//print output
 	}
