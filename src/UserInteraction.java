@@ -20,7 +20,7 @@ public class UserInteraction {
      * Ask user to select a candidate and a date.
      */
     public void selectSearchTerm() {
-	String candidate = null;
+//	String candidate = null;
 	Scanner scanner = new Scanner(System.in);
 	System.out.println("Select one of the candidatess to search: ");
 	System.out.println(
