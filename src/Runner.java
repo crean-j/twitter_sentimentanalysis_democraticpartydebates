@@ -10,7 +10,7 @@ public class Runner {
 
 	    	UserInteraction ui = new UserInteraction();
 		TwitterSearch ts = new TwitterSearch(ui.getCandidate(), ui.getYear(), ui.getMonth(), ui.getDay());
-		//	DataAnalysis da = new DataAnalysis(tweets);
+		//DataAnalysis da = new DataAnalysis(tweets);
 
 		//run analysis
 		//print output

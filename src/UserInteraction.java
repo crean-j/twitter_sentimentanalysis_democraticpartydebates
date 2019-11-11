@@ -1,7 +1,7 @@
 import java.util.Scanner;
 
 /**
- * This class handled the interaction with the user and validation of the data
+ * This class handles the interaction with the user and validation of the data
  * entered
  * 
  * @author juangoleniowski
@@ -11,6 +11,7 @@ public class UserInteraction {
     private String candidate;
     private int year, month, day;
     
+    //Constructor
     public UserInteraction() {
 	selectSearchTerm();
     }
