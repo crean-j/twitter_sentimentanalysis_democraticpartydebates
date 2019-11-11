@@ -23,14 +23,14 @@ import twitter4j.conf.ConfigurationBuilder;
  *
  */
 public class TwitterSearch {
+    int year, month, day;
 
-    public static void main(String[] args) {
-	// public void selectCandidate() {
+    /**
+     * Ask user to select a candidate and a date.
+     */
+    public void selectSearchTerm() {
 	String candidate = null;
 	Scanner scanner = new Scanner(System.in);
-	int year;
-	int month;
-	int day;
 	System.out.println("Select one of the candidatess to search: ");
 	System.out.println(
 		" 1. Elizabeth Warren \n 2. Bernie Sanders\n 3. Joe Biden\n 4. Michael Bloomberg\n 5. Pete Buttigieg ");
@@ -58,62 +58,71 @@ public class TwitterSearch {
 	    break;
 	}
 	System.out.println("You have selected " + candidate + "\n");
-	System.out.println(
-		"We are going to analyze tweets seven days before and after the date selected. \n"
-			+ "For year, options are 2019 or 2020 only.\nEnter the date in format YYYYMMDD. "
-			+ "For example, for September 6th, 2019, enter 20190906): ");
-	optionSelected = scanner.nextLine();
-	parseDate(optionSelected);
-	
-	while(optionSelected.length()!=8) {
-	    System.out.println("Incorrect date entered. Please try again");
+	System.out.println("We are going to analyze tweets seven days before and after the date selected. \n"
+		+ "For year, options are 2019 or 2020 only.\nEnter the date in format YYYYMMDD. "
+		+ "For example, for September 6th, 2019, enter 20190906): ");
+	do {
 	    optionSelected = scanner.nextLine();
-	    int year = Integer.valueOf(optionSelected.substring(0,4));
-	    int month = Integer.valueOf(optionSelected.substring(4,6));
-	    int day = Integer.valueOf(optionSelected.substring(6,8));
-
-	}
-	while (year !=2019 && year !=2020)){
-	    System.out.println("Year can only be 2019 or 2020. Please enter de date again: ");
-	    optionSelected = scanner.nextLine();
-	    int year = Integer.valueOf(optionSelected.substring(0,4));
-	    int month = Integer.valueOf(optionSelected.substring(4,6));
-	    int day = Integer.valueOf(optionSelected.substring(6,8));
-	}
-	while (MONTH<1 || Integer.valueOf(optionSelected.suring(4, 6))>12) {
-	    System.out.println("Incorrect month selected. Please entere the date again: ");
-	    optionSelected = scanner.nextLine();
-	    int year = Integer.valueOf(optionSelected.substring(0,4));
-	    int month = Integer.valueOf(optionSelected.substring(4,6));
-	    int day = Integer.valueOf(optionSelected.substring(6,8));
-	}
-	while ( if (
-
-		Integer.valueOf(optionSelected.substring(5, 8))<1 || Integer.valueOf(optionSelected.substring(5, 8))>12) {
-	    System.out.println("Incorrect month selected. Please entere the date again: ");
-	    optionSelected = scanner.nextLine();
-	}
-
+	    parseDate(optionSelected);
+	    if (optionSelected.length() != 8) {
+		System.out.println("Incorrect date entered. Please try again");
+	    }
+	} while (!validateDate(year, month, day) && optionSelected.length() != 8);
     }
 
-    private static void parseDate (String date) {
-	year = Integer.valueOf(date.substring(0,4));
-	month = Integer.valueOf(date.substring(4,6));
-	day = Integer.valueOf(date.substring(6,8)); 
+    /**
+     * This class parses the date entered into year, month and day
+     * 
+     * @param optionSelected date in format YYYYMMDD
+     */
+    private void parseDate(String optionSelected) {
+	year = Integer.valueOf(optionSelected.substring(0, 4));
+	month = Integer.valueOf(optionSelected.substring(4, 6));
+	day = Integer.valueOf(optionSelected.substring(6, 8));
     }
+
+    /**
+     * This class validates the data entered by the user
+     * @param year year entered by the user
+     * @param month month entered by the user
+     * @param day day entered by the user
+     * @return true if date is valid, false otherwise
+     */
+    private boolean validateDate(int year, int month, int day) {
+	if (year != 2019 && year != 2020) {
+	    System.out.println("Incorrect year entered. Please enter the date again: ");
+	    return false;
+	}
+	if (month < 1 || month > 12) {
+	    System.out.println("Incorrect month entered. Please enter the date again: ");
+	    return false;
+	}
+	if (day < 1 || day > 31) {
+	    System.out.println("Incorrect day entered. Please enter the date again: ");
+	    return false;
+	}
+	if ((month == 4 || month == 6 || month == 9 || month == 1 || month == 8 || month == 10) && day > 30) {
+	    System.out.println("Incorrect day entered. Please enter the date again: ");
+	    return false;
+	}
+	if (month == 2 && day > 28) {
+	    System.out.println("Incorrect day entered. Please enter the date again: ");
+	    return false;
+	}
+	return true;
+    }
+
     /**
      * This class executes the search for the candidates selected and populates a
      * HashMap with the result
      * 
      * @return
      */
-    public HashMap<Integer, Tweet> MainSearch() {
-
+    public HashMap<Integer, Tweet> MainSearch(String candidate, int year, int month, int day) {
 	// Creates Twitter instance
 	ConfigurationBuilder cf = new ConfigurationBuilder().setTweetModeExtended(true);
 	Twitter twitter = TwitterFactory.getSingleton();
 	TwitterFactory tf = new TwitterFactory(cf.build());
-	String candidate = "Warren";
 	HashMap<Integer, Tweet> queryResult = new HashMap<>();
 
 	// Runs the query for "Warren"
