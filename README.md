@@ -56,32 +56,32 @@ Timeline
 2. Query for tweets sent from 7 days before event to event and from event to 7 days after event that mention any of the selected candidates
 3. Read and parse response
 4. Store variables in tweet object
-    a. Date of tweet
-    b. Candidate mentioned
-    c. Tweet text
-    d. User who created tweet
-    e. Number of followers
-    f. Location of user
-    g. Retweet count
-    h. //Influencer weight (num of followers and number of retweets that the tweet had)
+    1. Date of tweet
+    2. Candidate mentioned
+    3. Tweet text
+    4. User who created tweet
+    5. Number of followers
+    6. Location of user
+    7. Retweet count
+    8. //Influencer weight (num of followers and number of retweets that the tweet had)
 5. ? Store variables in the candidate object - May not be possible
-    a. Candidate
-    b. Number of followers 7 days before event
-    c. Number of followers on day of event
-    d. Number of followers 7 days after event
+    1. Candidate
+    2. Number of followers 7 days before event
+    3. Number of followers on day of event
+    4. Number of followers 7 days after event
 6. Pre-process tweets, e.g. remove urls, hashtags, repeated letters
 7. Add pre-processed tweet to tweet object
 8. Get sentiment analysis for tweet
-    a. Prepare tweet for analysis, e.g. tokenise, lemmatise etc.
-    b. Get sentiment score for tweet
-    c. Adjectives can these be stored separately?
+    1. Prepare tweet for analysis, e.g. tokenise, lemmatise etc.
+    2. Get sentiment score for tweet
+    3. Adjectives can these be stored separately?
 9. Add sentiment score etc. to tweet object
 10. Add tweet object to an ArrayList
 11. Analyser uses ArrayList of tweets to answer questions, e.g. creates relevant hash maps etc.
 12. Output results, e.g. console, visualisation - runner would create a text file
-    a. Average pos and neg sentiment/day over time for each candidate
-    b. Number of pos and neg sentiment tweets/day over time for each candidate
-    c. Number of followers on 7 days before, on day of event, 7 days after event for each candidate
+    1. Average pos and neg sentiment/day over time for each candidate
+    2. Number of pos and neg sentiment tweets/day over time for each candidate
+    3. Number of followers on 7 days before, on day of event, 7 days after event for each candidate
 
 
 ## CRC
@@ -118,9 +118,42 @@ Timeline
 
 #### Collaborators
 
-*   TweetReader
+*   TweeterSearch
 *   UserInteraction
 *   SentimentAnalyser
+
+### Class: UserInteraction
+
+
+#### Responsibilities
+
+
+
+*   Asks user for candidate to search, dates and a lable for the query
+*   Has validations of the datea entered
+
+
+#### Collaborators
+
+*   TweeterSearch
+
+### Class: TweeterSearch
+
+
+#### Responsibilities
+
+
+*   Has to look for tweet as per the criteria in UserInteraction
+*   Creates an ArrayList of tweet objects containing the serach term
+
+
+#### Collaborators
+
+
+
+*   UserInteraction
+*   Tweet
+*   CandidateAnalyser
 
 
 ### Class: Candidate
