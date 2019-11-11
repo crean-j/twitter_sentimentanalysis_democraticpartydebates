@@ -22,9 +22,7 @@ class TwitterSearchTest {
 	ArrayList<Tweet> result = ts.MainSearch();
 	for (int i = 0; i < result.size(); i++) {
 	    boolean exists;
-	    System.out.println(result.get(i).getTextInTweet());
 	    if (result.get(i).getTextInTweet().contains("Warren")) {
-		System.out.println("Positive");
 		exists = true;
 	    } else {
 		exists = false;
