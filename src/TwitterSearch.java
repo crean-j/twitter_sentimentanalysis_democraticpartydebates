@@ -30,8 +30,6 @@ public class TwitterSearch {
      * Constructor
      */
     public TwitterSearch(String candidate, int year, int month, int day) {
-//	UserInteraction ui = new UserInteraction();
-//	ui.selectSearchTerm();
 	this.candidate = candidate;
 	this.year = year;	
 	this.month = month;
@@ -45,7 +43,7 @@ public class TwitterSearch {
      * @return
      */
     public ArrayList<Tweet> MainSearch() {
-	System.out.println("Candidate: " + candidate);
+
 	// Creates Twitter instance
 	ConfigurationBuilder cf = new ConfigurationBuilder().setTweetModeExtended(true);
 	Twitter twitter = TwitterFactory.getSingleton();
@@ -72,9 +70,6 @@ public class TwitterSearch {
 	    e.printStackTrace();
 	} catch (NullPointerException f) {
 	    f.printStackTrace();
-	}
-	for (Tweet tw : queryResult) {
-	    System.out.println(queryResult.toString());
 	}
 	return queryResult;
 
