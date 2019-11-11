@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 /*
  * This is the main class for the sentiment analysis.
  * It will take input from the user around which candidate to look at,
@@ -10,6 +12,12 @@ public class Runner {
 
 	    	UserInteraction ui = new UserInteraction();
 		TwitterSearch ts = new TwitterSearch(ui.getCandidate(), ui.getYear(), ui.getMonth(), ui.getDay());
+		ArrayList<Tweet> result = ts.MainSearch();
+		
+		//test printing some fields from tweets
+		for (int i=0; i < result.size(); i++) {
+		    System.out.println(result.get(i).getUser().getId() + "\t" + result.get(i).getTextInTweet());
+		}
 		//DataAnalysis da = new DataAnalysis(tweets);
 
 		//run analysis
