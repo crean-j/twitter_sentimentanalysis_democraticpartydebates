@@ -51,7 +51,7 @@ public class TwitterSearch {
 	ArrayList<Tweet> queryResult = new ArrayList<>();
 
 	// Runs the query for candidate
-	// Pending to add dates
+	// Pending to add dates to the query
 	Query query = new Query(candidate);
 	QueryResult result;
 	try {
@@ -59,10 +59,13 @@ public class TwitterSearch {
 	    for (Status status : result.getTweets()) {
 		String text = status.getRetweetedStatus() != null ? status.getRetweetedStatus().getText()
 			: status.getText();
+		//Added if condition to check the candidate name is in the main text
+		if (text.contains(candidate)) {
 		Tweet tw = new Tweet(status.getUser(), status.getUser().getFriendsCount(),
 			status.getUser().getLocation(), text, status.getCreatedAt(), candidate, 0,
 			status.getRetweetCount());
 		queryResult.add(tw);
+	    }
 	    }
 
 	} catch (TwitterException e) {
