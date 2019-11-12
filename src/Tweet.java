@@ -15,14 +15,14 @@ public class Tweet {
     private String textInTweet;
     private Date tweetDate;
     private String candidate;
-    private int influenceScore;
+    private double influenceScore;
     private int retweetedCount;
     private int sentimentScore;
 
     // Constructor
-    public Tweet(User user2, int numberOfFollowers, String location, String textInTweet, Date tweetDate,
-	    String candidate, int influenceScore, int retweetedCount) {
-	this.user = user2;
+    public Tweet(User user, int numberOfFollowers, String location, String textInTweet, Date tweetDate,
+	    String candidate, double influenceScore, int retweetedCount) {
+	this.user = user;
 	this.numberOfFollowers = numberOfFollowers;
 	this.location = location;
 	this.textInTweet = textInTweet;
@@ -119,14 +119,14 @@ public class Tweet {
     /**
      * @return the influenceScore
      */
-    public int getInfluenceScore() {
+    public double getInfluenceScore() {
 	return influenceScore;
     }
 
     /**
      * @param influenceScore the influenceScore to set
      */
-    public void setInfluenceScore(int influenceScore) {
+    public void setInfluenceScore(double influenceScore) {
 	this.influenceScore = influenceScore;
     }
 

@@ -13,11 +13,9 @@ public class Runner {
 	UserInteraction ui = new UserInteraction();
 	TwitterSearch ts = new TwitterSearch(ui.getCandidate(), ui.getDate());
 	ArrayList<Tweet> result = ts.MainSearch();
+	InfluenceScore is = new InfluenceScore(result);
+	
 
-	// test printing some fields from tweets
-	for (int i = 0; i < result.size(); i++) {
-	    System.out.println(result.get(i).getUser().getId() + "\t" + result.get(i).getTextInTweet());
-	}
 	// DataAnalysis da = new DataAnalysis(tweets);
 
 	// run analysis

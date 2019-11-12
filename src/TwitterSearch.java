@@ -86,7 +86,7 @@ public class TwitterSearch {
      * @return a string in the format YYYY-MM-DD
      */
 
-    public String sinceDate(String date) {
+    public String sinceDate(String date) { // Set as public for JUnit test
 	int year = Integer.valueOf(date.substring(0, 4));
 	int month = Integer.valueOf(date.substring(5, 7));
 	int day = Integer.valueOf(date.substring(8, 10));
@@ -125,7 +125,7 @@ public class TwitterSearch {
      * @param day   day entered by the user
      * @return a string in the format YYYY-MM-DD
      */
-    public String toDate(String date) {
+    public String toDate(String date) { //Set as public for JUnit test
 	int year = Integer.valueOf(date.substring(0, 4));
 	int month = Integer.valueOf(date.substring(5, 7));
 	int day = Integer.valueOf(date.substring(8, 10));
