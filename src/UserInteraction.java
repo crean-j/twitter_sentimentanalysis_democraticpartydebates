@@ -10,7 +10,7 @@ import java.util.Scanner;
 public class UserInteraction {
     private String candidate; // Candidate to be searched
     private int year, month, day; // Date of the event
-    private String eventLabel; // Event name
+    private String date, eventLabel; // Event name
 
     // Constructor
     public UserInteraction() {
@@ -64,7 +64,7 @@ public class UserInteraction {
      * 
      * @param optionSelected date in format YYYYMMDD
      */
-    private void parseDate(String optionSelected) {
+    public void parseDate(String optionSelected) {
 	year = Integer.valueOf(optionSelected.substring(0, 4));
 	month = Integer.valueOf(optionSelected.substring(4, 6));
 	day = Integer.valueOf(optionSelected.substring(6, 8));
@@ -107,24 +107,10 @@ public class UserInteraction {
     }
 
     /**
-     * @return the year
+     * @return the date in format YYYY-MM-DD
      */
-    public String getYear() {
-	return "" + year;
-    }
-
-    /**
-     * @return the month
-     */
-    public String getMonth() {
-	return "" + month;
-    }
-
-    /**
-     * @return the day
-     */
-    public String getDay() {
-	return "" + day;
+    public String getDate() {
+	return year + "-" + (month <= 10 ? "0" + month : month) + "-" + (day < 10 ? "0" + day : day);
     }
 
     /**

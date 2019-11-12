@@ -24,16 +24,14 @@ import twitter4j.conf.ConfigurationBuilder;
  */
 public class TwitterSearch {
     private String candidate;
-    private int year, month, day;
+    private String date;
 
     /**
      * Constructor
      */
-    public TwitterSearch(String candidate, int year, int month, int day) {
+    public TwitterSearch(String candidate, String date) {
 	this.candidate = candidate;
-	this.year = year;
-	this.month = month;
-	this.day = day;
+	this.date = date;
     }
 
     /**
@@ -52,8 +50,8 @@ public class TwitterSearch {
 
 	// Runs the query for the candidate and the date range
 	Query query = new Query(candidate);
-	query.since(sinceDate(year, month, day));
-	query.until(toDate(year, month, day));
+	query.since(sinceDate(date));
+	query.until(toDate(date));
 	QueryResult result;
 	try {
 	    result = twitter.search(query.count(100));
@@ -88,7 +86,11 @@ public class TwitterSearch {
      * @return a string in the format YYYY-MM-DD
      */
 
-    public String sinceDate(int year, int month, int day) {
+    public String sinceDate(String date) {
+	int year = Integer.valueOf(date.substring(0, 4));
+	int month = Integer.valueOf(date.substring(4, 6));
+	int day = Integer.valueOf(date.substring(6, 8));
+	
 	day = day - 7;
 	if (day <= 0) {
 	    month--;
@@ -123,7 +125,11 @@ public class TwitterSearch {
      * @param day   day entered by the user
      * @return a string in the format YYYY-MM-DD
      */
-    public String toDate(int year, int month, int day) {
+    public String toDate(String date) {
+	int year = Integer.valueOf(date.substring(0, 4));
+	int month = Integer.valueOf(date.substring(4, 6));
+	int day = Integer.valueOf(date.substring(6, 8));
+	
 	day = day + 7;
 
 	if ((month == 1 || month == 3 || month == 5 || month == 7 || month == 8 || month == 10 || month == 12)

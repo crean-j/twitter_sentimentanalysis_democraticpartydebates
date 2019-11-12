@@ -11,7 +11,7 @@ public class Runner {
     public static void main(String[] args) {
 
 	UserInteraction ui = new UserInteraction();
-	TwitterSearch ts = new TwitterSearch(ui.getCandidate(), ui.getYear(), ui.getMonth(), ui.getDay());
+	TwitterSearch ts = new TwitterSearch(ui.getCandidate(), ui.getDate());
 	ArrayList<Tweet> result = ts.MainSearch();
 
 	// test printing some fields from tweets

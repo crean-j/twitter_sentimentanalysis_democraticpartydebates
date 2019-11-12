@@ -18,7 +18,7 @@ class TwitterSearchTest {
      */
     @Test
     void testMainSearch() {
-	TwitterSearch ts = new TwitterSearch("Warren", 2019, 10, 10);
+	TwitterSearch ts = new TwitterSearch("Warren", "20191010");
 	ArrayList<Tweet> result = ts.MainSearch();
 	for (int i = 0; i < result.size(); i++) {
 	    boolean exists;
