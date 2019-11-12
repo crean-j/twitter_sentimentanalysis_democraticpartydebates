@@ -48,11 +48,12 @@ public class TwitterSearch {
 	ConfigurationBuilder cf = new ConfigurationBuilder().setTweetModeExtended(true);
 	Twitter twitter = TwitterFactory.getSingleton();
 	TwitterFactory tf = new TwitterFactory(cf.build());
-	ArrayList<Tweet> queryResult = new ArrayList<>();
+	ArrayList<Tweet> queryResult = new ArrayList<>(); //Stores tweet objects as elements
 
-	// Runs the query for candidate
-	// Pending to add dates to the query
+	// Runs the query for the candidate and the date range
 	Query query = new Query(candidate);
+	query.since(sinceDate(year, month, day));
+	query.until(toDate(year, month, day));
 	QueryResult result;
 	try {
 	    result = twitter.search(query.count(100));
@@ -61,7 +62,7 @@ public class TwitterSearch {
 			: status.getText();
 		// Added if condition to check the candidate name is in the main text
 		if (text.contains(candidate)) {
-		    Tweet tw = new Tweet(status.getUser(), status.getUser().getFriendsCount(),
+		    Tweet tw = new Tweet(status.getUser(), status.getUser().getFollowersCount(),
 			    status.getUser().getLocation(), text, status.getCreatedAt(), candidate, 0,
 			    status.getRetweetCount());
 		    queryResult.add(tw);
@@ -78,4 +79,77 @@ public class TwitterSearch {
 
     }
 
+    /**
+     * Calculates the date seven days prior to the date entered
+     * 
+     * @param year  year entered by the user
+     * @param month month entered by the user
+     * @param day   day entered by the user
+     * @return a string in the format YYYY-MM-DD
+     */
+
+    public String sinceDate(int year, int month, int day) {
+	day = day - 7;
+	if (day <= 0) {
+	    month--;
+	}
+	if (month <= 0) {
+	    year--;
+	    month = 12;
+	}
+	if ((month == 1 || month == 3 || month == 5 || month == 7 || month == 8 || month == 10 || month == 12)
+		&& day <= 0) {
+	    day = day + 31;
+	}
+	if ((month == 4 || month == 6 || month == 9 || month == 11) && day <= 0) {
+	    day = day + 30;
+	}
+
+	if (month == 2 && day <= 0 && year == 2019) {
+	    day = day + 28;
+	}
+	if (month == 2 && day <= 0 && year == 2020) {
+	    day = day + 29;
+	}
+
+	return year + "-" + (month <= 10 ? "0" + month : month) + "-" + (day < 10 ? "0" + day : day);
+    }
+
+    /**
+     * Calculates the date seven days after the date entered
+     * 
+     * @param year  year entered by the user
+     * @param month month entered by the user
+     * @param day   day entered by the user
+     * @return a string in the format YYYY-MM-DD
+     */
+    public String toDate(int year, int month, int day) {
+	day = day + 7;
+
+	if ((month == 1 || month == 3 || month == 5 || month == 7 || month == 8 || month == 10 || month == 12)
+		&& day > 31) {
+	    day = day - 31;
+	    month++;
+	}
+	if ((month == 4 || month == 6 || month == 9 || month == 11) && day > 30) {
+	    day = day - 30;
+	    month++;
+	}
+
+	if (month == 2 && day >= 29 && year == 2019) {
+	    day = day - 28;
+	    month++;
+	}
+	if (month == 2 && day >= 30 && year == 2020) {
+	    day = day - 29;
+	    month++;
+	}
+
+	if (month >= 13) {
+	    year = year + 1;
+	    month = 1;
+	}
+
+	return year + "-" + (month <= 10 ? "0" + month : month) + "-" + (day < 10 ? "0" + day : day);
+    }
 }

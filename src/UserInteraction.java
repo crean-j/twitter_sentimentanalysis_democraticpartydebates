@@ -109,22 +109,22 @@ public class UserInteraction {
     /**
      * @return the year
      */
-    public int getYear() {
-	return year;
+    public String getYear() {
+	return "" + year;
     }
 
     /**
      * @return the month
      */
-    public int getMonth() {
-	return month;
+    public String getMonth() {
+	return "" + month;
     }
 
     /**
      * @return the day
      */
-    public int getDay() {
-	return day;
+    public String getDay() {
+	return "" + day;
     }
 
     /**
