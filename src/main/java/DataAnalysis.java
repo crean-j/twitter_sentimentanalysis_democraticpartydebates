@@ -1,3 +1,4 @@
+package main.java;
 
 /*
  * This class takes in Tweet objects and analyzes them for sentiment

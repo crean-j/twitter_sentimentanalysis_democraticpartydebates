@@ -1,3 +1,4 @@
+package main.java;
 import java.util.Date;
 
 import twitter4j.User;

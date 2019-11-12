@@ -1,3 +1,4 @@
+package main.java;
 /**
  * Class takes tweet text and cleans it up for natural language processing
  * It includes methods to:
