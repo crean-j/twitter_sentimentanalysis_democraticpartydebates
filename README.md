@@ -83,11 +83,12 @@ Timeline
 ### Planned classes
 
 1. Tweet (JG)
-3. TwitterSearch (JG)
+2. TwitterSearch (JG)
+3. InfluenceScore (JG)
 4. TweetProcessor (JC)
 5. NLPAnalyser (JC)
-7. DataAnalysis (FP)
-8. UserInteraction (JG)
+6. DataAnalysis (FP)
+7. UserInteraction (JG)
 8. Runner - gets user input, answer writer (FP)
 
 <table>
@@ -182,7 +183,45 @@ Timeline
           <h3>Notes:</h3>
              </td>
             </tr>
-            </table>
+</table>
+
+<table>
+<tr>
+   <td colspan="2">
+         <h2>Class: InfluenceScore.java</h2>
+      </td>
+  </tr>
+  <tr>
+   <td>
+         <h3>Responsibilities:</h3>
+  <ul>
+  <li>Calculates influence score for a tweet</li>
+  <li>Has max followers</li>
+  <li>Has min followers</li>
+  <li>Has max retweets</li>
+  <li>Has min retweets</li>
+  </ul>
+     </td>
+     <td>
+  <h3>Collaborators:</h3>
+  <ul>
+  <li>Tweet</li>
+  </ul>
+     </td>
+    </tr>
+    <tr>
+     <td colspan="2">
+  <h3>Methods:</h3>
+  <ul>
+  <li>calculationOfTheInfluenceScor</li>
+  </ul>
+  </td>
+    </tr>
+    <tr>
+              <td colspan="2" >
+           <h3>Notes:</h3>
+              </td>
+             </tr> </table>
 
 <table>
   <tr>
@@ -198,6 +237,7 @@ Timeline
 <li>Has candidate mentioned</li>
 <li>Has to look for tweet as per the criteria in UserInteraction</li>
 <li>Creates an ArrayList of tweet objects containing the search term</li>
+<li>Gets date 7 days before and after search date</li>
 </ul>
    </td>
    <td>
@@ -215,6 +255,8 @@ Timeline
 <h3>Methods:</h3>
 <ul>
 <li>mainSearch</li>
+<li>toDate</li>
+<li>sinceDate</li>
 </ul>
 </td>
   </tr>
