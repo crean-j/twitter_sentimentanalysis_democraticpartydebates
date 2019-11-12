@@ -46,7 +46,7 @@ public class TwitterSearch {
 	ConfigurationBuilder cf = new ConfigurationBuilder().setTweetModeExtended(true);
 	Twitter twitter = TwitterFactory.getSingleton();
 	TwitterFactory tf = new TwitterFactory(cf.build());
-	ArrayList<Tweet> queryResult = new ArrayList<>(); //Stores tweet objects as elements
+	ArrayList<Tweet> queryResult = new ArrayList<>(); // Stores tweet objects as elements
 
 	// Runs the query for the candidate and the date range
 	Query query = new Query(candidate);
@@ -88,9 +88,9 @@ public class TwitterSearch {
 
     public String sinceDate(String date) {
 	int year = Integer.valueOf(date.substring(0, 4));
-	int month = Integer.valueOf(date.substring(4, 6));
-	int day = Integer.valueOf(date.substring(6, 8));
-	
+	int month = Integer.valueOf(date.substring(5, 7));
+	int day = Integer.valueOf(date.substring(8, 10));
+
 	day = day - 7;
 	if (day <= 0) {
 	    month--;
@@ -127,9 +127,9 @@ public class TwitterSearch {
      */
     public String toDate(String date) {
 	int year = Integer.valueOf(date.substring(0, 4));
-	int month = Integer.valueOf(date.substring(4, 6));
-	int day = Integer.valueOf(date.substring(6, 8));
-	
+	int month = Integer.valueOf(date.substring(5, 7));
+	int day = Integer.valueOf(date.substring(8, 10));
+
 	day = day + 7;
 
 	if ((month == 1 || month == 3 || month == 5 || month == 7 || month == 8 || month == 10 || month == 12)
