@@ -1,4 +1,5 @@
 import java.util.Scanner;
+import java.util.regex.*;
 
 /**
  * This class handles the interaction with the user and validation of the data
@@ -55,19 +56,7 @@ public class UserInteraction {
 		+ "For example, for September 6th, 2019, enter 20190906): ");
 	do {
 	    optionSelected = scanner.nextLine();
-	    parseDate(optionSelected);
-	} while (!validateDate(optionSelected, year, month, day));
-    }
-
-    /**
-     * This class parses the date entered into year, month and day
-     * 
-     * @param optionSelected date in format YYYYMMDD
-     */
-    public void parseDate(String optionSelected) {
-	year = Integer.valueOf(optionSelected.substring(0, 4));
-	month = Integer.valueOf(optionSelected.substring(4, 6));
-	day = Integer.valueOf(optionSelected.substring(6, 8));
+	} while (!validateDate(optionSelected));
     }
 
     /**
@@ -78,11 +67,16 @@ public class UserInteraction {
      * @param day   day entered by the user
      * @return true if date is valid, false otherwise
      */
-    private boolean validateDate(String optionSelected, int year, int month, int day) {
-	if (optionSelected.length() != 8) {
+    private boolean validateDate(String optionSelected) {
+	if (!Pattern.matches("\\d{8}", optionSelected)) {
 	    System.out.println("Incorrect date entered. Please try again");
 	    return false;
+	} else {
+	    year = Integer.valueOf(optionSelected.substring(0, 4));
+	    month = Integer.valueOf(optionSelected.substring(4, 6));
+	    day = Integer.valueOf(optionSelected.substring(6, 8));
 	}
+
 	if (year != 2019 && year != 2020) {
 	    System.out.println("Incorrect year entered. Please enter the date again: ");
 	    return false;
