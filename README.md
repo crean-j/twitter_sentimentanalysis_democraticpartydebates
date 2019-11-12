@@ -269,7 +269,7 @@ Timeline
 
 <table>
   <tr>
-   <td>
+   <td colspan="2">
        <h2>Class: TweetProcessor.java</h2>
     </td>
   </tr>
