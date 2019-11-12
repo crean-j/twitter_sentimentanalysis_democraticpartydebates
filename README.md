@@ -18,8 +18,6 @@ Analyze tweets mentioning top democratic primary candidates and analyze sentimen
 
 General
 
-
-
 *   Weekly meeting Sat 9am EST
 *   Mid-week update in the Slack channel on Weds (what are you working on, what’s going well, any issues)
     *   This could be call if needed (5 or 6pm EST?)
@@ -27,11 +25,9 @@ General
 
 Timeline
 
-
-
 *   **Oct 26th Meeting**: Scoping
 *   Individuals consider design for their focus areas -> figure out inputs/outputs
-*   **Nov 2nd Meeting: **Design planning
+*   **Nov 2nd Meeting**:Design planning
 *   Individuals refine their design, consider milestones, set-up GitHub, maybe start proof of concept
 *   **Nov 9th Meeting**: Design proposal submission, confirm milestones
 *   Individuals work on code
@@ -46,8 +42,6 @@ Timeline
 
 
 ## Flow
-
-
 
 1. User input
     1. Ask user to select candidate from list, can select more than one (can we predict this?)
@@ -86,129 +80,239 @@ Timeline
 
 ## CRC
 
-
-### Possible classes
-
-
+### Planned classes
 
 1. Tweet (JG)
-2. ? Candidate (All)
 3. TwitterSearch (JG)
 4. TweetProcessor (JC)
-5. SentimentAnalyser (JC)
-6. ? CandidateAnalyser (FP)
-7. TweetAnalyser (FP)
-8. Runner - gets user input, answer writer (ALL)
+5. NLPAnalyser (JC)
+7. DataAnalysis (FP)
+8. UserInteraction (JG)
+8. Runner - gets user input, answer writer (FP)
 
-
-### Class: Tweet
-
-
-#### Responsibilities
-
-
-
-*   Has date of the tweet
-*   Has candidate in the text
-*   Has meta data like user location
-*   Has weight (num of followers, num of retweets)
-*   Has sentiment score
-*   (Has adjectives array?)
-
-
-#### Collaborators
-
-*   TweeterSearch
-*   UserInteraction
-*   SentimentAnalyser
-
-### Class: UserInteraction
-
-
-#### Responsibilities
-
-
-
-*   Asks user for candidate to search, dates and a lable for the query
-*   Has validations of the datea entered
-
-
-#### Collaborators
-
-*   TweeterSearch
-
-### Class: TweeterSearch
-
-
-#### Responsibilities
-
-
-*   Has to look for tweet as per the criteria in UserInteraction
-*   Creates an ArrayList of tweet objects containing the serach term
-
-
-#### Collaborators
-
-
-
-*   UserInteraction
-*   Tweet
-*   CandidateAnalyser
-
-
-### Class: Candidate
-
-
-#### Responsibilities
-
-
-
-*   Has name
-*   Has number of followers on x date before debate
-*   Has number of followers on date of debate
-*   Has number of followers on x date after debate
-*   Air time during debate
-
-
-#### Collaborators
-
-
-
-*   TweetReader
-*   CandidateAnalyser
-
-
-### Class: SentimentAnalyser 
-
-
-### Responsibilities
-
-
-
-*   Prepares pre-processed tweet for analysis
-*   Gets a sentiment score
-
-
-### Collaborators
-
-
-
-*   Tweet
-*   TweetReader
+<table>
+  <tr>
+   <td colspan="2">
+         <h2>Class: Tweet.java</h2>
+      </td>
+  </tr>
+  <tr>
+   <td>
+       <h3>Responsibilities:</h3>
+<ul>
+<li>Has date of the tweet</li>
+<li>Has candidate in the text</li>
+<li>Has user location</li>
+<li>Has num of followers</li>
+<li>Has num of retweets</li>
+<li>Has raw tweet text</li>
+<li>Has processed tweet text</li>
+<li>Has array list of adjectives</li>
+<li>Has array list of words</li>
+<li>Has sentiment score</li>
+</ul>
+   </td>
+   <td>
+<h3>Collaborators:</h3>
+<ul>
+<li>TwitterSearch</li>
+<li>UserInteraction</li>
+<li>TweetProcessor</li>
+<li>NLPAnalyser</li>
+</ul>
+   </td>
+  </tr>
+  <tr>
+   <td colspan="2">
+<h3>Methods:</h3>
+<ul>
+<li>Getters and setters</li>
+</ul>
+</td>
+  </tr>
+   <tr>
+              <td colspan="2" >
+            <h3>Notes:</h3>
+               </td>
+              </tr>
+              </table>
+     
 
 <table>
   <tr>
    <td colspan="2" >
+         <h2>Class: UserInteraction.java</h2>
+      </td>
+  </tr>
+  <tr>
+   <td>
+       <h3>Responsibilities:</h3>
 
-<h2><strong>Class: </strong>DataAnalysis.java</h2>
+<ul>
+<li>Asks user for candidate to search</li>
+<li>Asks user for a date for the query</li>
+<li>Asks user to a d</li>
+<li>Validates the entered data</li>
+<li>Has candidate name</li>
+<li>Has date</li>
+<li>Has event name</li>
+</ul>
+   </td>
+      <td>
+          <h3>Collaborators:</h3>
+   
+   <ul>
+   <li>TwitterSearch</li>
+   </ul>
+      </td>
+      </tr>
+        <tr>
+         <td colspan="2">
+      <h3>Methods:</h3>
+      <ul>
+      <li>selectSearchTerm</li>
+      <li>parseDate</li>
+      <li>validateDate</li>
+      <li>Getters and setters</li>
+      </ul>
+      </td>
+        </tr>
+        <tr>
+             <td colspan="2" >
+          <h3>Notes:</h3>
+             </td>
+            </tr>
+            </table>
 
+<table>
+  <tr>
+   <td colspan="2">
+         <h2>Class: TwitterSearch.java</h2>
+      </td>
+  </tr>
+  <tr>
+   <td>
+       <h3>Responsibilities:</h3>
+<ul>
+<li>Has date of the tweet</li>
+<li>Has candidate mentioned</li>
+<li>Has to look for tweet as per the criteria in UserInteraction</li>
+<li>Creates an ArrayList of tweet objects containing the search term</li>
+</ul>
+   </td>
+   <td>
+<h3>Collaborators:</h3>
+<ul>
+<li>Tweet</li>
+<li>UserInteraction</li>
+<li>Twitter API</li>
 
+</ul>
+   </td>
+  </tr>
+  <tr>
+   <td colspan="2">
+<h3>Methods:</h3>
+<ul>
+<li>mainSearch</li>
+</ul>
+</td>
+  </tr>
+  <tr>
+            <td colspan="2" >
+         <h3>Notes:</h3>
+            </td>
+           </tr>
+</table>
+
+<table>
+  <tr>
+   <td>
+       <h2>Class: TweetProcessor.java</h2>
+    </td>
+  </tr>
+  <tr>
+   <td>
+       <h3>Responsibilities:</h3>
+<ul>
+<li>Cleans a tweet for analysis by trimming whitespace and converting to lowercase</li>
+<li>Removes noise from a tweet: html mark-up, non-ascii characters</li>
+</ul>
+   </td>
+   <td>
+<h3>Collaborators:</h3>
+<ul>
+<li>Tweet</li>
+</ul>
+   </td>
+  </tr>
+  <tr>
+   <td colspan="2">
+<h3>Methods:</h3>
+<ul>
+<li>cleanText</li>
+<li>removeNoise</li>
+</ul>
+</td>
+  </tr>
+  <tr>
+       <td colspan="2" >
+    <h3>Notes:</h3>
+       </td>
+      </tr>
+</table>
+
+<table>
+  <tr>
+   <td colspan="2" >
+         <h2>Class: NLPAnalyser.java</h2>
+      </td>
+  </tr>
+  <tr>
+   <td>
+       <h3>Responsibilities:</h3>
+<ul>
+<li>Creates a pipeline to annotate some text using NLP annotators</li>
+<li>Gets the sentiment score for a tweet</li>
+<li>Gets an array list of adjectives in a tweet</li>
+<li>Gets all words in a tweet</li>
+</ul>
+   </td>
+   <td>
+<h3>Collaborators:</h3>
+<ul>
+<li>Tweet</li>
+<li>Stanford CoreNLP API</li>
+</ul>
+   </td>
+  </tr>
+  <tr>
+   <td colspan="2">
+<h3>Methods:</h3>
+<ul>
+<li>nlpPipeline</li>
+<li>getSentimentScore</li>
+<li>adjectives</li>
+<li>getWords</li>
+</ul>
+</td>
+  </tr>
+   <tr>
+     <td colspan="2" >
+  <h3>Notes:</h3>
+     </td>
+    </tr>
+</table>
+
+<table>
+  <tr>
+   <td colspan="2" >
+      <h2>Class: DataAnalysis.java</h2>
    </td>
   </tr>
   <tr>
    <td>
-<h3>Responsibilities:</h3>
-
+      <h3>Responsibilities:</h3>
 
 <ul>
 
@@ -240,7 +344,7 @@ Timeline
  
 <li>Tweets per day sentiment
  
-<li>Most retweeted tweets
+<li>Most re-tweeted tweets
 </li> 
 </ul>
 </li> 
@@ -266,9 +370,9 @@ Timeline
 
 <li>Constructor (takes in Tweets and makes ArrayList)
 
-<li>Int numTweets()
+<li>int numTweets()
 
-<li>Int sentimentScore()
+<li>int sentimentScore()
 
 <li>HashMap(String, Integer) positiveWordCount ()
 
@@ -276,16 +380,17 @@ Timeline
 
 <li>HashMap(String, Integer) tweetsByState()
 
-<li>Int followersBefore<em>(date?)</em>
+<li>int followersBefore<em>(date?)</em>
 
-<li>Int followersAfter(date?)
-</li>
+<li>int followersAfter(date?)</li>
+<li>int averageSevenDBefore(String date)</li>
+<li>int averageSevenDAfter(String date)</li>
 </ul>
    </td>
   </tr>
   <tr>
    <td colspan="2" >
-<h3>Notes/questions:</h3>
+<h3>Notes:</h3>
 
 <ul>
 <li>For all method that measure ‘Top’ the number of results displayed should be dynamic</li>
@@ -303,7 +408,7 @@ Timeline
 <table>
   <tr>
    <td colspan="2" >
-      <h2>Class:Runner.java</h2>
+      <h2>Class: Runner.java</h2>
    </td>
   </tr>
   <tr>
@@ -317,7 +422,7 @@ Timeline
 
 <li>Executes methods in Data Analysis and prints out results to console in a user-friendly way
 
-<li>Print out file with analyisis results
+<li>Print out file with analysis results
 </li>
 </ul>
    </td>
@@ -337,11 +442,6 @@ Timeline
   <tr>
    <td colspan="2" >
 <h3>Methods:</h3>
-
-
-
-
-
 <ul>
 
 <li>Main
@@ -369,16 +469,14 @@ Timeline
         1. Date of event, candidate
 2. What do we do with:
     2. Tweets that mention two candidates.
-        2. Disqualify?
-        3. Will decide later on
+        2. Disqualify? Will decide later on
     3. Re-tweets.
-        4. Disqualify?
+        4. Disqualify? No
         5. Endorsements - adds a vote for the candidate
         6. Influencers - more followers 
     4. Cases where there are big differences in the number of tweets mentioning a candidate, how do we compare? 
         7. Need to do a weighted analysis
         8. Is there a minimum number of tweets we should use: ‘[Sentiment analysis](https://monkeylearn.com/sentiment-analysis/) needs at least 500 examples per tag (sentiment) to produce good results.’
-        9. Look at the top 4 or 5 candidates
 3. Should we take a candidates number of followers into account? Could create a candidate class and capture number of followers pre and post debate from Twitter and then report on this as part of the analysis.
 4. Should we pass around tweet objects in an array list or a csv file
 5. What is required as an output, is a static visualisation enough? How will it be graded?
@@ -390,20 +488,9 @@ Timeline
 
 **Output: Positive/Negative score (int or String)**
 
-
-
-<p id="gdcalert1" ><span style="color: red; font-weight: bold">>>>>>  gd2md-html alert: inline image link here (to images/591-Final0.png). Store image on your image server and adjust path/filename if necessary. </span><br>(<a href="#">Back to top</a>)(<a href="#gdcalert2">Next alert</a>)<br><span style="color: red; font-weight: bold">>>>>> </span></p>
-
-
-![alt_text](images/591-Final0.png "image_tooltip")
-
-
-
 ### Options
 
-1.SentiWordNet
-
-
+1. SentiWordNet
 
 1. This paper gives a good summary of the steps involved: [https://pdfs.semanticscholar.org/2124/bba341a61f0b6cb6141888b789f20b88844b.pdf](https://pdfs.semanticscholar.org/2124/bba341a61f0b6cb6141888b789f20b88844b.pdf)
 2. Would need to import a Java library to prepare the tweets for analysis
@@ -415,9 +502,7 @@ Timeline
 4. Read in SentiWordNet txt file
 5. Lookup words in the file to get score
 
-2.Google API
-
-
+2. Google API
 
 1. [https://cloud.google.com/natural-language/docs/sentiment-tutorial](https://cloud.google.com/natural-language/docs/sentiment-tutorial)
 2. [https://medium.com/@cmcorrales3/natural-language-processing-and-tweet-sentiment-analysis-fa1edbb5ddd5](https://medium.com/@cmcorrales3/natural-language-processing-and-tweet-sentiment-analysis-fa1edbb5ddd5)
@@ -427,14 +512,12 @@ Timeline
 
 This seems too easy so far, I’m still looking into it. 
 
-3. Stanford API
-
-
+3. Stanford CoreNLP API
 
 1. [https://blog.openshift.com/day-20-stanford-corenlp-performing-sentiment-analysis-of-twitter-using-java/](https://blog.openshift.com/day-20-stanford-corenlp-performing-sentiment-analysis-of-twitter-using-java/)
 2. Have methods to allow strings to be prepped for analysis
 3. Method to get sentiment score
-4. Still looking into what they use to get the sentiment score
+4. Sentiment measured 0 -> 4
 
 Training database
 
