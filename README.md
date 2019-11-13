@@ -58,25 +58,16 @@ Timeline
     6. Location of user
     7. Retweet count
     8. //Influencer weight (num of followers and number of retweets that the tweet had)
-5. ? Store variables in the candidate object - May not be possible
-    1. Candidate
-    2. Number of followers 7 days before event
-    3. Number of followers on day of event
-    4. Number of followers 7 days after event
-6. Pre-process tweets, e.g. remove urls, hashtags, repeated letters
-7. Add pre-processed tweet to tweet object
-8. Get sentiment analysis for tweet
+5. Pre-process tweets, e.g. remove urls, hashtags, repeated letters
+6. Add pre-processed tweet to tweet object
+7. Get sentiment analysis for tweet
     1. Prepare tweet for analysis, e.g. tokenise, lemmatise etc.
     2. Get sentiment score for tweet
     3. Adjectives can these be stored separately?
-9. Add sentiment score etc. to tweet object
-10. Add tweet object to an ArrayList
-11. Analyser uses ArrayList of tweets to answer questions, e.g. creates relevant hash maps etc.
-12. Output results, e.g. console, visualisation - runner would create a text file
-    1. Average pos and neg sentiment/day over time for each candidate
-    2. Number of pos and neg sentiment tweets/day over time for each candidate
-    3. Number of followers on 7 days before, on day of event, 7 days after event for each candidate
-
+8. Add sentiment score etc. to tweet object
+9. Add tweet object to an ArrayList
+10. Analyser uses ArrayList of tweets to answer questions, e.g. creates relevant hash maps etc.
+11. Output results, e.g. console, visualisation - runner would create a text file
 
 ## CRC
 
