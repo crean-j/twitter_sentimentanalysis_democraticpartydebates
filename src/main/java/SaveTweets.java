@@ -14,12 +14,12 @@ import twitter4j.Status;
  * Save tweets to a text file as we can only go back 7 in history
  */
 
-public class PrintTweets {
+public class SaveTweets {
     ArrayList<Tweet> tweet = new ArrayList<>();
     HashMap <Long, Tweet> tweetArchive = new HashMap<>();
     String tweetLine;
 
-    public PrintTweets(ArrayList<Tweet> tweet) {
+    public SaveTweets(ArrayList<Tweet> tweet) {
 	this.tweet = tweet;
     }
 
