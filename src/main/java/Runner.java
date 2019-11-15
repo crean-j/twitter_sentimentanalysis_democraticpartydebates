@@ -15,7 +15,10 @@ public class Runner {
 		TwitterSearch ts = new TwitterSearch(ui.getCandidate(), ui.getDate());
 		ArrayList<Tweet> result = ts.mainSearch();
 		InfluenceScore is = new InfluenceScore(result);
-
+//		PrintTweets st = new PrintTweets (result);
+//		st.saveToFile();
+		
+		
 
 		// DataAnalysis da = new DataAnalysis(tweets);
 

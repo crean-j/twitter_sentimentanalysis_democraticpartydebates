@@ -16,19 +16,23 @@ public class InfluenceScore {
         calculationOfTheInfluenceScore(result);
     }
 
-    //
+    /**
+     * THis class calculates and updates an ArrayList with the score
+     * @param result ArrayList with the Tweets that match the search term
+     */
     private void calculationOfTheInfluenceScore (ArrayList<Tweet> result) {
-        for (int i = 0 ; i<result.size() ; i++) {
-            maxFollowers = maxFollowers < result.get(i).getNumberOfFollowers() ? result.get(i).getNumberOfFollowers() : maxFollowers;
-            minFollowers = minFollowers > result.get(i).getNumberOfFollowers() ? result.get(i).getNumberOfFollowers() : minFollowers;
-            maxRetweets = maxRetweets < result.get(i).getRetweetedCount() ? result.get(i).getRetweetedCount() : maxRetweets;
-            minRetweets = minRetweets > result.get(i).getRetweetedCount() ? result.get(i).getRetweetedCount() : minRetweets;
+	for (Tweet t : result) {    
+            maxFollowers = maxFollowers < t.getNumberOfFollowers() ? t.getNumberOfFollowers() : maxFollowers;
+            minFollowers = minFollowers > t.getNumberOfFollowers() ? t.getNumberOfFollowers() : minFollowers;
+            maxRetweets = maxRetweets < t.getRetweetedCount() ? t.getRetweetedCount() : maxRetweets;
+            minRetweets = minRetweets > t.getRetweetedCount() ? t.getRetweetedCount() : minRetweets;
         }
-        for (int i = 0 ; i<result.size() ; i++) {
-            int followersScore = (result.get(i).getNumberOfFollowers()-minFollowers)/(maxFollowers - minFollowers);
-            int retweetsScore = (result.get(i).getRetweetedCount()-minRetweets)/(maxRetweets - minRetweets);
-            result.get(i).setInfluenceScore((followersScore+retweetsScore)/2.0);
+        for (Tweet t : result) {
+            double followersScore = (double)(t.getNumberOfFollowers()-minFollowers)/(maxFollowers - minFollowers);
+            double retweetsScore = (double)(t.getRetweetedCount()-minRetweets)/(maxRetweets - minRetweets);
+            t.setInfluenceScore((followersScore+retweetsScore)/2.0);
         }
+        
     }
 }
 

@@ -10,6 +10,7 @@ import twitter4j.User;
  *
  */
 public class Tweet {
+    private long id;
     private User user;
     private int numberOfFollowers;
     private String location;
@@ -21,8 +22,9 @@ public class Tweet {
     private int sentimentScore;
 
     // Constructor
-    public Tweet(User user, int numberOfFollowers, String location, String textInTweet, Date tweetDate,
+    public Tweet(long id, User user, int numberOfFollowers, String location, String textInTweet, Date tweetDate,
                  String candidate, double influenceScore, int retweetedCount) {
+	this.id = id;
         this.user = user;
         this.numberOfFollowers = numberOfFollowers;
         this.location = location;
@@ -33,6 +35,19 @@ public class Tweet {
         this.retweetedCount = retweetedCount;
     }
 
+    /**
+     * @return the tweet ID
+     */
+    public long getId() {
+        return id;
+    }
+
+    /**
+     * @param user the user to set
+     */
+    public void setId(long id) {
+        this.id = id;
+    }
     /**
      * @return the user
      */
