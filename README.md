@@ -43,12 +43,10 @@ Timeline
 
 ## Flow
 
-1. User input
-    1. Ask user to select candidate from list, can select more than one (can we predict this?)
-    2. Ask user to enter event name (label)
-    3. Ask user for date of event
-2. Query for tweets sent from 7 days before event to event and from event to 7 days after event that mention any of the selected candidates
-3. Read and parse response
+1. Files of tweets pulled on Nov 20th and Nov 27th. Files store tweets that mention any of the democratic candidates.
+2. User input
+    1. Ask user to select candidate from list, can select more than one (do we need this?)
+3. Read in csv file
 4. Store variables in tweet object
     1. Date of tweet
     2. Candidate mentioned
@@ -58,16 +56,17 @@ Timeline
     6. Location of user
     7. Retweet count
     8. //Influencer weight (num of followers and number of retweets that the tweet had)
-5. Pre-process tweets, e.g. remove urls, hashtags, repeated letters
+5. Pre-process tweet text, e.g. remove urls, hashtags, repeated letters
 6. Add pre-processed tweet to tweet object
 7. Get sentiment analysis for tweet
     1. Prepare tweet for analysis, e.g. tokenise, lemmatise etc.
     2. Get sentiment score for tweet
-    3. Adjectives can these be stored separately?
-8. Add sentiment score etc. to tweet object
+8. Add sentiment score to tweet object
+9. Get list of adjectives and their sentiment score
+10. Store HashMap in tweet object
 9. Add tweet object to an ArrayList
-10. Analyser uses ArrayList of tweets to answer questions, e.g. creates relevant hash maps etc.
-11. Output results, e.g. console, visualisation - runner would create a text file
+11. Analyser uses ArrayList of tweets to answer questions, e.g. creates relevant hash maps etc.
+12. Output results, e.g. console, visualisation, file 
 
 ## CRC
 
