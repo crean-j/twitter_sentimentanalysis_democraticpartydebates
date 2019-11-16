@@ -32,6 +32,9 @@ public class Tweet {
         this.influenceScore = influenceScore;
         this.retweetedCount = retweetedCount;
     }
+    
+    //Constructor for testing
+    public Tweet() {}
 
     /**
      * @return the user

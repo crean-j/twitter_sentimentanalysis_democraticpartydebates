@@ -9,6 +9,7 @@ import edu.stanford.nlp.trees.Tree;
 import edu.stanford.nlp.util.CoreMap;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Properties;
 
@@ -32,8 +33,8 @@ import java.util.Properties;
  */
 public class NLPAnalyser {
 
-    private Properties props = new Properties(); //new properties file from Stanford CoreNLP library
-    private StanfordCoreNLP pipeline = new StanfordCoreNLP(props); // sets up a new pipeline
+    private Properties props; //new properties file from Stanford CoreNLP library
+    private StanfordCoreNLP pipeline; // sets up a new pipeline
     private Tweet tweet; // tweet to analyse
 
     /**
@@ -41,7 +42,9 @@ public class NLPAnalyser {
      * Sets the properties needed for NLP analysis in the pipeline
      */
     public NLPAnalyser() {
+    	props = new Properties();
         props.setProperty("annotators", "tokenize, ssplit, pos, parse, sentiment");
+        pipeline = new StanfordCoreNLP(props); 
     }
 
     /**
@@ -56,10 +59,10 @@ public class NLPAnalyser {
      *
      * @return List<CoreMap> mapping the sentences to their annotations
      */
-    public List<CoreMap> nlpPipeline(Tweet tweet) {
+    public List<CoreMap> nlpPipeline(String tweetText) {
         // Create a new annotation object from the tweet
         // This is needed to prep the tweet for the sentiment analysis
-        Annotation document = new Annotation(tweet.getTextInTweet());
+        Annotation document = new Annotation(tweetText);
 
         // Run the text through the pipeline to annotate it
         pipeline.annotate(document);
@@ -78,10 +81,12 @@ public class NLPAnalyser {
      *
      * @return int containing the sentiment for the tweet
      */
-    public int getSentimentScore(List<CoreMap> sentences) {
+    public double getSentimentScore(List<CoreMap> sentences) {
+    	int totalSentiment = 0;
+    	double tweetSentiment = 0;
 
-        int tweetSentiment = -1; // sentiment for the tweet overall
-        int totalSentiment = -1; // sum of the sentiment for each sentence in the tweet
+        //double tweetSentiment = -1.00; // sentiment for the tweet overall
+         // sum of the sentiment for each sentence in the tweet
 
         // Loop through each sentence and get the sentiment score
         for (CoreMap sentence : sentences) {
@@ -100,7 +105,8 @@ public class NLPAnalyser {
 
         // Get the total sentiment for the tweet by getting the average sentiment for all
         // sentences in the tweet
-        tweetSentiment = totalSentiment / sentences.size();
+        tweetSentiment = (double) totalSentiment / (double)sentences.size();
+        System.out.println("Tweet sentiment: " + tweetSentiment);
         return tweetSentiment;
     }
 
@@ -118,13 +124,16 @@ public class NLPAnalyser {
             // traversing the words in the current sentence
             // a CoreLabel is a CoreMap with additional token-specific methods
             for (CoreLabel token : sentence.get(CoreAnnotations.TokensAnnotation.class)) {
-                // this is the text of the token
+                System.out.println("token: " + token);
+            	// this is the text of the token
+     
                 String word = token.get(CoreAnnotations.TextAnnotation.class);
                 // this is the POS tag of the token
                 String pos = token.get(CoreAnnotations.PartOfSpeechAnnotation.class);
 
                 // if the word is an adjective then add it to the the ArrayList of adjectives
                 if (pos.contains(adjective)) {
+                	System.out.println("adj: " + word);
                     adjectives.add(word);
                 }
             }
@@ -132,6 +141,25 @@ public class NLPAnalyser {
         // might add code to also add sentiment score for the adjectives
         return adjectives;
     }
+    
+    /**
+     * Method to get a list of positive and negative adjectives
+     * 
+     * @return adjectivesScore a HashMap<String, Integer> 
+     */
+    
+   public HashMap<String, Double> adjectivesScoring(List<CoreMap> sentences) {
+	   HashMap<String, Double> adjectivesScore = new HashMap<String, Double>();
+	   ArrayList<String> adjectives = adjectives(sentences);
+	   for (String adjective : adjectives) {
+		   List<CoreMap> tweetAdjectives = nlpPipeline(adjective);
+		   double adjSentiment = getSentimentScore(tweetAdjectives);
+		   adjectivesScore.put(adjective, adjSentiment);
+	   }
+	   System.out.println(adjectivesScore);
+	   return adjectivesScore;
+   }
+   
 
     /**
      * Method to get the individual words in a tweet
@@ -139,19 +167,38 @@ public class NLPAnalyser {
      *
      * @return ArrayList<String> containing individual words in the tweet
      */
-    public ArrayList<String> getWords (List <CoreMap> sentences) {
-        ArrayList<String> tokens = new ArrayList<String>();
+    /*public ArrayList<String> getImportantWords (List <CoreMap> sentences) {
+        ArrayList<String> impWords = new ArrayList<String>();
+        String adjective = "JJ";
+        String noun = "";
+        String
         for (CoreMap sentence : sentences) {
             // traversing the words in the current sentence
             // a CoreLabel is a CoreMap with additional token-specific methods
             for (CoreLabel token : sentence.get(CoreAnnotations.TokensAnnotation.class)) {
                 // this is the text of the token
+            	System.out.println(token);
                 String word = token.get(CoreAnnotations.TextAnnotation.class);
+                System.out.println(word);
 
                 tokens.add(word);
             }
         }
         // may need to add code to remove stop words
         return tokens;
+    }*/
+    
+    public static void main(String[] args) {
+    	Tweet tweet = new Tweet();
+    	tweet.setTextInTweet("It is a beautiful, bright, sunny morning here in Brussels, Belgium! Do not tell anyone that you are this happy. Joy, joy, joy! So happy you are here!"); 
+    	NLPAnalyser nlp = new NLPAnalyser();
+    	List<CoreMap> sentences = nlp.nlpPipeline(tweet.getTextInTweet());
+    	nlp.getSentimentScore(sentences);
+    	ArrayList<String> adjectives = nlp.adjectives(sentences);
+    	System.out.println(adjectives.toString());
+    	//ArrayList<String> words = nlp.getImportantWords(sentences);
+    	//System.out.println(words);
+    	HashMap<String, Double> as = nlp.adjectivesScoring(sentences);
+    	System.out.println("done");
     }
 }
