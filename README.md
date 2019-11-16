@@ -45,8 +45,9 @@ Timeline
 
 1. Files of tweets pulled on Nov 20th and Nov 27th. Files store tweets that mention any of the democratic candidates.
 2. User input
-    1. Ask user to select candidate from list, can select more than one (do we need this?)
-3. Read in csv file
+    1. User can put in a keyword
+    2. Will get results for the last 7 days
+3. Read in csv file OR get the live tweet feed
 4. Store variables in tweet object
     1. Date of tweet
     2. Candidate mentioned
