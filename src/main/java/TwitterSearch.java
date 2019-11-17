@@ -2,6 +2,7 @@ package main.java;
 
 import java.util.*;
 
+import twitter4j.Paging;
 import twitter4j.Query;
 import twitter4j.QueryResult;
 import twitter4j.Status;
@@ -42,6 +43,8 @@ public class TwitterSearch {
 	Twitter twitter = TwitterFactory.getSingleton();
 	TwitterFactory tf = new TwitterFactory(cf.build());
 	ArrayList<Tweet> queryResult = new ArrayList<>(); // Stores tweet objects as elements
+	long lastTweetMaxId = -1; // tracks the latest tweet retrieved
+	int MAXSEARCHREQUESTS = 20;
 
 	// Runs the query for the candidate and the date range
 	Query query = new Query(candidate);
@@ -49,25 +52,42 @@ public class TwitterSearch {
 	query.setUntil(toDate(date));
 	query.count(100);
 	QueryResult result;
-	try {
-	    result = twitter.search(query);
-	    for (Status status : result.getTweets()) {
-		String text = status.getRetweetedStatus() != null ? status.getRetweetedStatus().getText()
-			: status.getText();
-		// Added if condition to check the candidate name is in the main text
-		if (text.contains(candidate)) {
-		    Tweet tw = new Tweet(status.getId(), status.getUser(), status.getUser().getFollowersCount(),
-			    status.getUser().getLocation(), text, status.getCreatedAt(), candidate, 0,
-			    status.getRetweetCount());
-		    queryResult.add(tw);
-		}
+
+	for (int numberOfQueries = 0; numberOfQueries < MAXSEARCHREQUESTS; numberOfQueries++) {
+	    // Sets the last tweet ID retrieved
+	    if (lastTweetMaxId != -1) {
+		query.setMaxId(lastTweetMaxId - 1);
 	    }
 
-	} catch (TwitterException e) {
-	    // TODO Auto-generated catch block
-	    e.printStackTrace();
-	} catch (NullPointerException f) {
-	    f.printStackTrace();
+	    try {
+		result = twitter.search(query);
+		System.out.println(result.getRateLimitStatus());
+		// Checks if there are still tweets to retrieve
+		if (result.getTweets().size() == 0) {
+		    return queryResult;
+		}
+		for (Status status : result.getTweets()) {
+		    String text = status.getRetweetedStatus() != null ? status.getRetweetedStatus().getText()
+			    : status.getText();
+		    // Added if condition to check the candidate name is in the main text
+		    if (text.contains(candidate)) {
+			// Updates the highest ID in the tweets retrieved
+			if (lastTweetMaxId == -1 || status.getId() < lastTweetMaxId) {
+			    lastTweetMaxId = status.getId();
+			}
+			Tweet tw = new Tweet(status.getId(), status.getUser(), status.getUser().getFollowersCount(),
+				status.getUser().getLocation(), text, status.getCreatedAt(), candidate, 0,
+				status.getRetweetCount());
+			queryResult.add(tw);
+		    }
+		}
+
+	    } catch (TwitterException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	    } catch (NullPointerException f) {
+		f.printStackTrace();
+	    }
 	}
 	return queryResult;
 
