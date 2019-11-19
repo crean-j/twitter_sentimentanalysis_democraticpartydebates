@@ -17,8 +17,7 @@ public class Runner {
 		InfluenceScore is = new InfluenceScore(result);
 		SaveTweets st = new SaveTweets(result);
 		st.saveToFile();
-		
-		
+
 
 		// DataAnalysis da = new DataAnalysis(tweets);
 

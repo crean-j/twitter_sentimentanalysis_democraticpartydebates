@@ -1,6 +1,21 @@
-/bin/
 twitter4j.properties
-/target/
-.ignore
+
+# Eclipse
 .classpath
 .project
+.settings/
+bin/
+
+# Intellij
+.idea/
+*.iml
+*.iws
+out/
+artifacts/
+
+# Mac
+.DS_Store
+
+# Maven
+log/
+target/ 
