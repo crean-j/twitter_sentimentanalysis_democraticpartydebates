@@ -44,7 +44,7 @@ public class TwitterSearch {
 	TwitterFactory tf = new TwitterFactory(cf.build());
 	ArrayList<Tweet> queryResult = new ArrayList<>(); // Stores tweet objects as elements
 	long lastTweetMaxId = -1; // tracks the latest tweet retrieved
-	int MAXSEARCHREQUESTS = 1;
+	final int MAXSEARCHREQUESTS = 10;
 
 	// Runs the query for the candidate and the date range
 	Query query = new Query(candidate);
@@ -90,6 +90,7 @@ public class TwitterSearch {
 		// TODO Auto-generated catch block
 		if (e.exceededRateLimitation()) {
 		    System.out.println("Rate of searchs exceeded. Please wait " + e.getRateLimitStatus().getSecondsUntilReset() + " seconds and try again.");
+		    break;
 		}
 	    } catch (NullPointerException f) {
 		System.out.println("The search did not rerieve any results. Please try again.");
