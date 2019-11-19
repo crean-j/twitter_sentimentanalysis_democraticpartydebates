@@ -30,15 +30,15 @@ public class SaveTweets {
     }
 
     /**
-     * Loads the tweets from the TweetArchive file, then compares the tweet id
-     * from the last search and if it can't find it in the TweetArchive file, it adds
-     * the whole tweet to the file.
+     * Loads the tweets from the TweetArchive file, then compares the tweet id from
+     * the last search and if it can't find it in the TweetArchive file, it adds the
+     * whole tweet to the file.
      */
     public void saveToFile() {
 	// read file with save tweets into an ArrayList and stores the tweet ID
-	Scanner in;
-	File myFile = new File("TweetArchive.txt");
 	try {
+	    Scanner in;
+	    File myFile = new File("TweetArchive.txt");
 	    in = new Scanner(myFile);
 	    while (in.hasNextLine()) {
 		String[] lineInFile = in.nextLine().split("@@@");
@@ -46,8 +46,17 @@ public class SaveTweets {
 	    }
 	} catch (FileNotFoundException e1) {
 	    // TODO Auto-generated catch block
-	    System.out.println("File not found.");
+	    try {
+		FileWriter fw;
+		fw = new FileWriter("TweetArchive.txt", true);
+		PrintWriter pw = new PrintWriter(fw);
+		pw.flush();
+	    } catch (IOException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	    }
 	    e1.printStackTrace();
+
 	}
 
 	// Loops the result of the last search and adds to the txt file the tweets that

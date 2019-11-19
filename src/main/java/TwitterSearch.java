@@ -44,7 +44,7 @@ public class TwitterSearch {
 	TwitterFactory tf = new TwitterFactory(cf.build());
 	ArrayList<Tweet> queryResult = new ArrayList<>(); // Stores tweet objects as elements
 	long lastTweetMaxId = -1; // tracks the latest tweet retrieved
-	int MAXSEARCHREQUESTS = 20;
+	int MAXSEARCHREQUESTS = 1;
 
 	// Runs the query for the candidate and the date range
 	Query query = new Query(candidate);
@@ -53,6 +53,7 @@ public class TwitterSearch {
 	query.count(100);
 	QueryResult result;
 
+	// run the search as many times as set in MAXSEARCHREQUESTS
 	for (int numberOfQueries = 0; numberOfQueries < MAXSEARCHREQUESTS; numberOfQueries++) {
 	    // Sets the last tweet ID retrieved
 	    if (lastTweetMaxId != -1) {
@@ -61,9 +62,12 @@ public class TwitterSearch {
 
 	    try {
 		result = twitter.search(query);
-		System.out.println(result.getRateLimitStatus());
-		// Checks if there are still tweets to retrieve
-		if (result.getTweets().size() == 0) {
+		System.out.println(result.getRateLimitStatus().getRemaining());// Shows how many searches are left and
+		// how long we need to wait to run a new
+		// call
+		// Checks if there are still any tweets to retrieve
+		if (result.getTweets().size() == 0 || result.getRateLimitStatus().getRemaining() == 0) {
+		    System.out.println("No more tweets left to retrieve.");
 		    return queryResult;
 		}
 		for (Status status : result.getTweets()) {
@@ -84,9 +88,11 @@ public class TwitterSearch {
 
 	    } catch (TwitterException e) {
 		// TODO Auto-generated catch block
-		e.printStackTrace();
+		if (e.exceededRateLimitation()) {
+		    System.out.println("Rate of searchs exceeded. Please wait " + e.getRateLimitStatus().getSecondsUntilReset() + " seconds and try again.");
+		}
 	    } catch (NullPointerException f) {
-		f.printStackTrace();
+		System.out.println("The search did not rerieve any results. Please try again.");
 	    }
 	}
 	return queryResult;
