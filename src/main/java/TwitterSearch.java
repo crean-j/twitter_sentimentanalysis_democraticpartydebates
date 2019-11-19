@@ -44,13 +44,14 @@ public class TwitterSearch {
 	TwitterFactory tf = new TwitterFactory(cf.build());
 	ArrayList<Tweet> queryResult = new ArrayList<>(); // Stores tweet objects as elements
 	long lastTweetMaxId = -1; // tracks the latest tweet retrieved
-	final int MAXSEARCHREQUESTS = 10;
+	final int MAXSEARCHREQUESTS = 180;
 
 	// Runs the query for the candidate and the date range
 	Query query = new Query(candidate);
 	query.setSince(sinceDate(date));
 	query.setUntil(toDate(date));
 	query.count(100);
+	query.lang("EN");
 	QueryResult result;
 
 	// run the search as many times as set in MAXSEARCHREQUESTS
@@ -73,8 +74,8 @@ public class TwitterSearch {
 		for (Status status : result.getTweets()) {
 		    String text = status.getRetweetedStatus() != null ? status.getRetweetedStatus().getText()
 			    : status.getText();
-		    // Added if condition to check the candidate name is in the main text
-		    if (text.contains(candidate)) {
+		    // Added if condition to check the candidate name is in the main text and excludes retweets
+		    if (text.contains(candidate) && !status.isRetweet()) {
 			// Updates the highest ID in the tweets retrieved
 			if (lastTweetMaxId == -1 || status.getId() < lastTweetMaxId) {
 			    lastTweetMaxId = status.getId();
