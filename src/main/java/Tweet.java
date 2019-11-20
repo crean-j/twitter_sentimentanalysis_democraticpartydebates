@@ -1,6 +1,7 @@
 package main.java;
 import java.util.Date;
 
+import twitter4j.GeoLocation;
 import twitter4j.User;
 
 /**
@@ -20,10 +21,12 @@ public class Tweet {
     private double influenceScore;
     private int retweetedCount;
     private int sentimentScore;
+    private boolean isRetweet;
+    private GeoLocation geoLocation;
 
     // Constructor
     public Tweet(long id, User user, int numberOfFollowers, String location, String textInTweet, Date tweetDate,
-                 String candidate, double influenceScore, int retweetedCount) {
+                 String candidate, double influenceScore, int retweetedCount, boolean isRetweet, GeoLocation geoLocation) {
 	this.id = id;
         this.user = user;
         this.numberOfFollowers = numberOfFollowers;
@@ -33,6 +36,36 @@ public class Tweet {
         this.candidate = candidate;
         this.influenceScore = influenceScore;
         this.retweetedCount = retweetedCount;
+        this.isRetweet = isRetweet;
+        this.geoLocation = geoLocation;
+    }
+
+    /**
+     * @return the geoLocation
+     */
+    public GeoLocation getGeoLocation() {
+        return geoLocation;
+    }
+
+    /**
+     * @param geoLocation the geoLocation to set
+     */
+    public void setGeoLocation(GeoLocation geoLocation) {
+        this.geoLocation = geoLocation;
+    }
+
+    /**
+     * @return the isRetweet
+     */
+    public boolean isRetweet() {
+        return isRetweet;
+    }
+
+    /**
+     * @param isRetweet the isRetweet to set
+     */
+    public void setRetweet(boolean isRetweet) {
+        this.isRetweet = isRetweet;
     }
 
     /**

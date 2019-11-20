@@ -70,7 +70,9 @@ public class SaveTweets {
 		    pw.println(tw.getId() + "@@@" + timestamp + "@@@" + tw.getCandidate() + "@@@"
 			    + tw.getUser().getName() + "@@@" + tw.getUser().getLocation() + "@@@"
 			    + tw.getNumberOfFollowers() + "@@@" + tw.getTextInTweet().replaceAll("\\n*", "") + "@@@"
-			    + tw.getRetweetedCount() + "@@@" + tw.getInfluenceScore() + "@@@" + tw.getSentimentScore());
+			    + tw.getLocation() + "@@@" + tw.getRetweetedCount() + "@@@" + tw.getInfluenceScore() + "@@@"
+			    + tw.getTweetDate() + "@@@" + tw.getSentimentScore() + "@@@" + tw.isRetweet() + "@@@"
+			    + tw.getGeoLocation());
 		    pw.flush();
 		} catch (IOException e) {
 		    // TODO Auto-generated catch block

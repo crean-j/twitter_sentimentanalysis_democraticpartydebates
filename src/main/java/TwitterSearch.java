@@ -49,9 +49,9 @@ public class TwitterSearch {
 	// Runs the query for the candidate and the date range
 	Query query = new Query(candidate);
 	query.setSince(sinceDate(date));
-	query.setUntil(toDate(date));
-	query.count(100);
-	query.lang("EN");
+	query.setUntil(toDate(date)); 
+	query.count(100);//Number of tweet to be retreived in each search
+	query.lang("en");//Search for tweets in English
 	QueryResult result;
 
 	// run the search as many times as set in MAXSEARCHREQUESTS
@@ -82,7 +82,7 @@ public class TwitterSearch {
 			}
 			Tweet tw = new Tweet(status.getId(), status.getUser(), status.getUser().getFollowersCount(),
 				status.getUser().getLocation(), text, status.getCreatedAt(), candidate, 0,
-				status.getRetweetCount());
+				status.getRetweetCount(), status.isRetweet(), status.getGeoLocation());
 			queryResult.add(tw);
 		    }
 		}
