@@ -64,8 +64,8 @@ public class TwitterSearch {
 	    try {
 		result = twitter.search(query);
 		System.out.println(result.getRateLimitStatus().getRemaining());// Shows how many searches are left and
-		// how long we need to wait to run a new
-		// call
+		// how long we need to wait to run a new call
+		
 		// Checks if there are still any tweets to retrieve
 		if (result.getTweets().size() == 0 || result.getRateLimitStatus().getRemaining() == 0) {
 		    System.out.println("No more tweets left to retrieve.");
