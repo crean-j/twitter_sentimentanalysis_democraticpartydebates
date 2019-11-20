@@ -1,6 +1,7 @@
 package main.java;
 
 import java.util.*;
+import java.util.concurrent.TimeUnit;
 
 import twitter4j.Paging;
 import twitter4j.Query;
@@ -44,13 +45,13 @@ public class TwitterSearch {
 	TwitterFactory tf = new TwitterFactory(cf.build());
 	ArrayList<Tweet> queryResult = new ArrayList<>(); // Stores tweet objects as elements
 	long lastTweetMaxId = -1; // tracks the latest tweet retrieved
-	final int MAXSEARCHREQUESTS = 180;
+	final int MAXSEARCHREQUESTS = 360;
 
 	// Runs the query for the candidate and the date range
 	Query query = new Query(candidate);
 	query.setSince(sinceDate(date));
 	query.setUntil(toDate(date)); 
-	query.count(100);//Number of tweet to be retreived in each search
+	query.count(100);//Number of tweet to be retrieved in each search
 	query.lang("en");//Search for tweets in English
 	QueryResult result;
 
@@ -63,6 +64,7 @@ public class TwitterSearch {
 
 	    try {
 		result = twitter.search(query);
+		
 		System.out.println(result.getRateLimitStatus().getRemaining());// Shows how many searches are left and
 		// how long we need to wait to run a new call
 		
@@ -71,6 +73,8 @@ public class TwitterSearch {
 		    System.out.println("No more tweets left to retrieve.");
 		    return queryResult;
 		}
+		
+		
 		for (Status status : result.getTweets()) {
 		    String text = status.getRetweetedStatus() != null ? status.getRetweetedStatus().getText()
 			    : status.getText();

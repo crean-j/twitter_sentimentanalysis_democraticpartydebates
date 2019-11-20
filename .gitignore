@@ -1,6 +1,9 @@
 /bin/
 twitter4j.properties
 /target/
-.ignore
+.gitignore
 .classpath
 .project
+/TweetArchive2.txt
+TweetArchive.txt
+/TweetArchive1.txt
