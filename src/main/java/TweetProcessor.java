@@ -37,7 +37,7 @@ public class TweetProcessor {
      * Method removes noise from text
      * @return String of text
      */
-    public String removeNoise(String text) {
+    /*public String removeNoise(String text) {
     	String finalText = text;
     	//finalText.replace(/(?:https?|ftp):\/\/[\n\S]+/g, "") // remove links
         //.replace(/\#\w\w+\s?/g,"") remove hashtags words
@@ -60,7 +60,7 @@ public class TweetProcessor {
         	/*if (splitter.) {
         		finalText.replace(noise, "");
         		System.out.println(finalText);
-        	}*/
+        	}
         }
         return finalText;
       }
@@ -68,7 +68,7 @@ public class TweetProcessor {
 
     	
     	
-        /*// remove html markup
+        /*remove html markup
         // method needs more work
         String nohtml = text.replace("(<.*?>)","");
 
