@@ -11,7 +11,7 @@ import java.util.Scanner;
 import java.sql.Timestamp;
 
 /*
- * Test Class
+ * 
  * Save tweets to a text file as we can only go back 7 days in history
  */
 
