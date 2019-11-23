@@ -110,7 +110,7 @@ public class NLPAnalyser {
         // Get the total sentiment for the tweet by getting the average sentiment for all
         // sentences in the tweet
         tweetSentiment = (double) totalSentiment / (double)sentences.size();
-        System.out.println("Tweet sentiment: " + tweetSentiment);
+        //System.out.println("Tweet sentiment: " + tweetSentiment);
         return tweetSentiment;
     }
 
@@ -128,7 +128,7 @@ public class NLPAnalyser {
             // traversing the words in the current sentence
             // a CoreLabel is a CoreMap with additional token-specific methods
             for (CoreLabel token : sentence.get(CoreAnnotations.TokensAnnotation.class)) {
-                System.out.println("token: " + token);
+                //System.out.println("token: " + token);
             	// this is the text of the token
      
                 String word = token.get(CoreAnnotations.TextAnnotation.class);
@@ -160,7 +160,7 @@ public class NLPAnalyser {
 		   double adjSentiment = getSentimentScore(tweetAdjectives);
 		   adjectivesScore.put(adjective, adjSentiment);
 	   }
-	   System.out.println(adjectivesScore);
+	   //System.out.println(adjectivesScore);
 	   return adjectivesScore;
    }
    
