@@ -72,7 +72,9 @@ public class TweetsByState {
 		states.put("WV", new ArrayList<Tweet>());
 		states.put("WI", new ArrayList<Tweet>());
 		states.put("WY", new ArrayList<Tweet>());
-
+		
+		//iterate through tweets and add to the corresponding state ArrayList
+		
 		for (Tweet t : tweets) {
 			if (t.getLocation().contains("Alaska") || t.getLocation().contains("AK")
 					|| t.getLocation().contains("alaska")) {
@@ -338,7 +340,8 @@ public class TweetsByState {
 					|| t.getLocation().contains("wyoming")) {
 				states.get("WY").add(t);
 			}
-
+			
+			else continue;
 
 
 		}
