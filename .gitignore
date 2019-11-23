@@ -1,5 +1,5 @@
-/bin/
 twitter4j.properties
+<<<<<<< HEAD
 /target/
 .gitignore
 .classpath
@@ -7,3 +7,25 @@ twitter4j.properties
 /TweetArchive2.txt
 TweetArchive.txt
 /TweetArchive1.txt
+=======
+
+# Eclipse
+.classpath
+.project
+.settings/
+bin/
+
+# Intellij
+.idea/
+*.iml
+*.iws
+out/
+artifacts/
+
+# Mac
+.DS_Store
+
+# Maven
+log/
+target/ 
+>>>>>>> c6ac6e8a084204e8da54c6e3be0add15228ee701

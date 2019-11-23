@@ -12,7 +12,6 @@ import twitter4j.User;
  *
  */
 public class Tweet {
-    private long id;
     private User user;
     private int numberOfFollowers;
     private String location;
@@ -26,6 +25,7 @@ public class Tweet {
     private GeoLocation geoLocation;
 
     // Constructor
+<<<<<<< HEAD
     public Tweet(long id, User user, int numberOfFollowers, String location, String textInTweet, Date tweetDate,
 	    String candidate, double influenceScore, int retweetedCount, boolean isRetweet, GeoLocation geoLocation) {
 	this.id = id;
@@ -67,9 +67,25 @@ public class Tweet {
      */
     public void setRetweet(boolean isRetweet) {
 	this.isRetweet = isRetweet;
+=======
+    public Tweet(User user, int numberOfFollowers, String location, String textInTweet, Date tweetDate,
+                 String candidate, double influenceScore, int retweetedCount) {
+        this.user = user;
+        this.numberOfFollowers = numberOfFollowers;
+        this.location = location;
+        this.textInTweet = textInTweet;
+        this.tweetDate = tweetDate;
+        this.candidate = candidate;
+        this.influenceScore = influenceScore;
+        this.retweetedCount = retweetedCount;
+>>>>>>> c6ac6e8a084204e8da54c6e3be0add15228ee701
     }
+    
+    //Constructor for testing
+    public Tweet() {}
 
     /**
+<<<<<<< HEAD
      * @return the tweet ID
      */
     public long getId() {
@@ -84,6 +100,8 @@ public class Tweet {
     }
 
     /**
+=======
+>>>>>>> c6ac6e8a084204e8da54c6e3be0add15228ee701
      * @return the user
      */
     public User getUser() {

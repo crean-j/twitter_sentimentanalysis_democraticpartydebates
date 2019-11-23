@@ -490,14 +490,11 @@ Timeline
    </td>
   </tr>
 </table>
- 
-## Running the program in Eclipse
-1. Install plugin: m2eclipse http://roufid.com/how-to-install-maven-on-eclipse-ide/
-2. Import project 
-3. Convert project to Maven project (right-click on project name -> click on configure -> click on convert to Maven project)
+
 
 
 ## Questions
+
 
 
 1. Will the program let a user interact with it, or will we output static reports, e.g. analysis of tweets before, during and post primary?
