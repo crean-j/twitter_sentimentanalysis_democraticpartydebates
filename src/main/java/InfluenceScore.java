@@ -17,7 +17,7 @@ public class InfluenceScore {
     }
 
     /**
-     * THis class calculates and updates an ArrayList with the score
+     * This class calculates and updates an ArrayList with the score
      * @param result ArrayList with the Tweets that match the search term
      */
     private void calculationOfTheInfluenceScore (ArrayList<Tweet> result) {
