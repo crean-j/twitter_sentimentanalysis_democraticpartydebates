@@ -101,7 +101,7 @@ public class NLPAnalyser {
             // Assign the sentiment score the sentence to an integer
             int sentimentSentence = RNNCoreAnnotations.getPredictedClass(tree);
 
-            System.out.println("Sentiment Score:" + sentimentSentence); // to delete
+            //System.out.println("Sentiment Score:" + sentimentSentence); // to delete
 
             // Add the sentiment score for this sentence to the total sentiment for the tweet
             totalSentiment = totalSentiment + sentimentSentence;
@@ -137,7 +137,7 @@ public class NLPAnalyser {
 
                 // if the word is an adjective then add it to the the ArrayList of adjectives
                 if (pos.contains(adjective)) {
-                	System.out.println("adj: " + word);
+                	//System.out.println("adj: " + word);
                     adjectives.add(word);
                 }
             }
