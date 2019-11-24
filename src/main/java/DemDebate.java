@@ -1,4 +1,4 @@
-package main.java;
+import java.util.ArrayList;
 
 public class DemDebate {
 
@@ -9,6 +9,12 @@ public class DemDebate {
 		TwitterSearch tsSanders = new TwitterSearch("Sanders", "20191120");
 		TwitterSearch tsBiden = new TwitterSearch("Biden", "20191120");
 		TwitterSearch tsPete = new TwitterSearch("Buttigieg", "20191120");
+		
+		ArrayList<Tweet> result = tsWarren.mainSearch();
+	
+		
+		System.out.println(result);
+		
 		
 		
 		
