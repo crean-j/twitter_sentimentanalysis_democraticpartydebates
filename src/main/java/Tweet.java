@@ -1,6 +1,8 @@
 package main.java;
+
 import java.util.Date;
 
+import twitter4j.GeoLocation;
 import twitter4j.User;
 
 /**
@@ -19,8 +21,53 @@ public class Tweet {
     private double influenceScore;
     private int retweetedCount;
     private int sentimentScore;
+    private boolean isRetweet;
+    private GeoLocation geoLocation;
 
     // Constructor
+<<<<<<< HEAD
+    public Tweet(long id, User user, int numberOfFollowers, String location, String textInTweet, Date tweetDate,
+	    String candidate, double influenceScore, int retweetedCount, boolean isRetweet, GeoLocation geoLocation) {
+	this.id = id;
+	this.user = user;
+	this.numberOfFollowers = numberOfFollowers;
+	this.location = location;
+	this.textInTweet = textInTweet;
+	this.tweetDate = tweetDate;
+	this.candidate = candidate;
+	this.influenceScore = influenceScore;
+	this.retweetedCount = retweetedCount;
+	this.isRetweet = isRetweet;
+	this.geoLocation = geoLocation;
+    }
+
+    /**
+     * @return the geoLocation
+     */
+    public GeoLocation getGeoLocation() {
+	return geoLocation;
+    }
+
+    /**
+     * @param geoLocation the geoLocation to set
+     */
+    public void setGeoLocation(GeoLocation geoLocation) {
+	this.geoLocation = geoLocation;
+    }
+
+    /**
+     * @return the isRetweet
+     */
+    public boolean isRetweet() {
+	return isRetweet;
+    }
+
+    /**
+     * @param isRetweet the isRetweet to set
+     */
+    public void setRetweet(boolean isRetweet) {
+	this.isRetweet = isRetweet;
+=======
     public Tweet(User user, int numberOfFollowers, String location, String textInTweet, Date tweetDate,
                  String candidate, double influenceScore, int retweetedCount) {
         this.user = user;
@@ -31,135 +78,153 @@ public class Tweet {
         this.candidate = candidate;
         this.influenceScore = influenceScore;
         this.retweetedCount = retweetedCount;
+>>>>>>> c6ac6e8a084204e8da54c6e3be0add15228ee701
     }
     
     //Constructor for testing
     public Tweet() {}
 
     /**
+<<<<<<< HEAD
+     * @return the tweet ID
+     */
+    public long getId() {
+	return id;
+    }
+
+    /**
+     * @param user the user to set
+     */
+    public void setId(long id) {
+	this.id = id;
+    }
+
+    /**
+=======
+>>>>>>> c6ac6e8a084204e8da54c6e3be0add15228ee701
      * @return the user
      */
     public User getUser() {
-        return user;
+	return user;
     }
 
     /**
      * @param user the user to set
      */
     public void setUser(User user) {
-        this.user = user;
+	this.user = user;
     }
 
     /**
      * @return the numberOfFollowers
      */
     public int getNumberOfFollowers() {
-        return numberOfFollowers;
+	return numberOfFollowers;
     }
 
     /**
      * @param numberOfFollowers the numberOfFollowers to set
      */
     public void setNumberOfFollowers(int numberOfFollowers) {
-        this.numberOfFollowers = numberOfFollowers;
+	this.numberOfFollowers = numberOfFollowers;
     }
 
     /**
      * @return the location
      */
     public String getLocation() {
-        return location;
+	return location;
     }
 
     /**
      * @param location the location to set
      */
     public void setLocation(String location) {
-        this.location = location;
+	this.location = location;
     }
 
     /**
      * @return the textInTweet
      */
     public String getTextInTweet() {
-        return textInTweet;
+	return textInTweet;
     }
 
     /**
      * @param textInTweet the textInTweet to set
      */
     public void setTextInTweet(String textInTweet) {
-        this.textInTweet = textInTweet;
+	this.textInTweet = textInTweet;
     }
 
     /**
      * @return the tweetDate
      */
     public Date getTweetDate() {
-        return tweetDate;
+	return tweetDate;
     }
 
     /**
      * @param tweetDate the tweetDate to set
      */
     public void setTweetDate(Date tweetDate) {
-        this.tweetDate = tweetDate;
+	this.tweetDate = tweetDate;
     }
 
     /**
      * @return the candidate
      */
     public String getCandidate() {
-        return candidate;
+	return candidate;
     }
 
     /**
      * @param candidate the candidate to set
      */
     public void setCandidate(String candidate) {
-        this.candidate = candidate;
+	this.candidate = candidate;
     }
 
     /**
      * @return the influenceScore
      */
     public double getInfluenceScore() {
-        return influenceScore;
+	return influenceScore;
     }
 
     /**
      * @param influenceScore the influenceScore to set
      */
     public void setInfluenceScore(double influenceScore) {
-        this.influenceScore = influenceScore;
+	this.influenceScore = influenceScore;
     }
 
     /**
      * @return the retweetedCount
      */
     public int getRetweetedCount() {
-        return retweetedCount;
+	return retweetedCount;
     }
 
     /**
      * @param retweetedCount the retweetedCount to set
      */
     public void setRetweetedCount(int retweetedCount) {
-        this.retweetedCount = retweetedCount;
+	this.retweetedCount = retweetedCount;
     }
 
     /**
      * @return the sentimentScore
      */
     public int getSentimentScore() {
-        return sentimentScore;
+	return sentimentScore;
     }
 
     /**
      * @param sentimentScore the sentimentScore to set
      */
     public void setSentimentScore(int sentimentScore) {
-        this.sentimentScore = sentimentScore;
+	this.sentimentScore = sentimentScore;
     }
 
 }
