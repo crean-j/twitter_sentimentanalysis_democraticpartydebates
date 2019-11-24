@@ -1,12 +1,6 @@
-package test.java;
 import static org.junit.jupiter.api.Assertions.*;
-
 import java.util.ArrayList;
-
 import org.junit.jupiter.api.Test;
-
-import main.java.Tweet;
-import main.java.TwitterSearch;
 
 /**
  * Tests that the method TwitterSearh clas returns an ArrayList with 100

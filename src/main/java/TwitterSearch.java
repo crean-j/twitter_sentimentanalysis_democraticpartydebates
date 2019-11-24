@@ -1,4 +1,3 @@
-package main.java;
 import java.util.*;
 import java.util.concurrent.TimeUnit;
 
@@ -44,27 +43,6 @@ public class TwitterSearch {
 	TwitterFactory tf = new TwitterFactory(cf.build());
 	ArrayList<Tweet> queryResult = new ArrayList<>(); // Stores tweet objects as elements of an array
 	long lastTweetMaxId = -1; // tracks the latest tweet retrieved
-	final int MAXSEARCHREQUESTS = 180; // Number of requests to be sent (API allows up to 180 requests every 15
-	// minutes
-
-        // Runs the query for the candidate and the date range
-        Query query = new Query(candidate);
-        query.since(sinceDate(date));
-        query.until(toDate(date));
-        QueryResult result;
-        try {
-            result = twitter.search(query.count(100));
-            for (Status status : result.getTweets()) {
-                String text = status.getRetweetedStatus() != null ? status.getRetweetedStatus().getText()
-                        : status.getText();
-                // Added if condition to check the candidate name is in the main text
-                if (text.contains(candidate)) {
-                    Tweet tw = new Tweet(status.getUser(), status.getUser().getFollowersCount(),
-                            status.getUser().getLocation(), text, status.getCreatedAt(), candidate, 0,
-                            status.getRetweetCount());
-                    queryResult.add(tw);
-                }
-            }
 	// Runs the query for the candidate and the date range
 	Query query = new Query(candidate); // Search term
 	query.setSince(sinceDate(date)); // Lower limit date for the search
@@ -123,14 +101,6 @@ public class TwitterSearch {
 	    } catch (NullPointerException f) {
 		System.out.println("The search did not rerieve any results. Please try again.");
 	    }
-
-        } catch (TwitterException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        } catch (NullPointerException f) {
-            f.printStackTrace();
-        }
-        return queryResult;
 	}
 	return queryResult;
 
