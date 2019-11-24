@@ -81,6 +81,29 @@ public class SaveTweets {
 	    }
 	}
 
+	public ArrayList<Tweet> loadFile() {
+
+		Scanner in;
+		ArrayList<Tweet> tweets = new ArrayList<Tweet>();
+		// read tweets file and add to array list
+		try {
+			in = new Scanner(new FileReader(filename));
+
+			// read column headers
+			while (in.hasNextLine()) {
+
+				tweets.add(tweetsParse(in.nextLine()));
+			}
+
+			in.close();
+
+		} catch (FileNotFoundException e) {
+			System.out.println(e.getMessage());
+			e.printStackTrace();
+		}
+
+	}
+	
 	// parse csv and add each row to an array list
 	public Tweet tweetsParse(String row) {
 
