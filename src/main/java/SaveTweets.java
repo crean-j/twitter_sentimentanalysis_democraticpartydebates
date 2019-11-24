@@ -8,7 +8,13 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Scanner;
+
+import twitter4j.GeoLocation;
+import twitter4j.User;
+
 import java.sql.Timestamp;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 
 /*
  * 
@@ -16,74 +22,82 @@ import java.sql.Timestamp;
  */
 
 public class SaveTweets {
-    ArrayList<Tweet> queryResult = new ArrayList<>(); // Stores the result of latest search
-    ArrayList<String> tweetsAlreadyStored = new ArrayList<>(); // Stores the tweet that are saved in the txt file
-    Timestamp timestamp = new Timestamp(System.currentTimeMillis()); // Creates a new timestamp
+	ArrayList<Tweet> queryResult = new ArrayList<>(); // Stores the result of latest search
+	ArrayList<String> tweetsAlreadyStored = new ArrayList<>(); // Stores the tweet that are saved in the txt file
+	Timestamp timestamp = new Timestamp(System.currentTimeMillis()); // Creates a new timestamp
+	static private String filename = "TweetArchive.txt";
 
-    /**
-     * Constructor
-     * 
-     * @param queryResult the result of the search
-     */
-    public SaveTweets(ArrayList<Tweet> queryResult) {
-	this.queryResult = queryResult;
-    }
-
-    /**
-     * Loads the tweets from the TweetArchive file, then compares the tweet id from
-     * the last search and if it can't find it in the TweetArchive file, it adds the
-     * whole tweet to the file.
-     */
-    public void saveToFile() {
-	// read file with save tweets into an ArrayList and stores the tweet ID
-	try {
-	    Scanner in;
-	    File myFile = new File("TweetArchive.txt");
-	    in = new Scanner(myFile);
-	    while (in.hasNextLine()) {
-		String[] lineInFile = in.nextLine().split("@@@");
-		tweetsAlreadyStored.add(lineInFile[0]);
-	    }
-	} catch (FileNotFoundException e1) {
-	    // TODO Auto-generated catch block
-	    try {
-		FileWriter fw;
-		fw = new FileWriter("TweetArchive.txt", true);
-		PrintWriter pw = new PrintWriter(fw);
-		pw.flush();
-	    } catch (IOException e) {
-		// TODO Auto-generated catch block
-		e.printStackTrace();
-	    }
-	    e1.printStackTrace();
-
+	/**
+	 * Constructor
+	 * 
+	 * @param queryResult the result of the search
+	 */
+	public SaveTweets(ArrayList<Tweet> queryResult) {
+		this.queryResult = queryResult;
 	}
 
-	// Loops the result of the last search and adds to the txt file the tweets that
-	// are not already there
-	for (Tweet tw : queryResult) {
-	    if (!tweetsAlreadyStored.contains(String.valueOf(tw.getId()))) {
+	/**
+	 * Loads the tweets from the TweetArchive file, then compares the tweet id from
+	 * the last search and if it can't find it in the TweetArchive file, it adds the
+	 * whole tweet to the file.
+	 */
+	public void saveToFile() {
+		// read file with save tweets into an ArrayList and stores the tweet ID
 		try {
-		    FileWriter fw = new FileWriter("TweetArchive.txt", true);
-		    PrintWriter pw = new PrintWriter(fw);
-		    Timestamp timestamp = new Timestamp(System.currentTimeMillis());
-		    pw.println(tw.getId() + "@@@" + timestamp + "@@@" + tw.getCandidate() + "@@@"
-			    + tw.getUser().getName() + "@@@" + tw.getUser().getLocation() + "@@@"
-			    + tw.getNumberOfFollowers() + "@@@" + tw.getTextInTweet().replaceAll("\\n*", "") + "@@@"
-			    + tw.getLocation() + "@@@" + tw.getRetweetedCount() + "@@@" + tw.getInfluenceScore() + "@@@"
-			    + tw.getTweetDate() + "@@@" + tw.getSentimentScore() + "@@@" + tw.isRetweet() + "@@@"
-			    + tw.getGeoLocation());
-		    pw.flush();
-		} catch (IOException e) {
-		    // TODO Auto-generated catch block
-		    System.out.println("Error writing to the file.");
-		    e.printStackTrace();
+			Scanner in;
+			File myFile = new File(filename);
+			in = new Scanner(myFile);
+			while (in.hasNextLine()) {
+				String[] lineInFile = in.nextLine().split("@@@");
+				tweetsAlreadyStored.add(lineInFile[0]);
+			}
+		} catch (FileNotFoundException e1) {
+			// TODO Auto-generated catch block
+			try {
+				FileWriter fw;
+				fw = new FileWriter(filename, true);
+				PrintWriter pw = new PrintWriter(fw);
+				pw.flush();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			e1.printStackTrace();
+
 		}
 
-	    }
-	}
+		// Loops the result of the last search and adds to the txt file the tweets that
+		// are not already there
+		for (Tweet tw : queryResult) {
+			if (!tweetsAlreadyStored.contains(String.valueOf(tw.getId()))) {
+				try {
+					FileWriter fw = new FileWriter(filename, true);
+					PrintWriter pw = new PrintWriter(fw);
+					Timestamp timestamp = new Timestamp(System.currentTimeMillis());
+					pw.println(tw.getId() + "@@@" + timestamp + "@@@" + tw.getCandidate() + "@@@"
+							+ tw.getUser().getName() + "@@@" + tw.getUser().getLocation() + "@@@"
+							+ tw.getNumberOfFollowers() + "@@@" + tw.getTextInTweet().replaceAll("\\n*", "") + "@@@"
+							+ tw.getLocation() + "@@@" + tw.getRetweetedCount() + "@@@" + tw.getInfluenceScore() + "@@@"
+							+ tw.getTweetDate() + "@@@" + tw.getSentimentScore() + "@@@" + tw.isRetweet() + "@@@"
+							+ tw.getGeoLocation());
+					pw.flush();
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					System.out.println("Error writing to the file.");
+					e.printStackTrace();
+				}
 
-	public ArrayList<Tweet> loadFile() {
+			}
+		}
+	}
+	
+	/*
+	 * author: Federica Pelzel
+	 * the loadfile method reads in a csv with tweets and adds them to
+	 * an ArrayList of Tweets
+	 */
+
+	static public ArrayList<Tweet> loadFile() {
 
 		Scanner in;
 		ArrayList<Tweet> tweets = new ArrayList<Tweet>();
@@ -93,8 +107,10 @@ public class SaveTweets {
 
 			// read column headers
 			while (in.hasNextLine()) {
-
-				tweets.add(tweetsParse(in.nextLine()));
+				Tweet parsed = tweetsParse(in.nextLine());
+				if (parsed != null) {
+					tweets.add(parsed);
+				}
 			}
 
 			in.close();
@@ -103,31 +119,42 @@ public class SaveTweets {
 			System.out.println(e.getMessage());
 			e.printStackTrace();
 		}
+		return tweets;
 
 	}
-	
-	// parse csv and add each row to an array list
-	public Tweet tweetsParse(String row) {
+
+	/*
+	 * author: Federica Pelzel
+	 * the tweetsParse method parses each row in the file 
+	 * an creates Tweet Objects from them
+	 */
+	static public Tweet tweetsParse(String row) {
 
 		String[] rowArr = row.split("@@@");
+		try {
+			long id = rowArr[0].length() == 0 ? -1 : Long.parseLong(rowArr[0]);
+			int numberOfFollowers = rowArr[5].length() == 0 ? -1 : Integer.parseInt(rowArr[5]);
+			String location = rowArr[4];
+			String textInTweet = rowArr[6];
+			SimpleDateFormat simpleDate = new SimpleDateFormat("EEE MMM d HH:mm:ss z YYYY");
+			Date tweetDate = null;
+			tweetDate = simpleDate.parse(rowArr[10]);
+			String candidate = rowArr[2];
+			double influenceScore = rowArr[9].length() == 0 ? -1 : Double.parseDouble(rowArr[8]);
+			int retweetedCount = rowArr[8].length() == 0 ? -1 : Integer.parseInt(rowArr[8]);
+			double sentimentScore = rowArr[11].length() == 0 ? -1 : Double.parseDouble(rowArr[11]);
+			boolean isRetweet = rowArr[12].equals("true");
 
-		String userName = null;
-		String userLocation = null;
-		//User user = new User();
-
-		// User user = rowArr[0].length() == 0 ? -1 : Integer.parseInt(rowArr[0]);
-		int numberOfFollowers = rowArr[5].length() == 0 ? -1 : Integer.parseInt(rowArr[5]);
-		String location = rowArr[4];
-		String textInTweet = rowArr[6];
-		String tweetDate = rowArr[1];
-		String candidate = rowArr[2];
-		double influenceScore = rowArr[8].length() == 0 ? -1 : Double.parseDouble(rowArr[8]);
-		int retweetedCount = rowArr[7].length() == 0 ? -1 : Integer.parseInt(rowArr[7]);
-		double sentimentScore = rowArr[9].length() == 0 ? -1 : Double.parseDouble(rowArr[9]);
-
-		Tweet t = new Tweet();
-
-		return t;
+			Tweet t = new Tweet(id, null, numberOfFollowers, location, textInTweet, tweetDate, candidate,
+					influenceScore, retweetedCount, isRetweet, null);
+			
+			return t;
+			
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			return null;
+		}
+		
 
 	}
 }

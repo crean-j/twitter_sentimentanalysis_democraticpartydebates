@@ -200,6 +200,13 @@ public class Tweet {
     public double getSentimentScore() {
         return sentimentScore;
     }
+    
+    /**
+     * @return the isRetweet
+     */
+    public boolean getIsRetweet() {
+        return isRetweet;
+    }
 
     /**
      * @param sentimentScore the sentimentScore to set

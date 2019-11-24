@@ -31,10 +31,5 @@ public class Runner {
 	    	tweet.setAdjSentiment(as);
 		}
 
-
-		// DataAnalysis da = new DataAnalysis(tweets);
-
-		// run analysis
-		// print output
 	}
 }
