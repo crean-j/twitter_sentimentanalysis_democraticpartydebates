@@ -13,7 +13,7 @@ public class TweetsByState {
 	// Create HashMap with key State code and Value ArrayList of tweets
 	HashMap<String, ArrayList<Tweet>> states = new HashMap<String, ArrayList<Tweet>>();
 
-	public void tweetsByState(ArrayList<Tweet> tweets) {
+	public TweetsByState(ArrayList<Tweet> tweets) {
 		this.tweets = tweets;
 		// Populate states hashmap and create arraylists of tweets for each
 		states.put("AL", new ArrayList<Tweet>());
