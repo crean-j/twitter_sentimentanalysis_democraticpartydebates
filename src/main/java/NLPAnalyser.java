@@ -1,4 +1,4 @@
-//package main.java;
+package main.java;
 import edu.stanford.nlp.ling.CoreAnnotations;
 import edu.stanford.nlp.ling.CoreLabel;
 import edu.stanford.nlp.neural.rnn.RNNCoreAnnotations;
@@ -60,10 +60,6 @@ public class NLPAnalyser {
      * @return List<CoreMap> mapping the sentences to their annotations
      */
     public List<CoreMap> nlpPipeline(String tweetText) {
-    	//TweetProcessor tp = new TweetProcessor();
-    	//String rawText = tweetText;
-		//String cleanText = tp.cleanText(rawText);
-		//String finalText = tp.removeNoise(cleanText);
         // Create a new annotation object from the tweet
         // This is needed to prep the tweet for the sentiment analysis
         Annotation document = new Annotation(tweetText);
@@ -101,7 +97,7 @@ public class NLPAnalyser {
             // Assign the sentiment score the sentence to an integer
             int sentimentSentence = RNNCoreAnnotations.getPredictedClass(tree);
 
-            //System.out.println("Sentiment Score:" + sentimentSentence); // to delete
+            System.out.println("Sentiment Score:" + sentimentSentence); // to delete
 
             // Add the sentiment score for this sentence to the total sentiment for the tweet
             totalSentiment = totalSentiment + sentimentSentence;
@@ -110,7 +106,7 @@ public class NLPAnalyser {
         // Get the total sentiment for the tweet by getting the average sentiment for all
         // sentences in the tweet
         tweetSentiment = (double) totalSentiment / (double)sentences.size();
-        //System.out.println("Tweet sentiment: " + tweetSentiment);
+        System.out.println("Tweet sentiment: " + tweetSentiment);
         return tweetSentiment;
     }
 
@@ -128,7 +124,7 @@ public class NLPAnalyser {
             // traversing the words in the current sentence
             // a CoreLabel is a CoreMap with additional token-specific methods
             for (CoreLabel token : sentence.get(CoreAnnotations.TokensAnnotation.class)) {
-                //System.out.println("token: " + token);
+                System.out.println("token: " + token);
             	// this is the text of the token
      
                 String word = token.get(CoreAnnotations.TextAnnotation.class);
@@ -137,7 +133,7 @@ public class NLPAnalyser {
 
                 // if the word is an adjective then add it to the the ArrayList of adjectives
                 if (pos.contains(adjective)) {
-                	//System.out.println("adj: " + word);
+                	System.out.println("adj: " + word);
                     adjectives.add(word);
                 }
             }
@@ -160,7 +156,7 @@ public class NLPAnalyser {
 		   double adjSentiment = getSentimentScore(tweetAdjectives);
 		   adjectivesScore.put(adjective, adjSentiment);
 	   }
-	   //System.out.println(adjectivesScore);
+	   System.out.println(adjectivesScore);
 	   return adjectivesScore;
    }
    
@@ -192,7 +188,7 @@ public class NLPAnalyser {
         return tokens;
     }*/
     
-    /*public static void main(String[] args) {
+    public static void main(String[] args) {
     	Tweet tweet = new Tweet();
     	tweet.setTextInTweet("It is a beautiful, bright, sunny morning here in Brussels, Belgium! Do not tell anyone that you are this happy. Joy, joy, joy! So happy you are here!"); 
     	NLPAnalyser nlp = new NLPAnalyser();
@@ -204,11 +200,5 @@ public class NLPAnalyser {
     	//System.out.println(words);
     	HashMap<String, Double> as = nlp.adjectivesScoring(sentences);
     	System.out.println("done");
-    	TweetProcessor tp = new TweetProcessor();
-        String test = "RT This made my day; glad @JeremyKappell is standing up against #ROC’s disgusting mayor. "
-        		+ "Former TV meteorologist Jeremy Kappell suing Mayor Lovely Warren"
-        		+ "https://t.co/rJIV5SN9vB (Via NEWS 8 WROC)";
-        String finalText = tp.removeNoise(test);
-        System.out.println(finalText); 	
-    }*/
+    }
 }

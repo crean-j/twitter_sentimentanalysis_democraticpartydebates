@@ -1,3 +1,5 @@
+package main.java;
+
 /*
  * This class takes in Tweet objects and analyzes them for sentiment
  * in different ways
@@ -5,10 +7,7 @@
  */
 
 import java.util.ArrayList;
-import java.util.Comparator;
 import java.util.HashMap;
-import java.util.LinkedHashMap;
-import java.util.Map;
 
 public class DataAnalysis {
 
@@ -34,53 +33,40 @@ public class DataAnalysis {
 	 * sentimentScore. loops through all tweets and returns the average sentiment
 	 * score for the keyword
 	 */
-
-	public double sentimentScore() {
+	public String sentimentScore() {
 		double total = 0.0;
 		for (Tweet t : tweets) {
 			total += t.getSentimentScore();
 		}
-		return total / tweets.size();
+		return "The sentiment score is: " + total / tweets.size() + "/4";
 	}
 
 	/**
 	 * mostUsedWords method Returns the most seen adjectives used in tweets
-	 * mentioning the keyword. Returns a HashMap with word + number of times
-	 * mentioned
+	 * mentioning the keyword Ideally return with the key and value (for example: 1.
+	 * Brilliant, mentioned 234 times.
 	 */
-	public HashMap<String, Integer> mostUsedWords() {
-		HashMap<String, Integer> adjectivesCount = new HashMap<String, Integer>();
+	public String mostUsedWords(int numberOfResults) {
+		String topWords = null;
+		HashMap<String, Integer> mostUsedAdjectives = new HashMap<String, Integer>();
 		for (Tweet t : tweets) {
-			if (!adjectivesCount.containsKey(t.getAdjectives())) {
-				adjectivesCount.put(t.getAdjectives(), 0);
-			}
-			
-			/*
-			 * If adjective exists as key add 1 to value if not create key and set value to
-			 * 1
-			 */
+			// for each tweet count adjectives used and add to HashMap
 		}
-
-		// sort hashmap using Comparator
-		LinkedHashMap<String, Integer> adjectivesSorted = new LinkedHashMap<>();
-		adjectivesCount.entrySet().stream().sorted(Map.Entry.comparingByValue(Comparator.reverseOrder()))
-				.forEachOrdered(x -> adjectivesSorted.put(x.getKey(), x.getValue()));
-		
-		return adjectivesSorted;
+		return topWords;
 	}
 
 	/**
-	 * numberOfTweets method returns a HashMap with Key State and value number of
-	 * tweets originating from that state Uses the TweetsByState class
+	 * topLocations method returns a String with the number of tweets per location for 
+	 * a variable number of results
 	 */
-	public HashMap<String, Integer> numberOfTweetsState() {
-		HashMap<String, Integer> stateTweets = new HashMap<String, Integer>();
-		TweetsByState tbs = new TweetsByState();
-		for (String state : tbs.states.keySet()) {
-			stateTweets.put(state, tbs.states.values().size());
-			;
+	public String topLocations(int numberOfResults) {
+		String topStates = null;
+		HashMap<String, Integer> location = new HashMap<String, Integer>();
+		for (Tweet t : tweets) {
+			// count how many tweets per location
+			// may need to do some data modifications to just take in states
 		}
-		return stateTweets;
+		return topStates; // ideally return with the key and value (for example: 1. CA, 45000 tweets.
 	}
 
 	/**
@@ -93,43 +79,29 @@ public class DataAnalysis {
 				mostRetweeted = t;
 			}
 		}
-		return mostRetweeted.getUser() + ": " + mostRetweeted.getTextInTweet() + "retweeted: "
-				+ mostRetweeted.getRetweetedCount() + " times."; // to be formatted
+		return mostRetweeted.getUser() + ": "+ mostRetweeted.getTextInTweet() + "retweeted: " + mostRetweeted.getRetweetedCount() + " times."; // to be formatted
 	}
 
 	/**
 	 * sentiment by state. Create a Hashmap with the average sentiment by state
 	 * could return most postive or negative states.
 	 */
-	public HashMap<String, Double> sentimentState() {
-		HashMap<String, Double> sentimentByState = new HashMap<String, Double>();
-
-		TweetsByState tbs = new TweetsByState();
-		for (String state : tbs.states.keySet()) {
-			double totalSent = 0.0;
-			int count = 0;
-			for (Tweet t : tbs.states.values()) {
-				totalSent += t.getSentimentScore();
-
-			}
-			double average = totalSent / count;
-			sentimentByState.put(tbs.states.keySet(), average);
-
-			;
-		}
-		return sentimentByState;
-	}
-
+	public String sentimentState() {
+		String sentiment = null;
+		// hashmap with key state and tweets
+		// average sentiment by state?
+		// need to figure out how to tackle this one
+		return sentiment;
 	}
 
 	/**
 	 * Method gets the average sentiment one week before a certain date
 	 */
-	public int averageSevenDBefore(String date) {
+	public int averageSevenDBefore(String date){
 		int average = 0;
 
-		// loops through array list of tweets
-		// gets average sentiment for tweets one week before date
+		//loops through array list of tweets
+		//gets average sentiment for tweets one week before date
 
 		return average;
 	}
@@ -137,11 +109,11 @@ public class DataAnalysis {
 	/**
 	 * Method gets the average sentiment one week after a certain date
 	 */
-	public int averageSevenDAfter(String date) {
+	public int averageSevenDAfter(String date){
 		int average = 0;
 
-		// loops through array list of tweets
-		// gets average sentiment for tweets one week after date
+		//loops through array list of tweets
+		//gets average sentiment for tweets one week after date
 
 		return average;
 	}
