@@ -1,3 +1,4 @@
+
 /*
  * This class takes in Tweet objects and analyzes them for sentiment
  * in different ways
@@ -36,6 +37,7 @@ public class DataAnalysis {
 	 */
 
 	public double sentimentScore() {
+
 		double total = 0.0;
 		for (Tweet t : tweets) {
 			total += t.getSentimentScore();
@@ -47,25 +49,25 @@ public class DataAnalysis {
 	 * mostUsedWords method Returns the most seen adjectives used in tweets
 	 * mentioning the keyword. Returns a HashMap with word + number of times
 	 * mentioned
+	 * 
 	 */
 	public HashMap<String, Integer> mostUsedWords() {
 		HashMap<String, Integer> adjectivesCount = new HashMap<String, Integer>();
 		for (Tweet t : tweets) {
-			if (!adjectivesCount.containsKey(t.getAdjectives())) {
-				adjectivesCount.put(t.getAdjectives(), 0);
+			for (String adj : t.getAdjSentiment().keySet()) {
+				if (!adjectivesCount.containsKey(adj)) {
+					adjectivesCount.put(adj, 0);
+				}
+				adjectivesCount.put(adj, adjectivesCount.get(adj) +1);
+				
 			}
-			
-			/*
-			 * If adjective exists as key add 1 to value if not create key and set value to
-			 * 1
-			 */
 		}
 
 		// sort hashmap using Comparator
 		LinkedHashMap<String, Integer> adjectivesSorted = new LinkedHashMap<>();
 		adjectivesCount.entrySet().stream().sorted(Map.Entry.comparingByValue(Comparator.reverseOrder()))
 				.forEachOrdered(x -> adjectivesSorted.put(x.getKey(), x.getValue()));
-		
+
 		return adjectivesSorted;
 	}
 
@@ -75,7 +77,7 @@ public class DataAnalysis {
 	 */
 	public HashMap<String, Integer> numberOfTweetsState() {
 		HashMap<String, Integer> stateTweets = new HashMap<String, Integer>();
-		TweetsByState tbs = new TweetsByState();
+		TweetsByState tbs = new TweetsByState(tweets);
 		for (String state : tbs.states.keySet()) {
 			stateTweets.put(state, tbs.states.values().size());
 			;
@@ -100,26 +102,34 @@ public class DataAnalysis {
 	/**
 	 * sentiment by state. Create a Hashmap with the average sentiment by state
 	 * could return most postive or negative states.
+	 * 
+	 * Issues to solve: returns same average score for each state
 	 */
-	public HashMap<String, Double> sentimentState() {
-		HashMap<String, Double> sentimentByState = new HashMap<String, Double>();
+	public HashMap<String, Double> sentimentState(TweetsByState tbs2) {
+		HashMap<String, Double> sentState = new HashMap<String, Double>();
 
-		TweetsByState tbs = new TweetsByState();
+		TweetsByState tbs = new TweetsByState(tweets);
 		for (String state : tbs.states.keySet()) {
-			double totalSent = 0.0;
-			int count = 0;
-			for (Tweet t : tbs.states.values()) {
-				totalSent += t.getSentimentScore();
-
-			}
-			double average = totalSent / count;
-			sentimentByState.put(tbs.states.keySet(), average);
-
-			;
+			
+				double totalSent = 0.0;
+				int count = 0;
+				
+				for (Tweet t : tbs.states.get(state)) {
+					totalSent += t.getSentimentScore();
+					count += 1;
+				}
+				
+				if(count > 0) {
+				double average = totalSent / count;
+				sentState.put(state, average);
+				}
 		}
-		return sentimentByState;
-	}
+		
+		LinkedHashMap<String, Double> sentStateSorted = new LinkedHashMap<>();
+		sentState.entrySet().stream().sorted(Map.Entry.comparingByValue(Comparator.reverseOrder()))
+				.forEachOrdered(x -> sentStateSorted.put(x.getKey(), x.getValue()));
 
+		return sentStateSorted;
 	}
 
 	/**
