@@ -28,7 +28,7 @@ public class Tweet {
     // Constructor
     public Tweet(long id, User user, int numberOfFollowers, String location, String textInTweet, Date tweetDate,
                  String candidate, double influenceScore, int retweetedCount, boolean isRetweet, GeoLocation geoLocation) {
-	this.id = id;
+    this.id = id;
         this.user = user;
         this.numberOfFollowers = numberOfFollowers;
         this.location = location;
@@ -215,12 +215,12 @@ public class Tweet {
         this.sentimentScore = sentimentScore;
     }
 
-	public HashMap<String, Double> getAdjSentiment() {
-		return adjSentiment;
-	}
+    public HashMap<String, Double> getAdjSentiment() {
+        return adjSentiment;
+    }
 
-	public void setAdjSentiment(HashMap<String, Double> adjSentiment) {
-		this.adjSentiment = adjSentiment;
-	}
+    public void setAdjSentiment(HashMap<String, Double> adjSentiment) {
+        this.adjSentiment = adjSentiment;
+    }
 
 }

@@ -132,6 +132,20 @@ public class SaveTweets {
 
 		String[] rowArr = row.split("@@@");
 		try {
+		    FileWriter fw = new FileWriter("TweetArchive.txt", true);
+		    PrintWriter pw = new PrintWriter(fw);
+		    Timestamp timestamp = new Timestamp(System.currentTimeMillis());
+		    pw.println(tw.getId() + "@@@" + timestamp + "@@@" + tw.getCandidate() + "@@@"
+			    + tw.getUser().getName() + "@@@" + tw.getUser().getLocation() + "@@@"
+			    + tw.getNumberOfFollowers() + "@@@" + tw.getTextInTweet().replaceAll("\\n*", "") + "@@@"
+			    + tw.getLocation() + "@@@" + tw.getRetweetedCount() + "@@@" + tw.getInfluenceScore() + "@@@"
+			    + tw.getTweetDate() + "@@@" + tw.getSentimentScore() + "@@@" + tw.isRetweet() + "@@@"
+			    + tw.getGeoLocation());
+		    pw.flush();
+		} catch (IOException e) {
+		    // TODO Auto-generated catch block
+		    System.out.println("Error writing to the file.");
+		    e.printStackTrace();
 			long id = rowArr[0].length() == 0 ? -1 : Long.parseLong(rowArr[0]);
 			int numberOfFollowers = rowArr[5].length() == 0 ? -1 : Integer.parseInt(rowArr[5]);
 			String location = rowArr[4];

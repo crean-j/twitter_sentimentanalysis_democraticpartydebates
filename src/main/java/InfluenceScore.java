@@ -15,10 +15,12 @@ public class InfluenceScore {
         calculationOfTheInfluenceScore(result);
     }
 
+
     /**
      * This class calculates and updates an ArrayList with the score
      * @param result ArrayList with the Tweets that match the search term
      */
+
     private void calculationOfTheInfluenceScore (ArrayList<Tweet> result) {
 	for (Tweet t : result) {    
             maxFollowers = maxFollowers < t.getNumberOfFollowers() ? t.getNumberOfFollowers() : maxFollowers;
