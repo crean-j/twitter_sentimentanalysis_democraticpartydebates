@@ -1,5 +1,3 @@
-package main.java;
-
 import java.util.*;
 import java.util.concurrent.TimeUnit;
 
@@ -45,9 +43,6 @@ public class TwitterSearch {
 	TwitterFactory tf = new TwitterFactory(cf.build());
 	ArrayList<Tweet> queryResult = new ArrayList<>(); // Stores tweet objects as elements of an array
 	long lastTweetMaxId = -1; // tracks the latest tweet retrieved
-	final int MAXSEARCHREQUESTS = 36; // Number of requests to be sent (API allows up to 180 requests every 15
-	// minutes
-
 	// Runs the query for the candidate and the date range
 	Query query = new Query(candidate); // Search term
 	query.setSince(sinceDate(date)); // Lower limit date for the search
