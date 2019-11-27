@@ -1,19 +1,21 @@
-package main.java;
-
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Scanner;
 import twitter4j.GeoLocation;
 import twitter4j.User;
 import java.sql.Timestamp;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 
 /*
- * Test Class
+ * 
  * Save tweets to a text file as we can only go back 7 days in history
  */
 
@@ -149,5 +151,4 @@ public class SaveTweets {
 			return null;
 		}
 	}
-    }
 }

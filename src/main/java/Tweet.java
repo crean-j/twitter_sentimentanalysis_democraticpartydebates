@@ -1,6 +1,7 @@
-package main.java;
 import java.util.Date;
+import java.util.HashMap;
 
+import twitter4j.GeoLocation;
 import twitter4j.User;
 
 /**
@@ -10,6 +11,7 @@ import twitter4j.User;
  *
  */
 public class Tweet {
+    private long id;
     private User user;
     private int numberOfFollowers;
     private String location;
@@ -18,11 +20,15 @@ public class Tweet {
     private String candidate;
     private double influenceScore;
     private int retweetedCount;
-    private int sentimentScore;
+    private double sentimentScore;
+    private boolean isRetweet;
+    private GeoLocation geoLocation;
+    private HashMap<String, Double> adjSentiment;
 
     // Constructor
-    public Tweet(User user, int numberOfFollowers, String location, String textInTweet, Date tweetDate,
-                 String candidate, double influenceScore, int retweetedCount) {
+    public Tweet(long id, User user, int numberOfFollowers, String location, String textInTweet, Date tweetDate,
+                 String candidate, double influenceScore, int retweetedCount, boolean isRetweet, GeoLocation geoLocation) {
+    this.id = id;
         this.user = user;
         this.numberOfFollowers = numberOfFollowers;
         this.location = location;
@@ -31,11 +37,51 @@ public class Tweet {
         this.candidate = candidate;
         this.influenceScore = influenceScore;
         this.retweetedCount = retweetedCount;
+        this.isRetweet = isRetweet;
+        this.geoLocation = geoLocation;
     }
-    
-    //Constructor for testing
-    public Tweet() {}
 
+    /**
+     * @return the geoLocation
+     */
+    public GeoLocation getGeoLocation() {
+        return geoLocation;
+    }
+
+    /**
+     * @param geoLocation the geoLocation to set
+     */
+    public void setGeoLocation(GeoLocation geoLocation) {
+        this.geoLocation = geoLocation;
+    }
+
+    /**
+     * @return the isRetweet
+     */
+    public boolean isRetweet() {
+        return isRetweet;
+    }
+
+    /**
+     * @param isRetweet the isRetweet to set
+     */
+    public void setRetweet(boolean isRetweet) {
+        this.isRetweet = isRetweet;
+    }
+
+    /**
+     * @return the tweet ID
+     */
+    public long getId() {
+        return id;
+    }
+
+    /**
+     * @param user the user to set
+     */
+    public void setId(long id) {
+        this.id = id;
+    }
     /**
      * @return the user
      */
@@ -151,15 +197,30 @@ public class Tweet {
     /**
      * @return the sentimentScore
      */
-    public int getSentimentScore() {
+    public double getSentimentScore() {
         return sentimentScore;
+    }
+    
+    /**
+     * @return the isRetweet
+     */
+    public boolean getIsRetweet() {
+        return isRetweet;
     }
 
     /**
      * @param sentimentScore the sentimentScore to set
      */
-    public void setSentimentScore(int sentimentScore) {
+    public void setSentimentScore(double sentimentScore) {
         this.sentimentScore = sentimentScore;
+    }
+
+    public HashMap<String, Double> getAdjSentiment() {
+        return adjSentiment;
+    }
+
+    public void setAdjSentiment(HashMap<String, Double> adjSentiment) {
+        this.adjSentiment = adjSentiment;
     }
 
 }
