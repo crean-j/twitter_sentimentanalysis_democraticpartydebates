@@ -1,7 +1,5 @@
-//package main.java;
-
+package main.java;
 import java.util.*;
-import java.util.concurrent.TimeUnit;
 
 import twitter4j.Paging;
 import twitter4j.Query;
@@ -43,55 +41,64 @@ public class TwitterSearch {
 	ConfigurationBuilder cf = new ConfigurationBuilder().setTweetModeExtended(true);
 	Twitter twitter = TwitterFactory.getSingleton();
 	TwitterFactory tf = new TwitterFactory(cf.build());
-	ArrayList<Tweet> queryResult = new ArrayList<>(); // Stores tweet objects as elements of an array
+	ArrayList<Tweet> queryResult = new ArrayList<>(); // Stores tweet objects as elements
 	long lastTweetMaxId = -1; // tracks the latest tweet retrieved
-	final int MAXSEARCHREQUESTS = 10; // Number of requests to be sent (API allows up to 180 requests every 15
-	// minutes
+	int MAXSEARCHREQUESTS = 1;
 
+        // Runs the query for the candidate and the date range
+        Query query = new Query(candidate);
+        query.since(sinceDate(date));
+        query.until(toDate(date));
+        QueryResult result;
+        try {
+            result = twitter.search(query.count(100));
+            for (Status status : result.getTweets()) {
+                String text = status.getRetweetedStatus() != null ? status.getRetweetedStatus().getText()
+                        : status.getText();
+                // Added if condition to check the candidate name is in the main text
+                if (text.contains(candidate)) {
+                    Tweet tw = new Tweet(status.getUser(), status.getUser().getFollowersCount(),
+                            status.getUser().getLocation(), text, status.getCreatedAt(), candidate, 0,
+                            status.getRetweetCount());
+                    queryResult.add(tw);
+                }
+            }
 	// Runs the query for the candidate and the date range
-	Query query = new Query(candidate); // Search term
-	query.setSince(sinceDate(date)); // Lower limit date for the search
-	query.setUntil(toDate(date)); // Upper limit date for the search
-	query.count(100);// Number of tweet to be retrieved in each request (max 100)
-	query.lang("en");// Limits search to tweets in English
+	Query query = new Query(candidate);
+	query.setSince(sinceDate(date));
+	query.setUntil(toDate(date));
+	query.count(100);
 	QueryResult result;
 
-	// Run the search as many times as set in MAXSEARCHREQUESTS
+	// run the search as many times as set in MAXSEARCHREQUESTS
 	for (int numberOfQueries = 0; numberOfQueries < MAXSEARCHREQUESTS; numberOfQueries++) {
-
-	    // Sets the last tweet ID retrieved, so we retrieve a different batch of tweets
+	    // Sets the last tweet ID retrieved
 	    if (lastTweetMaxId != -1) {
 		query.setMaxId(lastTweetMaxId - 1);
 	    }
 
-	    // Executes the search
 	    try {
 		result = twitter.search(query);
-		//System.out.println(result.getRateLimitStatus().getRemaining());// Shows how many searches are left
-		// before we have to wait
-
-		// Checks if there are still any tweets to retrieve or if we don't have any
-		// requests left
+		System.out.println(result.getRateLimitStatus().getRemaining());// Shows how many searches are left and
+		// how long we need to wait to run a new
+		// call
+		// Checks if there are still any tweets to retrieve
 		if (result.getTweets().size() == 0 || result.getRateLimitStatus().getRemaining() == 0) {
 		    System.out.println("No more tweets left to retrieve.");
 		    return queryResult;
 		}
-
-		// If tweet has extended text, retrieves text over 140 characters
 		for (Status status : result.getTweets()) {
 		    String text = status.getRetweetedStatus() != null ? status.getRetweetedStatus().getText()
 			    : status.getText();
-		    // Added if condition to check the candidate name is in the main text and to
-		    // excludes retweets
-		    if (text.contains(candidate) && !status.isRetweet()) {
+		    // Added if condition to check the candidate name is in the main text
+		    if (text.contains(candidate)) {
 			// Updates the highest ID in the tweets retrieved
 			if (lastTweetMaxId == -1 || status.getId() < lastTweetMaxId) {
 			    lastTweetMaxId = status.getId();
 			}
-			// Populates the tweet object witht he search result
 			Tweet tw = new Tweet(status.getId(), status.getUser(), status.getUser().getFollowersCount(),
 				status.getUser().getLocation(), text, status.getCreatedAt(), candidate, 0,
-				status.getRetweetCount(), status.isRetweet(), status.getGeoLocation());
+				status.getRetweetCount());
 			queryResult.add(tw);
 		    }
 		}
@@ -99,13 +106,19 @@ public class TwitterSearch {
 	    } catch (TwitterException e) {
 		// TODO Auto-generated catch block
 		if (e.exceededRateLimitation()) {
-		    System.out.println("Rate of searchs exceeded. Please wait "
-			    + e.getRateLimitStatus().getSecondsUntilReset() + " seconds and try again.");
-		    break;
+		    System.out.println("Rate of searchs exceeded. Please wait " + e.getRateLimitStatus().getSecondsUntilReset() + " seconds and try again.");
 		}
 	    } catch (NullPointerException f) {
 		System.out.println("The search did not rerieve any results. Please try again.");
 	    }
+
+        } catch (TwitterException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        } catch (NullPointerException f) {
+            f.printStackTrace();
+        }
+        return queryResult;
 	}
 	return queryResult;
 
