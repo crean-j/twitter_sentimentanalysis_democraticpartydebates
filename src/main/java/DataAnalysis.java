@@ -99,7 +99,7 @@ public class DataAnalysis {
 	}
 
 	public String topNPos(int numResults) {
-		String output = "Top " + numResults + " positive adjectives: ";
+		String output = new String();
 		List<String> topPosKeys = new ArrayList<String>(topPositiveWords().keySet());
 		// iterate through ArrayList and add each result to the output string
 		if (topPosKeys.size() > numResults) {
@@ -107,7 +107,7 @@ public class DataAnalysis {
 				output += topPosKeys.get(i) + "; ";
 			}
 			// add last one with special formatting
-			output += topPosKeys.get(numResults) + ".";
+			output += topPosKeys.get(numResults);
 
 			// return String containing all top n results
 			return output;
@@ -117,7 +117,7 @@ public class DataAnalysis {
 	}
 
 	public String topNNeg(int numResults) {
-		String output = "Top " + numResults + " negative adjectives: ";
+		String output = new String();
 		List<String> topNegKeys = new ArrayList<String>(topNegativeWords().keySet());
 		// iterate through ArrayList and add each result to the output string
 		if (topNegKeys.size() > numResults) {
@@ -125,7 +125,7 @@ public class DataAnalysis {
 				output += topNegKeys.get(i) + "; ";
 			}
 			// add last one with special formatting
-			output += topNegKeys.get(numResults) + ".";
+			output += topNegKeys.get(numResults);
 
 			// return String containing all top n results
 			return output;

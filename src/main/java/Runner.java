@@ -58,8 +58,8 @@ public class Runner {
 		System.out.println("\nAverage sentiment score: " + da.sentimentScore() + "\n");
 		
 
-		System.out.println(da.topNPos(5));
-		System.out.println(da.topNNeg(5));
+		System.out.println("Most used positive words: " + da.topNPos(5));
+		System.out.println("Most used negative words: " + da.topNNeg(5));
 		System.out.println(da.topPosStates(5, tbs));
 		System.out.println(da.topNegStates(5, tbs));
 
