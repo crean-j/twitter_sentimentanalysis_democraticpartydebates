@@ -55,7 +55,6 @@ public class TweetsByState {
 		states.put("ND", new ArrayList<Tweet>());
 		states.put("OH", new ArrayList<Tweet>());
 		states.put("OK", new ArrayList<Tweet>());
-		states.put("ON", new ArrayList<Tweet>());
 		states.put("OR", new ArrayList<Tweet>());
 		states.put("PA", new ArrayList<Tweet>());
 		states.put("PR", new ArrayList<Tweet>());
@@ -79,6 +78,10 @@ public class TweetsByState {
 			if (t.getLocation().contains("Alaska") || t.getLocation().contains("AK")
 					|| t.getLocation().contains("alaska")) {
 				states.get("AK").add(t);
+			}
+			if (t.getLocation().contains("Alabama") || t.getLocation().contains("AL")
+					|| t.getLocation().contains("alabama")) {
+				states.get("AL").add(t);
 			}
 
 			if (t.getLocation().contains("Arkansas") || t.getLocation().contains("AR")
@@ -140,6 +143,10 @@ public class TweetsByState {
 					|| t.getLocation().contains("hawaii")) {
 				states.get("HI").add(t);
 			}
+			if (t.getLocation().contains("Idaho") || t.getLocation().contains("ID")
+					|| t.getLocation().contains("idaho")) {
+				states.get("ID").add(t);
+			}
 
 			if (t.getLocation().contains("Iowa") || t.getLocation().contains("IA")
 					|| t.getLocation().contains("iowa")) {
@@ -149,6 +156,11 @@ public class TweetsByState {
 			if (t.getLocation().contains("Indiana") || t.getLocation().contains("IN")
 					|| t.getLocation().contains("indiana")) {
 				states.get("IN").add(t);
+			}
+			
+			if (t.getLocation().contains("Illinois") || t.getLocation().contains("IL")
+					|| t.getLocation().contains("illinois")) {
+				states.get("IL").add(t);
 			}
 
 			if (t.getLocation().contains("Kansas") || t.getLocation().contains("KS")
@@ -208,7 +220,7 @@ public class TweetsByState {
 
 			if (t.getLocation().contains("North Carolina") || t.getLocation().contains("NC")
 					|| t.getLocation().contains("north carolina")) {
-				states.get("AK").add(t);
+				states.get("NC").add(t);
 			}
 
 			if (t.getLocation().contains("North Dakota") || t.getLocation().contains("ND")
