@@ -173,7 +173,7 @@ public class DataAnalysis {
 
 		TweetsByState tbs = new TweetsByState(tweets);
 		for (String state : tbs.states.keySet()) {
-
+			DecimalFormat numberFormat = new DecimalFormat("#.00");
 			double totalSent = 0.0;
 			int count = 0;
 
@@ -183,8 +183,9 @@ public class DataAnalysis {
 			}
 
 			if (count > 0) {
-				double average = totalSent / count;
-				sentState.put(state, average);
+				String average = numberFormat.format(totalSent / count);
+				double d = Double.parseDouble(average);
+				sentState.put(state, d);
 			}
 		}
 
