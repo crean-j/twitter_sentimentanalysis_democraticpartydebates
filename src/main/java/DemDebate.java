@@ -183,7 +183,7 @@ public class DemDebate {
 		try (PrintWriter writer = new PrintWriter(new File("DataByState.csv"))) {
 			StringBuilder sb = new StringBuilder();
 			// Create Headers
-			sb.append("State,");
+			sb.append("State");
 			sb.append(',');
 			sb.append("TotalTweets");
 			sb.append(',');
@@ -207,7 +207,7 @@ public class DemDebate {
 			for (String state : tbs.states.keySet()) {
 				sb.append(state);
 				sb.append(',');
-				sb.append(tbs.states.values().size());
+				sb.append(tbs.states.get(state).size());
 				sb.append(',');
 				sb.append(tbsWarren.states.get(state).size());
 				sb.append(',');
