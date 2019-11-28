@@ -104,7 +104,7 @@ public class DataAnalysis {
 		// iterate through ArrayList and add each result to the output string
 		if (topPosKeys.size() > numResults) {
 			for (int i = 0; i < numResults; i++) {
-				output += topPosKeys.get(i) + ", ";
+				output += topPosKeys.get(i) + "; ";
 			}
 			// add last one with special formatting
 			output += topPosKeys.get(numResults) + ".";
@@ -122,7 +122,7 @@ public class DataAnalysis {
 		// iterate through ArrayList and add each result to the output string
 		if (topNegKeys.size() > numResults) {
 			for (int i = 0; i < numResults; i++) {
-				output += topNegKeys.get(i) + ", ";
+				output += topNegKeys.get(i) + "; ";
 			}
 			// add last one with special formatting
 			output += topNegKeys.get(numResults) + ".";
