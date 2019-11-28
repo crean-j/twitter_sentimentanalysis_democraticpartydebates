@@ -8,10 +8,8 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Scanner;
-
 import twitter4j.GeoLocation;
 import twitter4j.User;
-
 import java.sql.Timestamp;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -90,11 +88,10 @@ public class SaveTweets {
 			}
 		}
 	}
-	
+
 	/*
-	 * author: Federica Pelzel
-	 * the loadfile method reads in a csv with tweets and adds them to
-	 * an ArrayList of Tweets
+	 * author: Federica Pelzel the loadfile method reads in a csv with tweets and
+	 * adds them to an ArrayList of Tweets
 	 */
 
 	static public ArrayList<Tweet> loadFile() {
@@ -124,9 +121,8 @@ public class SaveTweets {
 	}
 
 	/*
-	 * author: Federica Pelzel
-	 * the tweetsParse method parses each row in the file 
-	 * an creates Tweet Objects from them
+	 * author: Federica Pelzel the tweetsParse method parses each row in the file an
+	 * creates Tweet Objects from them
 	 */
 	static public Tweet tweetsParse(String row) {
 
@@ -154,7 +150,5 @@ public class SaveTweets {
 			// TODO Auto-generated catch block
 			return null;
 		}
-		
-
 	}
 }
