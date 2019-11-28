@@ -5,10 +5,12 @@
  * Constructor (takes in Tweets and makes ArrayList)
  */
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
 
 public class DataAnalysis {
@@ -36,13 +38,15 @@ public class DataAnalysis {
 	 * score for the keyword
 	 */
 
-	public double sentimentScore() {
-
+	public String sentimentScore() {
+		String average;
 		double total = 0.0;
 		for (Tweet t : tweets) {
 			total += t.getSentimentScore();
 		}
-		return total / tweets.size();
+		DecimalFormat numberFormat = new DecimalFormat("#.00");
+		average = numberFormat.format(total / tweets.size());
+		return average;
 	}
 
 	/**
@@ -51,24 +55,83 @@ public class DataAnalysis {
 	 * mentioned
 	 * 
 	 */
-	public HashMap<String, Integer> mostUsedWords() {
-		HashMap<String, Integer> adjectivesCount = new HashMap<String, Integer>();
+	public HashMap<String, Integer> topPositiveWords() {
+		HashMap<String, Integer> positive = new HashMap<String, Integer>();
 		for (Tweet t : tweets) {
 			for (String adj : t.getAdjSentiment().keySet()) {
-				if (!adjectivesCount.containsKey(adj)) {
-					adjectivesCount.put(adj, 0);
-				}
-				adjectivesCount.put(adj, adjectivesCount.get(adj) +1);
-				
+				if (t.getAdjSentiment().get(adj) >= 3) {
+					if (!positive.containsKey(adj)) {
+						positive.put(adj, 0);
+					}
+					positive.put(adj, positive.get(adj) + 1);
+				} else
+					continue;
 			}
 		}
 
 		// sort hashmap using Comparator
-		LinkedHashMap<String, Integer> adjectivesSorted = new LinkedHashMap<>();
-		adjectivesCount.entrySet().stream().sorted(Map.Entry.comparingByValue(Comparator.reverseOrder()))
-				.forEachOrdered(x -> adjectivesSorted.put(x.getKey(), x.getValue()));
+		LinkedHashMap<String, Integer> topPositive = new LinkedHashMap<>();
+		positive.entrySet().stream().sorted(Map.Entry.comparingByValue(Comparator.reverseOrder()))
+				.forEachOrdered(x -> topPositive.put(x.getKey(), x.getValue()));
 
-		return adjectivesSorted;
+		return topPositive;
+	}
+
+	public HashMap<String, Integer> topNegativeWords() {
+		HashMap<String, Integer> negative = new HashMap<String, Integer>();
+		for (Tweet t : tweets) {
+			for (String adj : t.getAdjSentiment().keySet()) {
+				if (t.getAdjSentiment().get(adj) < 2) {
+					if (!negative.containsKey(adj)) {
+						negative.put(adj, 0);
+					}
+					negative.put(adj, negative.get(adj) + 1);
+				}
+			}
+		}
+
+		// sort hashmap using Comparator
+		LinkedHashMap<String, Integer> topNegative = new LinkedHashMap<>();
+		negative.entrySet().stream().sorted(Map.Entry.comparingByValue(Comparator.reverseOrder()))
+				.forEachOrdered(x -> topNegative.put(x.getKey(), x.getValue()));
+
+		return topNegative;
+	}
+
+	public String topNPos(int numResults) {
+		String output = new String();
+		List<String> topPosKeys = new ArrayList<String>(topPositiveWords().keySet());
+		// iterate through ArrayList and add each result to the output string
+		if (topPosKeys.size() > numResults) {
+			for (int i = 0; i < numResults; i++) {
+				output += topPosKeys.get(i) + "; ";
+			}
+			// add last one with special formatting
+			output += topPosKeys.get(numResults);
+
+			// return String containing all top n results
+			return output;
+		} else {
+			return "Not enough data available";
+		}
+	}
+
+	public String topNNeg(int numResults) {
+		String output = new String();
+		List<String> topNegKeys = new ArrayList<String>(topNegativeWords().keySet());
+		// iterate through ArrayList and add each result to the output string
+		if (topNegKeys.size() > numResults) {
+			for (int i = 0; i < numResults; i++) {
+				output += topNegKeys.get(i) + "; ";
+			}
+			// add last one with special formatting
+			output += topNegKeys.get(numResults);
+
+			// return String containing all top n results
+			return output;
+		} else {
+			return "Not enough data available";
+		}
 	}
 
 	/**
@@ -110,21 +173,22 @@ public class DataAnalysis {
 
 		TweetsByState tbs = new TweetsByState(tweets);
 		for (String state : tbs.states.keySet()) {
-			
-				double totalSent = 0.0;
-				int count = 0;
-				
-				for (Tweet t : tbs.states.get(state)) {
-					totalSent += t.getSentimentScore();
-					count += 1;
-				}
-				
-				if(count > 0) {
-				double average = totalSent / count;
-				sentState.put(state, average);
-				}
+			DecimalFormat numberFormat = new DecimalFormat("#.00");
+			double totalSent = 0.0;
+			int count = 0;
+
+			for (Tweet t : tbs.states.get(state)) {
+				totalSent += t.getSentimentScore();
+				count += 1;
+			}
+
+			if (count > 0) {
+				String average = numberFormat.format(totalSent / count);
+				double d = Double.parseDouble(average);
+				sentState.put(state, d);
+			}
 		}
-		
+
 		LinkedHashMap<String, Double> sentStateSorted = new LinkedHashMap<>();
 		sentState.entrySet().stream().sorted(Map.Entry.comparingByValue(Comparator.reverseOrder()))
 				.forEachOrdered(x -> sentStateSorted.put(x.getKey(), x.getValue()));
@@ -132,27 +196,72 @@ public class DataAnalysis {
 		return sentStateSorted;
 	}
 
-	/**
-	 * Method gets the average sentiment one week before a certain date
-	 */
-	public int averageSevenDBefore(String date) {
-		int average = 0;
+	public HashMap<String, Double> lowSentState(TweetsByState tbs2) {
+		HashMap<String, Double> sentState = new HashMap<String, Double>();
 
-		// loops through array list of tweets
-		// gets average sentiment for tweets one week before date
+		TweetsByState tbs = new TweetsByState(tweets);
+		for (String state : tbs.states.keySet()) {
 
-		return average;
+			double totalSent = 0.0;
+			int count = 0;
+
+			for (Tweet t : tbs.states.get(state)) {
+				totalSent += t.getSentimentScore();
+				count += 1;
+			}
+
+			if (count > 0) {
+				double average = totalSent / count;
+				sentState.put(state, average);
+			}
+		}
+
+		LinkedHashMap<String, Double> sentStateSorted = new LinkedHashMap<>();
+		sentState.entrySet().stream().sorted(Map.Entry.comparingByValue())
+				.forEachOrdered(x -> sentStateSorted.put(x.getKey(), x.getValue()));
+
+		return sentStateSorted;
 	}
 
-	/**
-	 * Method gets the average sentiment one week after a certain date
-	 */
-	public int averageSevenDAfter(String date) {
-		int average = 0;
+	public String topPosStates(int numResults, TweetsByState tbs3) {
+		String output = "Top " + numResults + " States with the highest Sentiment Score: ";
+		List<String> topPosKeys = new ArrayList<String>(sentimentState(tbs3).keySet());
+		List<Double> topPosValues = new ArrayList<Double>(sentimentState(tbs3).values());
+		DecimalFormat numberFormat = new DecimalFormat("#.00");
 
-		// loops through array list of tweets
-		// gets average sentiment for tweets one week after date
+		// iterate through ArrayList and add each result to the output string
+		if (topPosKeys.size() > numResults) {
+			for (int i = 0; i < numResults; i++) {
+				output += topPosKeys.get(i) + "= " + numberFormat.format(topPosValues.get(i)) + ", ";
+			}
+			// add last one with special formatting
+			output += topPosKeys.get(numResults) + "= " + numberFormat.format(topPosValues.get(numResults)) + ".";
 
-		return average;
+			// return String containing all top n results
+			return output;
+		} else {
+			return "Not enough data available";
+		}
 	}
+
+	public String topNegStates(int numResults, TweetsByState tbs4) {
+		String output = "Top " + numResults + " States with the lowest Sentiment Score: ";
+		List<String> topNegKeys = new ArrayList<String>(lowSentState(tbs4).keySet());
+		List<Double> topNegValues = new ArrayList<Double>(lowSentState(tbs4).values());
+		DecimalFormat numberFormat = new DecimalFormat("#.00");
+
+		if (topNegKeys.size() > numResults) {
+			for (int i = 0; i < numResults; i++) {
+				output += topNegKeys.get(i) + "= " + numberFormat.format(topNegValues.get(i)) + ", ";
+			}
+			// add last one with special formatting
+			output += topNegKeys.get(numResults) + "= " + numberFormat.format(topNegValues.get(numResults)) + ".";
+
+			// return String containing all top n results
+			return output;
+		} else {
+			return "Not enough data available";
+		}
+	}
+
 }
