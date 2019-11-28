@@ -36,6 +36,7 @@ public class NLPAnalyser {
     private Properties props; //new properties file from Stanford CoreNLP library
     private StanfordCoreNLP pipeline; // sets up a new pipeline
     private Tweet tweet; // tweet to analyse
+    TweetProcessor tp = new TweetProcessor(); // to clean up Tweets
 
     /**
      * Constructor creates a new Sentiment Analyser object
@@ -44,7 +45,7 @@ public class NLPAnalyser {
     public NLPAnalyser() {
     	props = new Properties();
         props.setProperty("annotators", "tokenize, ssplit, pos, parse, sentiment");
-        pipeline = new StanfordCoreNLP(props); 
+        pipeline = new StanfordCoreNLP(props);
     }
 
     /**
@@ -60,13 +61,11 @@ public class NLPAnalyser {
      * @return List<CoreMap> mapping the sentences to their annotations
      */
     public List<CoreMap> nlpPipeline(String tweetText) {
-    	//TweetProcessor tp = new TweetProcessor();
-    	//String rawText = tweetText;
-		//String cleanText = tp.cleanText(rawText);
-		//String finalText = tp.removeNoise(cleanText);
+    	String processedText = tp.removeNoise(tweetText);
+
         // Create a new annotation object from the tweet
         // This is needed to prep the tweet for the sentiment analysis
-        Annotation document = new Annotation(tweetText);
+        Annotation document = new Annotation(processedText);
 
         // Run the text through the pipeline to annotate it
         pipeline.annotate(document);
@@ -88,9 +87,6 @@ public class NLPAnalyser {
     public double getSentimentScore(List<CoreMap> sentences) {
     	int totalSentiment = 0;
     	double tweetSentiment = 0;
-
-        //double tweetSentiment = -1.00; // sentiment for the tweet overall
-         // sum of the sentiment for each sentence in the tweet
 
         // Loop through each sentence and get the sentiment score
         for (CoreMap sentence : sentences) {
@@ -138,7 +134,7 @@ public class NLPAnalyser {
                 // if the word is an adjective then add it to the the ArrayList of adjectives
                 if (pos.contains(adjective)) {
                 	//System.out.println("adj: " + word);
-                    adjectives.add(word);
+                    adjectives.add(word.toLowerCase());
                 }
             }
         }
@@ -158,7 +154,7 @@ public class NLPAnalyser {
 	   for (String adjective : adjectives) {
 		   List<CoreMap> tweetAdjectives = nlpPipeline(adjective);
 		   double adjSentiment = getSentimentScore(tweetAdjectives);
-		   adjectivesScore.put(adjective, adjSentiment);
+		   adjectivesScore.put(adjective.toLowerCase(), adjSentiment);
 	   }
 	   //System.out.println(adjectivesScore);
 	   return adjectivesScore;
@@ -194,21 +190,23 @@ public class NLPAnalyser {
     
     /*public static void main(String[] args) {
     	Tweet tweet = new Tweet();
-    	tweet.setTextInTweet("It is a beautiful, bright, sunny morning here in Brussels, Belgium! Do not tell anyone that you are this happy. Joy, joy, joy! So happy you are here!"); 
+    	tweet.setTextInTweet("RT This made my day; glad @JeremyKappell is standing up against #ROC’s disgusting mayor. \"\n" +
+                "        \t\t+ \"Former TV meteorologist Jeremy Kappell suing Mayor Lovely Warren\"\n" +
+                "        \t\t+ \"https://t.co/rJIV5SN9vB (Via NEWS 8 WROC)\"");
     	NLPAnalyser nlp = new NLPAnalyser();
     	List<CoreMap> sentences = nlp.nlpPipeline(tweet.getTextInTweet());
     	nlp.getSentimentScore(sentences);
-    	ArrayList<String> adjectives = nlp.adjectives(sentences);
-    	System.out.println(adjectives.toString());
+    	//ArrayList<String> adjectives = nlp.adjectives(sentences);
+    	//System.out.println(adjectives.toString());
     	//ArrayList<String> words = nlp.getImportantWords(sentences);
     	//System.out.println(words);
     	HashMap<String, Double> as = nlp.adjectivesScoring(sentences);
     	System.out.println("done");
-    	TweetProcessor tp = new TweetProcessor();
+    	/*TweetProcessor tp = new TweetProcessor();
         String test = "RT This made my day; glad @JeremyKappell is standing up against #ROC’s disgusting mayor. "
         		+ "Former TV meteorologist Jeremy Kappell suing Mayor Lovely Warren"
         		+ "https://t.co/rJIV5SN9vB (Via NEWS 8 WROC)";
         String finalText = tp.removeNoise(test);
-        System.out.println(finalText); 	
+        System.out.println(finalText);
     }*/
 }
