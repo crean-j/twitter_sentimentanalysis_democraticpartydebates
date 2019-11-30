@@ -217,11 +217,7 @@ Timeline
       </ul>
       </td>
         </tr>
-        <tr>
-             <td colspan="2" >
-          <h3>Notes:</h3>
-             </td>
-            </tr>
+        
 </table>
 
 <table>
@@ -256,11 +252,7 @@ Timeline
   </ul>
   </td>
     </tr>
-    <tr>
-              <td colspan="2" >
-           <h3>Notes:</h3>
-              </td>
-             </tr> </table>
+  </table>
 
 <table>
   <tr>
@@ -299,11 +291,6 @@ Timeline
 </ul>
 </td>
   </tr>
-  <tr>
-            <td colspan="2" >
-         <h3>Notes:</h3>
-            </td>
-           </tr>
 </table>
 
 <table>
@@ -334,11 +321,6 @@ Timeline
 </ul>
 </td>
   </tr>
-  <tr>
-       <td colspan="2" >
-    <h3>Notes:</h3>
-       </td>
-      </tr>
 </table>
 
 <table>
@@ -376,11 +358,6 @@ Timeline
 </ul>
 </td>
   </tr>
-   <tr>
-     <td colspan="2" >
-  <h3>Notes:</h3>
-     </td>
-    </tr>
 </table>
 
 <table>
@@ -481,6 +458,98 @@ Timeline
 <table>
   <tr>
    <td colspan="2" >
+      <h2>Class: TweetsByState.java</h2>
+   </td>
+  </tr>
+  <tr>
+   <td>
+      <h3>Responsibilities:</h3>
+<ul>
+
+<li>
+
+<li>
+
+<li>
+
+<li>
+</li>
+</ul>
+   </td>
+   <td>
+<h3>Collaborators:</h3>
+
+
+<ul>
+
+<li>Tweet
+
+<li>
+</li>
+</ul>
+   </td>
+  </tr>
+  <tr>
+   <td colspan="2" >
+<h3>Methods:</h3>
+<ul>
+<li> TweetsByState(ArrayList<Tweet> tweets)
+</li>
+</ul>
+   </td>
+  </tr>
+</table>
+
+<table>
+  <tr>
+   <td colspan="2" >
+      <h2>Class:SaveTweets.java</h2>
+   </td>
+  </tr>
+  <tr>
+   <td>
+      <h3>Responsibilities:</h3>
+<ul>
+
+<li>
+
+<li>
+
+<li>
+
+<li>
+</li>
+</ul>
+   </td>
+   <td>
+<h3>Collaborators:</h3>
+
+
+<ul>
+
+<li>Tweet
+
+<li>
+</li>
+</ul>
+   </td>
+  </tr>
+  <tr>
+   <td colspan="2" >
+<h3>Methods:</h3>
+<ul>
+<li> void saveToFile() 
+<li> ArrayList<Tweet> loadFile()
+<li> Tweet tweetsParse(String row)
+</li>
+</ul>
+   </td>
+  </tr>
+</table>
+
+<table>
+  <tr>
+   <td colspan="2" >
       <h2>Class: DemDebate.java</h2>
    </td>
   </tr>
@@ -523,65 +592,13 @@ Timeline
   <tr>
    <td colspan="2" >
 <h3>Notes:</h3>
-
+<ul>
+<li>This was the main method for running the sentiment analysis.</li>
+</ul>
 
    </td>
   </tr>
 </table>
-
-<table>
-  <tr>
-   <td colspan="2" >
-      <h2>Class:SaveTweets.java</h2>
-   </td>
-  </tr>
-  <tr>
-   <td>
-      <h3>Responsibilities:</h3>
-<ul>
-
-<li>
-
-<li>
-
-<li>
-
-<li>Print out file with analysis results
-</li>
-</ul>
-   </td>
-   <td>
-<h3>Collaborators:</h3>
-
-
-<ul>
-
-<li>Tweet
-
-<li>
-</li>
-</ul>
-   </td>
-  </tr>
-  <tr>
-   <td colspan="2" >
-<h3>Methods:</h3>
-<ul>
-
-<li>Main
-</li>
-</ul>
-   </td>
-  </tr>
-  <tr>
-   <td colspan="2" >
-<h3>Notes:</h3>
-
-
-   </td>
-  </tr>
-</table>
-
 
 <table>
   <tr>
@@ -625,13 +642,6 @@ Timeline
 <li>Main
 </li>
 </ul>
-   </td>
-  </tr>
-  <tr>
-   <td colspan="2" >
-<h3>Notes:</h3>
-
-
    </td>
   </tr>
 </table>
