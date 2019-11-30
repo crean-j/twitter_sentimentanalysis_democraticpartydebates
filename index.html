@@ -50,29 +50,59 @@
   <div class="container">
     <div class="row">
       <p class="lead text-center">
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+        Analyze tweets mentioning top democratic primary candidates to get the average sentiment. A static analysis was done to analyze tweets around a given event, the 5th Democratic debate of November 20th. This was to demonstrate the output of the program.
+
+The program can be used in real-time to get the sentiment around a candidate on a given date.
 
         <br><br>
-     <button type="button text-center" class="btn btn-outline-secondary btn-lg"><i class="fab fa-github"></i>  View on Github</button>
+     <button type="button" class="btn btn-outline-dark btn-lg"><i class="fab fa-github"></i>  View on Github</button>
       </p>
 
-      
     </div>
+
+
+<div class="container" style="margin-top: 40px;">
+  <div class="row">
+    <div class="card col mr-3 text-center">
+      <div class="card-body">
+        <h4 class="card-title width"><i class="fas fa-history"></i>    Static Analysis of Debate Tweets</h4>
+        <p class="card-text">The static analysis was done on tweets from Nov 13 - Nov 20th and Nov 22nd - 30th. Batches of tweets were collected and added to a TweetArchive text file. Analysis consisted on reading tweets from file and generating Tweet objects for each, creating ArrayLists of tweets, for each candidate, natural language location assignment, and analysis for sentiment at the state and candidate level.</p>
+        <p>
+        2 CSVs (TweetsByState and TweetsByCandidate) as well as a .txt report are generated.</p>
+
+        </p>
+      </div>
+    </div>
+    <div class="card col mr-3 text-center">
+      <div class="card-body">
+        <h4 class="card-title width"><i class="fas fa-user"></i>   Real-time user flow</h4>
+        <p class="card-text">Takes in user input for a keyword. Returns an ArrayList of Tweet obejcts up to 18,000 tweets or 7 days before the query date (whichever is hit first). Pre-process each tweet's text for sentiment analysis: remove urls, hashtags, user mentions. Get sentiment for tweet using Stanford CoreNlP. The resulting ArrayList is run through the data analyzer similarly to the static modality.
+            </p>
+            <p>Returns console data analysis and .txt files containing tweets.</p>
+      </div>
+    </div>
+  </div>
+</div>
+  <div class="row text-center mt-5">
+    <h1>Analysis of Sentiment by State</h1>
+    <p>Map created using the generated "TweetsByState" CSV from the static debate analysis</p>
+  </div>    
     
   </div>
-
 
   <div class="container-fluid">
     <div class="row">
         <iframe width="100%" height="800px" frameborder="0" src="https://mastercardadvisors.carto.com/u/federica-pelzel/builder/ac9ceacd-cebf-4605-b5dd-dc19a7f8be85/embed" allowfullscreen webkitallowfullscreen mozallowfullscreen oallowfullscreen msallowfullscreen></iframe>
     </div>
   </div>
+ 
 
   <!-- Bootstrap core JavaScript -->
   <script src="https://kit.fontawesome.com/90f52afe76.js" crossorigin="anonymous"></script>
   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
 
 
 </body>
