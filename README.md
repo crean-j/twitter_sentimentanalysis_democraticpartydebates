@@ -593,7 +593,7 @@ Timeline
    <td colspan="2" >
 <h3>Notes:</h3>
 <ul>
-<li>This was the main method for running the sentiment analysis.</li>
+<li>This was the main method for running the static sentiment analysis of the debates.</li>
 </ul>
 
    </td>
@@ -641,6 +641,14 @@ Timeline
 
 <li>Main
 </li>
+</ul>
+   </td>
+  </tr>
+  <tr>
+   <td colspan="2" >
+<h3>Notes:</h3>
+<ul>
+<li>This was the main method for real-time sentiment analysis of tweets for a candidate on a given day.</li>
 </ul>
    </td>
   </tr>
