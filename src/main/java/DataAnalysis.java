@@ -155,13 +155,13 @@ public class DataAnalysis {
 		// iterate through ArrayList and add each result to the output string
 		if (topInf.size() > numResults) {
 			for (int i = 0; i < numResults; i++) {
-				output += "\n\nUsername: " + topInf.get(i).getUser() + "; User Followers: "
+				output += "\nUsername: " + topInf.get(i).getUser() + "; User Followers: "
 						+ topInf.get(i).getNumberOfFollowers() + "; Times Retweeted: " + topInf.get(i).getRetweetedCount()
 						+ "; Tweet Influence Score: " + topInf.get(i).getInfluenceScore() + ".\nTweet: "
-						+ topInf.get(i).getTextInTweet() + ".";
+						+ topInf.get(i).getTextInTweet() + ".\n";
 			}
 			// add last one with special formatting
-			output += topInf.get(numResults) +"\n";
+			output += topInf.get(numResults);
 
 			// return String containing all top n results
 			return output;

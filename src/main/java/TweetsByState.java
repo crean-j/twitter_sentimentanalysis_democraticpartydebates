@@ -1,3 +1,4 @@
+
 /*
  * @author: Federica Pelzel
  * 
@@ -74,9 +75,8 @@ public class TweetsByState {
 		states.put("WV", new ArrayList<Tweet>());
 		states.put("WI", new ArrayList<Tweet>());
 		states.put("WY", new ArrayList<Tweet>());
-		
-		//iterate through tweets and add to the corresponding state ArrayList
-		
+
+		// iterate through tweets and add to the corresponding state ArrayList
 		for (Tweet t : tweets) {
 			if (t.getLocation().contains("Alaska") || t.getLocation().contains("AK")
 					|| t.getLocation().contains("alaska")) {
@@ -160,7 +160,7 @@ public class TweetsByState {
 					|| t.getLocation().contains("indiana")) {
 				states.get("IN").add(t);
 			}
-			
+
 			if (t.getLocation().contains("Illinois") || t.getLocation().contains("IL")
 					|| t.getLocation().contains("illinois")) {
 				states.get("IL").add(t);
@@ -281,7 +281,6 @@ public class TweetsByState {
 				states.get("PA").add(t);
 			}
 
-
 			if (t.getLocation().contains("Puerto Rico") || t.getLocation().contains("PR")
 					|| t.getLocation().contains("puerto rico")) {
 				states.get("PR").add(t);
@@ -312,7 +311,6 @@ public class TweetsByState {
 				states.get("TX").add(t);
 			}
 
-
 			if (t.getLocation().contains("Utah") || t.getLocation().contains("UT")
 					|| t.getLocation().contains("utah")) {
 				states.get("UT").add(t);
@@ -322,7 +320,6 @@ public class TweetsByState {
 					|| t.getLocation().contains("virginia")) {
 				states.get("VA").add(t);
 			}
-
 
 			if (t.getLocation().contains("Virgin Islands") || t.getLocation().contains("VI")
 					|| t.getLocation().contains("virgin islands")) {
@@ -334,7 +331,6 @@ public class TweetsByState {
 				states.get("VT").add(t);
 			}
 
-
 			if (t.getLocation().contains("Washington State") || t.getLocation().contains("WA")
 					|| t.getLocation().contains("Washington state")) {
 				states.get("WA").add(t);
@@ -345,7 +341,6 @@ public class TweetsByState {
 				states.get("WI").add(t);
 			}
 
-
 			if (t.getLocation().contains("West Virginia") || t.getLocation().contains("WV")
 					|| t.getLocation().contains("west virginia")) {
 				states.get("WV").add(t);
@@ -355,8 +350,9 @@ public class TweetsByState {
 					|| t.getLocation().contains("wyoming")) {
 				states.get("WY").add(t);
 			}
-			
-			else continue;
+
+			else
+				continue;
 		}
 	}
 

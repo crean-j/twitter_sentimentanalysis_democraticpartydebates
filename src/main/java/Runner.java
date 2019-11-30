@@ -38,8 +38,6 @@ public class Runner {
 			current += 1;
 		}
 		
-		
-
 		TweetsByState tbs = new TweetsByState(result);
 		int count = 0;
 		for (String state : tbs.states.keySet()) {
@@ -57,7 +55,6 @@ public class Runner {
 		
 		System.out.println("\nAverage sentiment score: " + da.sentimentScore() + "\n");
 		
-
 		System.out.println("Most used positive words: " + da.topNPos(5));
 		System.out.println("Most used negative words: " + da.topNNeg(5));
 		System.out.println(da.topPosStates(5, tbs));
