@@ -1,5 +1,5 @@
 
-/*
+/**
  * @author: Federica Pelzel
  * 
  * This class takes in Tweet objects and analyzes them according to different criteria
@@ -15,6 +15,7 @@ import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Collections;
 
 public class DataAnalysis {
 
@@ -53,6 +54,123 @@ public class DataAnalysis {
 	}
 
 	/**
+	 * This method computes the median of the values in the input array.
+	 * 
+	 * @param arr - an array of ints
+	 * @return median - the median of the input array
+	 */
+	public double calculateMedian(ArrayList<Tweet> tweets) {
+		List<Double> sent = new ArrayList<Double>();
+		for (Tweet t : tweets) {
+			sent.add(t.getSentimentScore());
+		}
+		// Sort our array
+		Collections.sort(sent, Collections.reverseOrder());
+
+		double median = 0;
+
+		// If our array's length is even, then we need to find the average of the two
+		// centered values
+		if (sent.size() % 2 == 0) {
+			int indexA = (tweets.size() - 1) / 2;
+			int indexB = tweets.size() / 2;
+
+			median = ((double) (sent.get(indexA) + sent.get(indexB))) / 2;
+		}
+		// Else if our array's length is odd, then we simply find the value at the
+		// center index
+		else {
+			int index = (sent.size() - 1) / 2;
+			median = sent.get(index);
+		}
+
+		return median;
+	}
+
+	/**
+	 * This method computes the mode of the values in the input array.
+	 * 
+	 * @param arr - an array of ints
+	 * @return mode - the mode of the input array
+	 */
+	public double calculateMode(ArrayList<Tweet> tweets) {
+
+		int modeCount = 0; // The count of the mode value
+		double mode = 0; // The value of the mode
+
+		int currCount = 0;
+
+		// Iterate through all values in our array and consider it as a possible mode
+		for (Tweet t : tweets) {
+			// Get Sentiment Score
+			double sent = t.getSentimentScore();
+			// Reset the number of times we have seen the current value
+			currCount = 0;
+
+			// Iterate through the array counting the number of times we see the current
+			// candidate mode
+			for (Tweet t2 : tweets) {
+				// If they match, increment the current count
+				if (sent == t2.getSentimentScore()) {
+					currCount++;
+				}
+			}
+
+			// We only save this candidate mode, if its count is greater than the current
+			// mode
+			// we have stored in the "mode" variable
+			if (currCount > modeCount) {
+				modeCount = currCount;
+				mode = sent;
+			}
+		}
+
+		return mode;
+	}
+
+	/**
+	 * highest influence score. Create sorted arraylist of tweets by descending
+	 * influence score
+	 */
+
+	public List<Tweet> topInf(ArrayList<Tweet> tweets) {
+		HashMap<Tweet, Double> infScore = new HashMap<Tweet, Double>();
+		for (Tweet t : tweets) {
+			infScore.put(t, t.getInfluenceScore());
+		}
+
+		LinkedHashMap<Tweet, Double> infScoreSorted = new LinkedHashMap<>();
+		infScore.entrySet().stream().sorted(Map.Entry.comparingByValue(Comparator.reverseOrder()))
+				.forEachOrdered(x -> infScoreSorted.put(x.getKey(), x.getValue()));
+
+		List<Tweet> sortedInfScore = new ArrayList<Tweet>(infScoreSorted.keySet());
+
+		return sortedInfScore;
+
+	}
+
+	public String topNInf(int numResults) {
+		ArrayList<Tweet> topInf = new ArrayList<Tweet>(topInf(tweets));
+		String output = new String();
+		// iterate through ArrayList and add each result to the output string
+		if (topInf.size() > numResults) {
+			for (int i = 0; i < numResults; i++) {
+				output += "\n\nUsername: " + topInf.get(i).getUser() + "; User Followers: "
+						+ topInf.get(i).getNumberOfFollowers() + "; Times Retweeted: " + topInf.get(i).getRetweetedCount()
+						+ "; Tweet Influence Score: " + topInf.get(i).getInfluenceScore() + ".\nTweet: "
+						+ topInf.get(i).getTextInTweet() + ".";
+			}
+			// add last one with special formatting
+			output += topInf.get(numResults) +"\n";
+
+			// return String containing all top n results
+			return output;
+		} else {
+			return "Not enough data available";
+		}
+	}
+
+	/**
 	 * mostUsedWords method Returns the most seen adjectives used in tweets
 	 * mentioning the keyword. Returns a HashMap with word + number of times
 	 * mentioned
@@ -75,12 +193,12 @@ public class DataAnalysis {
 		// sort hashmap using Comparator
 		LinkedHashMap<String, Integer> topPositive = new LinkedHashMap<>();
 		positive.entrySet().stream().sorted(Map.Entry.comparingByValue(Comparator.reverseOrder()))
-		.forEachOrdered(x -> topPositive.put(x.getKey(), x.getValue()));
+				.forEachOrdered(x -> topPositive.put(x.getKey(), x.getValue()));
 
 		return topPositive;
 	}
 
-	//returns a sorted hashmap of negative word count
+	// returns a sorted hashmap of negative word count
 	public HashMap<String, Integer> topNegativeWords() {
 		HashMap<String, Integer> negative = new HashMap<String, Integer>();
 		for (Tweet t : tweets) {
@@ -97,12 +215,12 @@ public class DataAnalysis {
 		// sort hashmap using Comparator
 		LinkedHashMap<String, Integer> topNegative = new LinkedHashMap<>();
 		negative.entrySet().stream().sorted(Map.Entry.comparingByValue(Comparator.reverseOrder()))
-		.forEachOrdered(x -> topNegative.put(x.getKey(), x.getValue()));
+				.forEachOrdered(x -> topNegative.put(x.getKey(), x.getValue()));
 
 		return topNegative;
 	}
-	
-	//from the hashmap created by TopPositiveWords return n top results
+
+	// from the hashmap created by TopPositiveWords return n top results
 	public String topNPos(int numResults) {
 		String output = new String();
 		List<String> topPosKeys = new ArrayList<String>(topPositiveWords().keySet());
@@ -120,8 +238,8 @@ public class DataAnalysis {
 			return "Not enough data available";
 		}
 	}
-	
-	//from the hashmap created by TopNegativeWords return n top results
+
+	// from the hashmap created by TopNegativeWords return n top results
 	public String topNNeg(int numResults) {
 		String output = new String();
 		List<String> topNegKeys = new ArrayList<String>(topNegativeWords().keySet());
@@ -165,7 +283,7 @@ public class DataAnalysis {
 			}
 		}
 		return mostRetweeted.getUser() + ": " + mostRetweeted.getTextInTweet() + "retweeted: "
-		+ mostRetweeted.getRetweetedCount() + " times."; // to be formatted
+				+ mostRetweeted.getRetweetedCount() + " times."; // to be formatted
 	}
 
 	/**
@@ -174,8 +292,8 @@ public class DataAnalysis {
 	 */
 	public HashMap<String, Double> sentimentState(TweetsByState tbs2) {
 		HashMap<String, Double> sentState = new HashMap<String, Double>();
-		
-		//instantiate TweetsByState class
+
+		// instantiate TweetsByState class
 		TweetsByState tbs = new TweetsByState(tweets);
 		for (String state : tbs.states.keySet()) {
 			DecimalFormat numberFormat = new DecimalFormat("#.00");
@@ -193,16 +311,16 @@ public class DataAnalysis {
 				sentState.put(state, d);
 			}
 		}
-		
-		//Sort in descending order using Comparator
+
+		// Sort in descending order using Comparator
 		LinkedHashMap<String, Double> sentStateSorted = new LinkedHashMap<>();
 		sentState.entrySet().stream().sorted(Map.Entry.comparingByValue(Comparator.reverseOrder()))
-		.forEachOrdered(x -> sentStateSorted.put(x.getKey(), x.getValue()));
+				.forEachOrdered(x -> sentStateSorted.put(x.getKey(), x.getValue()));
 
 		return sentStateSorted;
 	}
-	
-	//Return a HashMap with sentiment by state from low to high
+
+	// Return a HashMap with sentiment by state from low to high
 	public HashMap<String, Double> lowSentState(TweetsByState tbs2) {
 		HashMap<String, Double> sentState = new HashMap<String, Double>();
 
@@ -225,16 +343,16 @@ public class DataAnalysis {
 
 		LinkedHashMap<String, Double> sentStateSorted = new LinkedHashMap<>();
 		sentState.entrySet().stream().sorted(Map.Entry.comparingByValue())
-		.forEachOrdered(x -> sentStateSorted.put(x.getKey(), x.getValue()));
+				.forEachOrdered(x -> sentStateSorted.put(x.getKey(), x.getValue()));
 
 		return sentStateSorted;
 	}
-	
-	//Return a Top n states with positive sentiment
+
+	// Return a Top n states with positive sentiment
 	public String topPosStates(int numResults, TweetsByState tbs3) {
 		String output = "Top " + numResults + " States with the highest Sentiment Score: ";
-		
-		//Create ArrayLists from sorted HashMap in order to be able to call by index
+
+		// Create ArrayLists from sorted HashMap in order to be able to call by index
 		List<String> topPosKeys = new ArrayList<String>(sentimentState(tbs3).keySet());
 		List<Double> topPosValues = new ArrayList<Double>(sentimentState(tbs3).values());
 		DecimalFormat numberFormat = new DecimalFormat("#.00");
@@ -253,16 +371,16 @@ public class DataAnalysis {
 			return "Not enough data available";
 		}
 	}
-	
-	//Return top n states with negative sentiment
+
+	// Return top n states with negative sentiment
 	public String topNegStates(int numResults, TweetsByState tbs4) {
 		String output = "Top " + numResults + " States with the lowest Sentiment Score: ";
-		
-		//Create ArrayLists from sorted HashMap in order to be able to call by index
+
+		// Create ArrayLists from sorted HashMap in order to be able to call by index
 		List<String> topNegKeys = new ArrayList<String>(lowSentState(tbs4).keySet());
 		List<Double> topNegValues = new ArrayList<Double>(lowSentState(tbs4).values());
 		DecimalFormat numberFormat = new DecimalFormat("#.00");
-		
+
 		// iterate through ArrayList and add each result to the output string
 		if (topNegKeys.size() > numResults) {
 			for (int i = 0; i < numResults; i++) {
