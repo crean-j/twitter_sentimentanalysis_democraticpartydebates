@@ -1,4 +1,3 @@
-//package main.java;
 import edu.stanford.nlp.ling.CoreAnnotations;
 import edu.stanford.nlp.ling.CoreLabel;
 import edu.stanford.nlp.neural.rnn.RNNCoreAnnotations;
@@ -19,14 +18,14 @@ import java.util.Properties;
  * Get the adjectives in a tweet
  * Get the sentiment analysis of a tweet
  * Get the individual words in a tweet
- *
+ * <p>
  * The sentiment score for a tweet can be:
  * very negative = 0
  * negative = 1
  * neutral = 2
  * positive = 3
  * very positive = 4
- *
+ * <p>
  * Link to Stanford CoreNLP documentation: https://stanfordnlp.github.io/CoreNLP/index.html
  *
  * @author joannecrean
@@ -36,20 +35,21 @@ public class NLPAnalyser {
     private Properties props; //new properties file from Stanford CoreNLP library
     private StanfordCoreNLP pipeline; // sets up a new pipeline
     private Tweet tweet; // tweet to analyse
+    TweetProcessor tp = new TweetProcessor(); // to clean up Tweets
 
     /**
      * Constructor creates a new Sentiment Analyser object
      * Sets the properties needed for NLP analysis in the pipeline
      */
     public NLPAnalyser() {
-    	props = new Properties();
+        props = new Properties();
         props.setProperty("annotators", "tokenize, ssplit, pos, parse, sentiment");
-        pipeline = new StanfordCoreNLP(props); 
+        pipeline = new StanfordCoreNLP(props);
     }
 
     /**
      * Method runs NLP pipeline on a tweet
-     *
+     * <p>
      * The following steps take place in the pipeline:
      * Tokenisation - breaks down into words
      * Sentence split - combines the words into sentences
@@ -60,13 +60,11 @@ public class NLPAnalyser {
      * @return List<CoreMap> mapping the sentences to their annotations
      */
     public List<CoreMap> nlpPipeline(String tweetText) {
-    	//TweetProcessor tp = new TweetProcessor();
-    	//String rawText = tweetText;
-		//String cleanText = tp.cleanText(rawText);
-		//String finalText = tp.removeNoise(cleanText);
+        String processedText = tp.removeNoise(tweetText);
+
         // Create a new annotation object from the tweet
         // This is needed to prep the tweet for the sentiment analysis
-        Annotation document = new Annotation(tweetText);
+        Annotation document = new Annotation(processedText);
 
         // Run the text through the pipeline to annotate it
         pipeline.annotate(document);
@@ -79,18 +77,15 @@ public class NLPAnalyser {
 
     /**
      * Method gets a sentiment score for a tweet.
-     *
+     * <p>
      * Once the sentiment has been calculated for each line then the average sentiment is found to give
      * the overall tweet sentiment
      *
      * @return int containing the sentiment for the tweet
      */
     public double getSentimentScore(List<CoreMap> sentences) {
-    	int totalSentiment = 0;
-    	double tweetSentiment = 0;
-
-        //double tweetSentiment = -1.00; // sentiment for the tweet overall
-         // sum of the sentiment for each sentence in the tweet
+        int totalSentiment = 0;
+        double tweetSentiment = 0;
 
         // Loop through each sentence and get the sentiment score
         for (CoreMap sentence : sentences) {
@@ -109,7 +104,7 @@ public class NLPAnalyser {
 
         // Get the total sentiment for the tweet by getting the average sentiment for all
         // sentences in the tweet
-        tweetSentiment = (double) totalSentiment / (double)sentences.size();
+        tweetSentiment = (double) totalSentiment / (double) sentences.size();
         //System.out.println("Tweet sentiment: " + tweetSentiment);
         return tweetSentiment;
     }
@@ -129,41 +124,41 @@ public class NLPAnalyser {
             // a CoreLabel is a CoreMap with additional token-specific methods
             for (CoreLabel token : sentence.get(CoreAnnotations.TokensAnnotation.class)) {
                 //System.out.println("token: " + token);
-            	// this is the text of the token
-     
+                // this is the text of the token
+
                 String word = token.get(CoreAnnotations.TextAnnotation.class);
                 // this is the POS tag of the token
                 String pos = token.get(CoreAnnotations.PartOfSpeechAnnotation.class);
 
                 // if the word is an adjective then add it to the the ArrayList of adjectives
                 if (pos.contains(adjective)) {
-                	//System.out.println("adj: " + word);
-                    adjectives.add(word);
+                    //System.out.println("adj: " + word);
+                    adjectives.add(word.toLowerCase());
                 }
             }
         }
         // might add code to also add sentiment score for the adjectives
         return adjectives;
     }
-    
+
     /**
      * Method to get a list of positive and negative adjectives
-     * 
-     * @return adjectivesScore a HashMap<String, Integer> 
+     *
+     * @return adjectivesScore a HashMap<String, Integer>
      */
-    
-   public HashMap<String, Double> adjectivesScoring(List<CoreMap> sentences) {
-	   HashMap<String, Double> adjectivesScore = new HashMap<String, Double>();
-	   ArrayList<String> adjectives = adjectives(sentences);
-	   for (String adjective : adjectives) {
-		   List<CoreMap> tweetAdjectives = nlpPipeline(adjective);
-		   double adjSentiment = getSentimentScore(tweetAdjectives);
-		   adjectivesScore.put(adjective, adjSentiment);
-	   }
-	   //System.out.println(adjectivesScore);
-	   return adjectivesScore;
-   }
-   
+
+    public HashMap<String, Double> adjectivesScoring(List<CoreMap> sentences) {
+        HashMap<String, Double> adjectivesScore = new HashMap<String, Double>();
+        ArrayList<String> adjectives = adjectives(sentences);
+        for (String adjective : adjectives) {
+            List<CoreMap> tweetAdjectives = nlpPipeline(adjective);
+            double adjSentiment = getSentimentScore(tweetAdjectives);
+            adjectivesScore.put(adjective.toLowerCase(), adjSentiment);
+        }
+        //System.out.println(adjectivesScore);
+        return adjectivesScore;
+    }
+
 
     /**
      * Method to get the individual words in a tweet
@@ -184,31 +179,33 @@ public class NLPAnalyser {
             	System.out.println(token);
                 String word = token.get(CoreAnnotations.TextAnnotation.class);
                 System.out.println(word);
-
                 tokens.add(word);
             }
         }
         // may need to add code to remove stop words
         return tokens;
     }*/
-    
+
     /*public static void main(String[] args) {
     	Tweet tweet = new Tweet();
-    	tweet.setTextInTweet("It is a beautiful, bright, sunny morning here in Brussels, Belgium! Do not tell anyone that you are this happy. Joy, joy, joy! So happy you are here!"); 
+    	tweet.setTextInTweet("RT This made my day; glad @JeremyKappell is standing up against #ROC’s disgusting mayor. \"\n" +
+                "        \t\t+ \"Former TV meteorologist Jeremy Kappell suing Mayor Lovely Warren\"\n" +
+                "        \t\t+ \"https://t.co/rJIV5SN9vB (Via NEWS 8 WROC)\"");
     	NLPAnalyser nlp = new NLPAnalyser();
     	List<CoreMap> sentences = nlp.nlpPipeline(tweet.getTextInTweet());
     	nlp.getSentimentScore(sentences);
-    	ArrayList<String> adjectives = nlp.adjectives(sentences);
-    	System.out.println(adjectives.toString());
+    	//ArrayList<String> adjectives = nlp.adjectives(sentences);
+    	//System.out.println(adjectives.toString());
     	//ArrayList<String> words = nlp.getImportantWords(sentences);
     	//System.out.println(words);
     	HashMap<String, Double> as = nlp.adjectivesScoring(sentences);
     	System.out.println("done");
-    	TweetProcessor tp = new TweetProcessor();
+    	/*TweetProcessor tp = new TweetProcessor();
         String test = "RT This made my day; glad @JeremyKappell is standing up against #ROC’s disgusting mayor. "
         		+ "Former TV meteorologist Jeremy Kappell suing Mayor Lovely Warren"
         		+ "https://t.co/rJIV5SN9vB (Via NEWS 8 WROC)";
         String finalText = tp.removeNoise(test);
-        System.out.println(finalText); 	
+        System.out.println(finalText);
     }*/
 }
+
