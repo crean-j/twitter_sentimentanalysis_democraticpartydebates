@@ -666,27 +666,9 @@ Timeline
 </table>
 
 ## Future improvements
-* Visual representation of output
-* Train our own NLP model on Tweets to get more accurate results
-
-## Questions
-
-1. Will the program let a user interact with it, or will we output static reports, e.g. analysis of tweets before, during and post primary?
-    1. User input?
-        1. Date of event, candidate
-2. What do we do with:
-    2. Tweets that mention two candidates.
-        2. Disqualify? Will decide later on
-    3. Re-tweets.
-        4. Disqualify? No
-        5. Endorsements - adds a vote for the candidate
-        6. Influencers - more followers 
-    4. Cases where there are big differences in the number of tweets mentioning a candidate, how do we compare? 
-        7. Need to do a weighted analysis
-        8. Is there a minimum number of tweets we should use: ‘[Sentiment analysis](https://monkeylearn.com/sentiment-analysis/) needs at least 500 examples per tag (sentiment) to produce good results.’
-3. Should we take a candidates number of followers into account? Could create a candidate class and capture number of followers pre and post debate from Twitter and then report on this as part of the analysis.
-4. Should we pass around tweet objects in an array list or a csv file
-5. What is required as an output, is a static visualisation enough? How will it be graded?
+* Visual representation of output in real-time.
+* Train our own NLP model on Tweets to get more accurate results.
+* Use a paid Twitter account to get more data back for analysis.
 
 
 ### References
