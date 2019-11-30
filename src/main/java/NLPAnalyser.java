@@ -35,7 +35,9 @@ public class NLPAnalyser {
     private Properties props; //new properties file from Stanford CoreNLP library
     private StanfordCoreNLP pipeline; // sets up a new pipeline
     private Tweet tweet; // tweet to analyse
-    TweetProcessor tp = new TweetProcessor(); // to clean up Tweets
+    private TweetProcessor tp = new TweetProcessor(); // to clean up Tweets
+    private String[] commonWords = {"best", "good", "bad", "better", "great", "real",
+            "worst", "trump", "lovely", "wrong", "right"};
 
     /**
      * Constructor creates a new Sentiment Analyser object
@@ -118,6 +120,7 @@ public class NLPAnalyser {
     public ArrayList<String> adjectives(List<CoreMap> sentences) {
         String adjective = "JJ";
         ArrayList<String> adjectives = new ArrayList<String>();
+        Boolean flag = false;
 
         for (CoreMap sentence : sentences) {
             // traversing the words in the current sentence
@@ -132,8 +135,24 @@ public class NLPAnalyser {
 
                 // if the word is an adjective then add it to the the ArrayList of adjectives
                 if (pos.contains(adjective)) {
-                    //System.out.println("adj: " + word);
-                    adjectives.add(word.toLowerCase());
+                    System.out.println("adj: " + word);
+                    // check if the word is in the list of common words
+                    for (String common : commonWords) {
+                        System.out.println(common);
+                        if (word.equals(common)) {
+                            flag = true;
+                            System.out.println("true");
+                            break;
+                        }
+                        else {
+                            flag = false;
+                            System.out.println("false");
+                        }
+                    }
+                    if (!flag) {
+                        adjectives.add(word.toLowerCase());
+                        System.out.println("added");
+                    }
                 }
             }
         }
@@ -155,7 +174,7 @@ public class NLPAnalyser {
             double adjSentiment = getSentimentScore(tweetAdjectives);
             adjectivesScore.put(adjective.toLowerCase(), adjSentiment);
         }
-        //System.out.println(adjectivesScore);
+        System.out.println(adjectivesScore);
         return adjectivesScore;
     }
 
@@ -186,10 +205,10 @@ public class NLPAnalyser {
         return tokens;
     }*/
 
-    /*public static void main(String[] args) {
+    public static void main(String[] args) {
     	Tweet tweet = new Tweet();
-    	tweet.setTextInTweet("RT This is really awful; glad @JeremyKappell is standing up against #ROC’s disgusting mayor. \"\n" +
-                "        \t\t+ \"Former TV meteorologist Jeremy Kappell suing Mayor Lovely Warren\"\n" +
+    	tweet.setTextInTweet("RT This is really awful bad; glad @JeremyKappell is standing up against #ROC’s disgusting worst mayor. \"\n" +
+                "        \t\t+ \"Former TV meteorologist Jeremy Kappell suing good Mayor Lovely Warren\"\n" +
                 "        \t\t+ \"https://t.co/rJIV5SN9vB (Via NEWS 8 WROC)\"");
     	NLPAnalyser nlp = new NLPAnalyser();
     	List<CoreMap> sentences = nlp.nlpPipeline(tweet.getTextInTweet());
@@ -205,7 +224,7 @@ public class NLPAnalyser {
         		+ "Former TV meteorologist Jeremy Kappell suing Mayor Lovely Warren"
         		+ "https://t.co/rJIV5SN9vB (Via NEWS 8 WROC)";
         String finalText = tp.removeNoise(test);
-        System.out.println(finalText);
-    }*/
+        System.out.println(finalText);*/
+    }
 }
 
