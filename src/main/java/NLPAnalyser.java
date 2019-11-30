@@ -135,23 +135,22 @@ public class NLPAnalyser {
 
                 // if the word is an adjective then add it to the the ArrayList of adjectives
                 if (pos.contains(adjective)) {
-                    System.out.println("adj: " + word);
+                    //System.out.println("adj: " + word);
                     // check if the word is in the list of common words
                     for (String common : commonWords) {
                         System.out.println(common);
                         if (word.equals(common)) {
                             flag = true;
-                            System.out.println("true");
+                            //System.out.println("true");
                             break;
                         }
                         else {
                             flag = false;
-                            System.out.println("false");
+                            //System.out.println("false");
                         }
                     }
                     if (!flag) {
                         adjectives.add(word.toLowerCase());
-                        System.out.println("added");
                     }
                 }
             }
