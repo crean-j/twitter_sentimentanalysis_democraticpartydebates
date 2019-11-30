@@ -104,7 +104,7 @@ public class NLPAnalyser {
 
         // Get the total sentiment for the tweet by getting the average sentiment for all
         // sentences in the tweet
-        tweetSentiment = (double) totalSentiment / (double) sentences.size();
+        tweetSentiment = Math.round((double) totalSentiment / (double) sentences.size());
         //System.out.println("Tweet sentiment: " + tweetSentiment);
         return tweetSentiment;
     }
@@ -188,12 +188,12 @@ public class NLPAnalyser {
 
     /*public static void main(String[] args) {
     	Tweet tweet = new Tweet();
-    	tweet.setTextInTweet("RT This made my day; glad @JeremyKappell is standing up against #ROC’s disgusting mayor. \"\n" +
+    	tweet.setTextInTweet("RT This is really awful; glad @JeremyKappell is standing up against #ROC’s disgusting mayor. \"\n" +
                 "        \t\t+ \"Former TV meteorologist Jeremy Kappell suing Mayor Lovely Warren\"\n" +
                 "        \t\t+ \"https://t.co/rJIV5SN9vB (Via NEWS 8 WROC)\"");
     	NLPAnalyser nlp = new NLPAnalyser();
     	List<CoreMap> sentences = nlp.nlpPipeline(tweet.getTextInTweet());
-    	nlp.getSentimentScore(sentences);
+    	System.out.println(nlp.getSentimentScore(sentences));
     	//ArrayList<String> adjectives = nlp.adjectives(sentences);
     	//System.out.println(adjectives.toString());
     	//ArrayList<String> words = nlp.getImportantWords(sentences);

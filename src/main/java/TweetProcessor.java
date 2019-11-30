@@ -42,7 +42,7 @@ public class TweetProcessor {
         String tweet = text;
 
         //convert tweet to lower case
-        tweet = tweet.toLowerCase();
+        //tweet = tweet.toLowerCase();
 
         //remove urls
         tweet = tweet.replaceAll("((www\\.[^\\s]+)|(https?://[^\\s]+))", "");
@@ -54,7 +54,7 @@ public class TweetProcessor {
         tweet = tweet.replaceAll("#", "");
 
         //remove punctuation
-        tweet = tweet.replaceAll("\\p{Punct}+", "");
+        //tweet = tweet.replaceAll("\\p{Punct}+", "");
 
         //System.out.println(tweet);
         return tweet;
