@@ -73,7 +73,7 @@ public class SaveTweets {
 					PrintWriter pw = new PrintWriter(fw);
 					Timestamp timestamp = new Timestamp(System.currentTimeMillis());
 					pw.println(tw.getId() + "@@@" + timestamp + "@@@" + tw.getCandidate() + "@@@"
-							+ tw.getUser().getName() + "@@@" + tw.getUser().getLocation() + "@@@"
+							+ tw.getUser()+ "@@@" + tw.getLocation() + "@@@"
 							+ tw.getNumberOfFollowers() + "@@@" + tw.getTextInTweet().replaceAll("\\n*", "") + "@@@"
 							+ tw.getLocation() + "@@@" + tw.getRetweetedCount() + "@@@" + tw.getInfluenceScore() + "@@@"
 							+ tw.getTweetDate() + "@@@" + tw.getSentimentScore() + "@@@" + tw.isRetweet() + "@@@"
