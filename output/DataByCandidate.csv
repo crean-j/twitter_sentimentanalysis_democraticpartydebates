@@ -1,0 +1,5 @@
+Candidate,TotalTweets,AverageSentiment,TopPositiveWords,TopNegativeWords
+Elizabeth Warren,41258,1.35,good; new; better; great; best; real,bad; least; wrong; worse; fake; stupid
+Bernie Sanders,24390,1.46,good; better; best; great; real; new,bad; least; wrong; worse; stupid; poor
+Joe Biden,24119,1.37,good; real; new; personal; better; right,corrupt; wrong; bad; guilty; stupid; least
+Pete Buttigieg,22221,1.42,new; good; better; best; real; great,bad; least; racist; wrong; worse; difficult
