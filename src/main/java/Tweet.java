@@ -12,7 +12,7 @@ import twitter4j.User;
  */
 public class Tweet {
     private long id;
-    private User user;
+    private String user;
     private int numberOfFollowers;
     private String location;
     private String textInTweet;
@@ -26,7 +26,7 @@ public class Tweet {
     private HashMap<String, Double> adjSentiment;
 
     // Constructor
-    public Tweet(long id, User user, int numberOfFollowers, String location, String textInTweet, Date tweetDate,
+    public Tweet(long id, String user, int numberOfFollowers, String location, String textInTweet, Date tweetDate,
                  String candidate, double influenceScore, int retweetedCount, boolean isRetweet, GeoLocation geoLocation) {
     this.id = id;
         this.user = user;
@@ -85,14 +85,14 @@ public class Tweet {
     /**
      * @return the user
      */
-    public User getUser() {
+    public String getUser() {
         return user;
     }
 
     /**
      * @param user the user to set
      */
-    public void setUser(User user) {
+    public void setUser(String user) {
         this.user = user;
     }
 
