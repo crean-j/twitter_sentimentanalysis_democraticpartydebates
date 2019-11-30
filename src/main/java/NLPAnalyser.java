@@ -138,7 +138,7 @@ public class NLPAnalyser {
                     //System.out.println("adj: " + word);
                     // check if the word is in the list of common words
                     for (String common : commonWords) {
-                        System.out.println(common);
+                        //System.out.println(common);
                         if (word.equals(common)) {
                             flag = true;
                             //System.out.println("true");
@@ -173,7 +173,7 @@ public class NLPAnalyser {
             double adjSentiment = getSentimentScore(tweetAdjectives);
             adjectivesScore.put(adjective.toLowerCase(), adjSentiment);
         }
-        System.out.println(adjectivesScore);
+        //System.out.println(adjectivesScore);
         return adjectivesScore;
     }
 
@@ -188,7 +188,6 @@ public class NLPAnalyser {
         ArrayList<String> impWords = new ArrayList<String>();
         String adjective = "JJ";
         String noun = "";
-        String
         for (CoreMap sentence : sentences) {
             // traversing the words in the current sentence
             // a CoreLabel is a CoreMap with additional token-specific methods
@@ -211,13 +210,13 @@ public class NLPAnalyser {
                 "        \t\t+ \"https://t.co/rJIV5SN9vB (Via NEWS 8 WROC)\"");
     	NLPAnalyser nlp = new NLPAnalyser();
     	List<CoreMap> sentences = nlp.nlpPipeline(tweet.getTextInTweet());
-    	System.out.println(nlp.getSentimentScore(sentences));
+    	//System.out.println(nlp.getSentimentScore(sentences));
     	//ArrayList<String> adjectives = nlp.adjectives(sentences);
     	//System.out.println(adjectives.toString());
     	//ArrayList<String> words = nlp.getImportantWords(sentences);
     	//System.out.println(words);
     	HashMap<String, Double> as = nlp.adjectivesScoring(sentences);
-    	System.out.println("done");
+    	//System.out.println("done");
     	/*TweetProcessor tp = new TweetProcessor();
         String test = "RT This made my day; glad @JeremyKappell is standing up against #ROC’s disgusting mayor. "
         		+ "Former TV meteorologist Jeremy Kappell suing Mayor Lovely Warren"
