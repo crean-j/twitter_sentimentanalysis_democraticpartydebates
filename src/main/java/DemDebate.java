@@ -62,7 +62,7 @@ public class DemDebate {
 			}
 
 			// print out result after each tweet is analyzed for progress tracking
-			System.out.println(current + "/" + tweets.size() + "; " + tweet.getCandidate() + "; Score=" + sentimentScore
+			System.out.println(current + "/" + tweets.size() + "; " + tweet.getCandidate() +"; Influence Score: " + tweet.getInfluenceScore()+"; Sentiment Score=" + sentimentScore
 					+ "; adj =" + as);
 			current += 1;
 
@@ -303,6 +303,77 @@ public class DemDebate {
 		 * Print out final report:
 		 */
 	
+		try (PrintWriter writer = new PrintWriter(new File("report.txt"))) {
+			StringBuilder sb = new StringBuilder();
+			sb.append("\n===================================================================================\n");
+			sb.append("A N A L Y S I S   R E P O R T\n\n");
+			sb.append("5th Democratic Primary Debate\n");
+			sb.append("November 20th, 2019.\n");
+			sb.append("\n===================================================================================\n");
+
+			sb.append("\nTotal number of tweets in sample: " + tweets.size() + ".");
+			sb.append(System.getProperty("line.separator"));
+			sb.append("\nTotal number of tweets with matched location: " + count + ".\n");
+			sb.append(System.getProperty("line.separator"));
+			sb.append("\nMost influential Tweets: " + da.topNInf(5));
+			sb.append(System.getProperty("line.separator"));
+			
+			// Biden
+			sb.append("\n\nCandidate: JOE BIDEN\n");
+			sb.append("\nTotal number of tweets: " + biden.size());
+			sb.append("\nAverage sentiment score: " + daBiden.sentimentScore());
+			sb.append("\nMedian sentiment score: " + daBiden.calculateMedian(biden));
+			sb.append("\nMode sentiment score: " + daBiden.calculateMode(biden) + "\n");
+			sb.append("\nMost used positive words: " + daBiden.topNPos(5));
+			sb.append("\nMost used negative words: " + daBiden.topNNeg(5));
+			sb.append("\n"+daBiden.topPosStates(5, tbsBiden));
+			sb.append("\n"+daBiden.topNegStates(5, tbsBiden));
+			sb.append("\n\nMost influential Tweets: " + daBiden.topNInf(3));
+
+			// Warren
+			sb.append("\n\nCandidate: ELIZABETH WARREN\n");
+			sb.append("\nTotal number of tweets: " + warren.size());
+			sb.append("\nAverage sentiment score: " + daWarren.sentimentScore());
+			sb.append("\nMedian sentiment score: " + daWarren.calculateMedian(warren));
+			sb.append("\nMode sentiment score: " + daWarren.calculateMode(warren) + "\n");
+			sb.append("\nMost used positive words: " + daWarren.topNPos(5));
+			sb.append("\nMost used negative words: " + daWarren.topNNeg(5));
+			sb.append("\n"+daWarren.topPosStates(5, tbsWarren));
+			sb.append("\n"+daWarren.topNegStates(5, tbsWarren));
+			sb.append("\n\nMost influential Tweets: " + daWarren.topNInf(3));
+
+			// Bernie
+			sb.append("\n\nCandidate: BERNIE SANDERS\n");
+			sb.append("\nTotal number of tweets: " + sanders.size());
+			sb.append("\nAverage sentiment score: " + daSanders.sentimentScore());
+			sb.append("\nMedian sentiment score: " + daSanders.calculateMedian(sanders));
+			sb.append("\nMode sentiment score: " + daSanders.calculateMode(sanders) + "\n");
+			sb.append("\nMost used positive words: " + daSanders.topNPos(5));
+			sb.append("\nMost used negative words: " + daSanders.topNNeg(5));
+			sb.append("\n"+daSanders.topPosStates(5, tbsSanders));
+			sb.append("\n"+daSanders.topNegStates(5, tbsSanders));
+			sb.append("\n\nMost influential Tweets: " + daSanders.topNInf(3));
+
+			// Pete
+			sb.append("\n\nCandidate: PETE BUTTIGIEG\n");
+			sb.append("\nTotal number of tweets: " + pete.size());
+			sb.append("\nAverage sentiment score: " + daPete.sentimentScore());
+			sb.append("\nMedian sentiment score: " + daPete.calculateMedian(pete));
+			sb.append("\nMode sentiment score: " + daPete.calculateMode(pete) + "\n");
+			sb.append("\nMost used positive words: " + daPete.topNPos(5));
+			sb.append("\nMost used negative words: " + daPete.topNNeg(5));
+			sb.append("\n"+daPete.topPosStates(5, tbsPete));
+			sb.append("\n"+daPete.topNegStates(5, tbsPete));
+			sb.append("\n\nMost influential Tweets: " + daPete.topNInf(3));
+
+			
+			writer.write(sb.toString());
+	
+		} catch (FileNotFoundException e) {
+			System.out.println(e.getMessage());
+		}
+		
+		
 		
 		System.out.println("\n\n\n\n===================================================================================");
 		System.out.println("A N A L Y S I S   C O M P L E T E");
@@ -322,7 +393,7 @@ public class DemDebate {
 		System.out.println("Most used negative words: " + daBiden.topNNeg(5));
 		System.out.println(daBiden.topPosStates(5, tbsBiden));
 		System.out.println(daBiden.topNegStates(5, tbsBiden));
-		System.out.println("Most influential Tweets: " + daBiden.topNInf(3));
+		System.out.println("/n/nMost influential Tweets: " + daBiden.topNInf(3));
 
 		// Warren
 		System.out.println("\nCandidate: ELIZABETH WARREN\n");
@@ -334,7 +405,7 @@ public class DemDebate {
 		System.out.println("Most used negative words: " + daWarren.topNNeg(5));
 		System.out.println(daWarren.topPosStates(5, tbsWarren));
 		System.out.println(daWarren.topNegStates(5, tbsWarren));
-		System.out.println("Most influential Tweets: " + daWarren.topNInf(3));
+		System.out.println("/n/nMost influential Tweets: " + daWarren.topNInf(3));
 
 		// Bernie
 		System.out.println("\nCandidate: BERNIE SANDERS\n");
@@ -346,7 +417,7 @@ public class DemDebate {
 		System.out.println("Most used negative words: " + daSanders.topNNeg(5));
 		System.out.println(daSanders.topPosStates(5, tbsSanders));
 		System.out.println(daSanders.topNegStates(5, tbsSanders));
-		System.out.println("Most influential Tweets: " + daSanders.topNInf(3));
+		System.out.println("\n\nMost influential Tweets: " + daSanders.topNInf(3));
 
 		// Pete
 		System.out.println("\nCandidate: PETE BUTTIGIEG\n");
@@ -358,7 +429,7 @@ public class DemDebate {
 		System.out.println("Most used negative words: " + daPete.topNNeg(5));
 		System.out.println(daPete.topPosStates(5, tbsPete));
 		System.out.println(daPete.topNegStates(5, tbsPete));
-		System.out.println("Most influential Tweets: " + daPete.topNInf(3));
+		System.out.println("\n\nMost influential Tweets: " + daPete.topNInf(3));
 
 		
 		System.out
@@ -368,6 +439,6 @@ public class DemDebate {
 		System.out.println("A CSV file with data by candidate called 'DataByCandidate.csv' has been saved.");
 		System.out
 				.println("======================================================================================\n\n");
-	}
+		}
 
 	}
