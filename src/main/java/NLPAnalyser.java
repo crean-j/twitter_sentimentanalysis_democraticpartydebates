@@ -37,7 +37,7 @@ public class NLPAnalyser {
     private Tweet tweet; // tweet to analyse
     private TweetProcessor tp = new TweetProcessor(); // to clean up Tweets
     private String[] commonWords = {"best", "good", "bad", "better", "great", "real",
-            "worst", "trump", "lovely", "wrong", "right"};
+            "worst", "trump", "lovely", "wrong", "right", "worse"};
 
     /**
      * Constructor creates a new Sentiment Analyser object
