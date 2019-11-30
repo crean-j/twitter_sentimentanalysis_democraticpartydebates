@@ -13,8 +13,84 @@ Juan Goleniowski [ [juangole@seas.upenn.edu](mailto:juangole@seas.upenn.edu) ]
 Federica Pelzel [ [fpelzel@seas.upenn.edu](mailto:fpelzel@seas.upenn.edu) ]
 
 ## Project Idea
-Analyze tweets mentioning top democratic primary candidates and analyze sentiment. We plan to analyze tweets around a given event, initially the 5th Democratic debate of November 20th.
+Analyze tweets mentioning top democratic primary candidates to get the average sentiment. A static analysis was done to analyze tweets around a given event, the 5th Democratic debate of November 20th.
+This was to demonstrate the output of the program. 
 
+The program can be used in real-time to get the sentiment around a candidate on a given date.
+
+## Limitations
+* We are using a free Twitter account so: 
+  * The Twitter API will only give data for the last seven days. 
+  * The Twitter API will only return 100 tweets for a search. 
+* Stanford CoreNLP API was trained on movie reviews so may not be as accurate for Tweets. 
+* Tweets often have slang, misspellings and emojis that cannot be accurately analyzed.
+
+## Set-up the program
+* You will need a Maven plugin in your IDE to build the project. 
+  * For Eclipse: 
+    * Install the plug in: m2eclipse
+    * Convert to maven project
+* The Runner class contains the main method for the program. 
+* Dependencies:
+  * Twitter4j library: need to create and account and store a twitter4j.properties file in the main project folder to run.
+  * Standford CoreNLP API: no credentials needed.
+
+## Static analysis
+* The static analysis was done on tweets from Nov 13 - Nov 20th and Nov 22nd - 30th.  
+  * Batches of tweets were collected and added to a TweetArchive text file from 7 days before to 7 days after the democratic debate on Nov 20th. 
+* ArrayList of tweets formed for each candidate.
+* Analysed by states.
+* Analysed by candidates.
+* The results of the static analysis can be viewed in two csvs files:
+ * DataByStates
+ * DataByCandidate
+* The following questions were answered for each candidate:
+   * What is the average sentiment of the tweets for this candidate on this date?
+   * What are the most used positive adjectives in tweets mentioning the candidate on this date?
+   * What are the most used negative adjectives in tweets mentioning the candidates on this date?
+   * Which are the 5 states with the highest sentiment score on this date?
+   * Which are the 5 states with the lowest sentiment score on this date?
+   * Total number of tweets about the candidate?  
+
+## Real-time user flow
+1. User input
+    1. User asked to enter keyword to search for.
+    2. Will give the user the last 180 tweets or up to 7 days.
+2. Query for tweets sent on that date that mention the selected candidate.
+4. Read response and store variables for each tweet in a tweet object:
+    1. Date of tweet
+    2. Candidate mentioned
+    3. Tweet text
+    4. User who created tweet
+    5. Number of followers that user had
+    6. Location of user
+    7. //Retweet count
+    8. Influence score (to weight tweets based on the num of followers and number of retweets that the tweet had)
+5. Add tweets to an ArrayList.
+6. Pre-process each tweet's text for sentiment analysis: remove urls, hashtags, user mentions.
+7. Get sentiment for tweet using Stanford CoreNlP:
+    1. Prepare tweet for analysis: tokenise, point-of-speech tagging, split into sentences
+    2. Get sentiment score for tweet
+    3. Add sentiment score to tweet object
+8. Get the adjectives in the tweet, alongside their sentiment score and store in a HashMap. 
+    1. Add to the tweet object.
+9. Analyser pulls in ArrayList of tweets to answer questions:
+    1. What is the average sentiment of the tweets for this candidate on this date?
+    2. What are the most used positive adjectives in tweets mentioning the candidate on this date?
+    3. What are the most used negative adjectives in tweets mentioning the candidates on this date?
+    4. Which are the 5 states with the highest sentiment score on this date?
+    5. Which are the 5 states with the lowest sentiment score on this date?
+    6. Total number of tweets about the candidate? (max 100 in real-time)   
+10. Output results: 
+    1. Display in console
+    2. Write to text file
+
+## Presentation (5 mins)
+
+* Intro to the project 
+* e2e experience of running the program in real time (this person shares screen)
+* Talk through the code: Twitter, Sentiment, Analysis
+* Show the static debate analysis file 
 
 ## Work plan
 
@@ -42,47 +118,21 @@ Timeline
 *   **Dec 8th Meeting:** Refinements and final submission
     *   Consider project presentation
 
-
-## Flow
-
-1. User input
-    1. Ask user to select candidate from list, can select more than one (can we predict this?)
-    2. Ask user to enter event name (label)
-    3. Ask user for date of event
-2. Query for tweets sent from 7 days before event to event and from event to 7 days after event that mention any of the selected candidates
-3. Read and parse response
-4. Store variables in tweet object
-    1. Date of tweet
-    2. Candidate mentioned
-    3. Tweet text
-    4. User who created tweet
-    5. Number of followers
-    6. Location of user
-    7. Retweet count
-    8. //Influencer weight (num of followers and number of retweets that the tweet had)
-5. Pre-process tweets, e.g. remove urls, hashtags, repeated letters
-6. Add pre-processed tweet to tweet object
-7. Get sentiment analysis for tweet
-    1. Prepare tweet for analysis, e.g. tokenise, lemmatise etc.
-    2. Get sentiment score for tweet
-    3. Adjectives can these be stored separately?
-8. Add sentiment score etc. to tweet object
-9. Add tweet object to an ArrayList
-10. Analyser uses ArrayList of tweets to answer questions, e.g. creates relevant hash maps etc.
-11. Output results, e.g. console, visualisation - runner would create a text file
-
 ## CRC
 
 ### Planned classes
 
-1. Tweet (JG)
-2. TwitterSearch (JG)
-3. InfluenceScore (JG)
-4. TweetProcessor (JC)
-5. NLPAnalyser (JC)
-6. DataAnalysis (FP)
-7. UserInteraction (JG)
-8. Runner - gets user input, answer writer (FP)
+1. Tweet 
+2. TwitterSearch 
+3. InfluenceScore 
+4. TweetProcessor
+5. NLPAnalyser 
+6. DataAnalysis 
+7. DemDebate
+8. UserInteraction 
+9. SaveTweets
+10. TweetsByState
+11. Runner
 
 <table>
   <tr>
@@ -171,11 +221,7 @@ Timeline
       </ul>
       </td>
         </tr>
-        <tr>
-             <td colspan="2" >
-          <h3>Notes:</h3>
-             </td>
-            </tr>
+        
 </table>
 
 <table>
@@ -206,15 +252,11 @@ Timeline
      <td colspan="2">
   <h3>Methods:</h3>
   <ul>
-  <li>calculationOfTheInfluenceScor</li>
+  <li>calculationOfTheInfluenceScore</li>
   </ul>
   </td>
     </tr>
-    <tr>
-              <td colspan="2" >
-           <h3>Notes:</h3>
-              </td>
-             </tr> </table>
+  </table>
 
 <table>
   <tr>
@@ -253,11 +295,6 @@ Timeline
 </ul>
 </td>
   </tr>
-  <tr>
-            <td colspan="2" >
-         <h3>Notes:</h3>
-            </td>
-           </tr>
 </table>
 
 <table>
@@ -270,8 +307,7 @@ Timeline
    <td>
        <h3>Responsibilities:</h3>
 <ul>
-<li>Cleans a tweet for analysis by trimming whitespace and converting to lowercase</li>
-<li>Removes noise from a tweet: html mark-up, non-ascii characters</li>
+<li>Removes noise from a tweet: urls, user mentions, hash-tags</li>
 </ul>
    </td>
    <td>
@@ -285,16 +321,10 @@ Timeline
    <td colspan="2">
 <h3>Methods:</h3>
 <ul>
-<li>cleanText</li>
 <li>removeNoise</li>
 </ul>
 </td>
   </tr>
-  <tr>
-       <td colspan="2" >
-    <h3>Notes:</h3>
-       </td>
-      </tr>
 </table>
 
 <table>
@@ -332,11 +362,6 @@ Timeline
 </ul>
 </td>
   </tr>
-   <tr>
-     <td colspan="2" >
-  <h3>Notes:</h3>
-     </td>
-    </tr>
 </table>
 
 <table>
@@ -358,13 +383,13 @@ Timeline
  
 <li>Number of tweets mentioning the keyword
  
-<li>Overall sentiment score (to be defined) 
+<li>Overall sentiment score (average of scores across tweets) 
  
 <li>Overall positive-negative split
  
-<li>Top positive words with number of times seen
+<li>Top positive adjectives
  
-<li>Top negative words with number of times seen
+<li>Top negative adjectives
  
 <li>Top origin states for tweets containing word
  
@@ -429,16 +454,155 @@ Timeline
 
 <ul>
 <li>For all method that measure ‘Top’ the number of results displayed should be dynamic</li>
+</ul>
+   </td>
+  </tr>
+</table>
+
+<table>
+  <tr>
+   <td colspan="2" >
+      <h2>Class: TweetsByState.java</h2>
+   </td>
+  </tr>
+  <tr>
+   <td>
+      <h3>Responsibilities:</h3>
+<ul>
+
+<li>
+
+<li>
+
+<li>
+
+<li>
+</li>
+</ul>
+   </td>
+   <td>
+<h3>Collaborators:</h3>
 
 
-<li>Can we store in tweet the positive words and negative words (as ArrayLists?) individually from the body of the tweet? Ideally converted to all lowercase.</li>
+<ul>
+
+<li>Tweet
+
+<li>
+</li>
+</ul>
+   </td>
+  </tr>
+  <tr>
+   <td colspan="2" >
+<h3>Methods:</h3>
+<ul>
+<li> TweetsByState(ArrayList<Tweet> tweets)
+</li>
+</ul>
+   </td>
+  </tr>
+</table>
+
+<table>
+  <tr>
+   <td colspan="2" >
+      <h2>Class:SaveTweets.java</h2>
+   </td>
+  </tr>
+  <tr>
+   <td>
+      <h3>Responsibilities:</h3>
+<ul>
+
+<li>
+
+<li>
+
+<li>
+
+<li>
+</li>
+</ul>
+   </td>
+   <td>
+<h3>Collaborators:</h3>
+
+
+<ul>
+
+<li>Tweet
+
+<li>
+</li>
+</ul>
+   </td>
+  </tr>
+  <tr>
+   <td colspan="2" >
+<h3>Methods:</h3>
+<ul>
+<li> void saveToFile() 
+<li> ArrayList<Tweet> loadFile()
+<li> Tweet tweetsParse(String row)
+</li>
+</ul>
+   </td>
+  </tr>
+</table>
+
+<table>
+  <tr>
+   <td colspan="2" >
+      <h2>Class: DemDebate.java</h2>
+   </td>
+  </tr>
+  <tr>
+   <td>
+      <h3>Responsibilities:</h3>
+<ul>
+
+<li>
+
+<li>
+
+<li>
+
+<li>
+</li>
+</ul>
+   </td>
+   <td>
+<h3>Collaborators:</h3>
+<ul>
+
+<li>Tweet
+
+<li>NLP Analyser
+</li>
+</ul>
+   </td>
+  </tr>
+  <tr>
+   <td colspan="2" >
+<h3>Methods:</h3>
+<ul>
+
+<li>Main
+</li>
+</ul>
+   </td>
+  </tr>
+  <tr>
+   <td colspan="2" >
+<h3>Notes:</h3>
+<ul>
+<li>This was the main method for running the static sentiment analysis of the debates.</li>
 </ul>
 
    </td>
   </tr>
 </table>
-
-
 
 <table>
   <tr>
@@ -487,17 +651,18 @@ Timeline
   <tr>
    <td colspan="2" >
 <h3>Notes:</h3>
-
-
+<ul>
+<li>This was the main method for real-time sentiment analysis of tweets for a candidate on a given day.</li>
+</ul>
    </td>
   </tr>
 </table>
 
-
+## Future improvements
+* Visual representation of output
+* Train our own NLP model on Tweets to get more accurate results
 
 ## Questions
-
-
 
 1. Will the program let a user interact with it, or will we output static reports, e.g. analysis of tweets before, during and post primary?
     1. User input?
@@ -517,13 +682,7 @@ Timeline
 5. What is required as an output, is a static visualisation enough? How will it be graded?
 
 
-## Notes on sentiment analysis
-
-**Input: Pre-processed String (Tweet)**
-
-**Output: Positive/Negative score (int or String)**
-
-### Options
+### References
 
 1. SentiWordNet
 

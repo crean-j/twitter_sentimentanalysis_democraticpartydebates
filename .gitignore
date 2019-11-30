@@ -1,13 +1,7 @@
 twitter4j.properties
-<<<<<<< HEAD
-/target/
-.gitignore
-.classpath
-.project
 /TweetArchive2.txt
-TweetArchive.txt
+/TweetArchive.txt
 /TweetArchive1.txt
-=======
 
 # Eclipse
 .classpath
@@ -28,4 +22,3 @@ artifacts/
 # Maven
 log/
 target/ 
->>>>>>> c6ac6e8a084204e8da54c6e3be0add15228ee701
