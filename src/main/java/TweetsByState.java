@@ -1,7 +1,10 @@
-
 /*
- * The goal of this class is to create a hashmap of states
- * where each state contains an arraylist of Tweets originating from it
+ * @author: Federica Pelzel
+ * 
+ * This class creates an ArrayList per state in a HashMap with the state name as Key
+ * It also creates natural language conditions for location, and stores tweets from each location
+ * in the corresponding ArrayList
+ * 
  */
 
 import java.util.ArrayList;
@@ -354,8 +357,6 @@ public class TweetsByState {
 			}
 			
 			else continue;
-
-
 		}
 	}
 
