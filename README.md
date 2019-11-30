@@ -36,10 +36,14 @@ The program can be used in real-time to get the sentiment around a candidate on 
   * Standford CoreNLP API: no credentials needed.
 
 ## Static analysis
-* The static analysis was done on tweets for each candidate 7 days before and 7 days after the debate. 
-* Batches of tweets were collected and added to a text file from 7 days before to 7 days after the democratic debate on Nov 20th. 
-* To do the analysis, instead of querying for new tweets, the text file was read to get tweets. 
-* The results of the static analysis can be viewed in the xxxx file. 
+* The static analysis was done on tweets from Nov 13 - Nov 20th and Nov 22nd - 30th.  
+  * Batches of tweets were collected and added to a TweetArchive text file from 7 days before to 7 days after the democratic debate on Nov 20th. 
+* ArrayList of tweets formed for each candidate.
+* Analysed by states.
+* Analysed by candidates.
+* The results of the static analysis can be viewed in two csvs files:
+ * DataByStates
+ * DataByCandidate
 * The following questions were answered for each candidate:
    * What is the average sentiment of the tweets for this candidate on this date?
    * What are the most used positive adjectives in tweets mentioning the candidate on this date?
@@ -50,8 +54,8 @@ The program can be used in real-time to get the sentiment around a candidate on 
 
 ## Real-time user flow
 1. User input
-    1. User asked to select democratic candidate to search for.
-    2. Used asked for date in the last 7 days that they'd like to look at.
+    1. User asked to enter keyword to search for.
+    2. Will give the user the last 180 tweets or up to 7 days.
 2. Query for tweets sent on that date that mention the selected candidate.
 4. Read response and store variables for each tweet in a tweet object:
     1. Date of tweet
