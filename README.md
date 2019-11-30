@@ -2,6 +2,8 @@
 final-project-twitterdemocraticpartydebates created by GitHub Classroom
 591 Final Project Design
 
+Project landing page: https://upenn-cit599.github.io/final-project-twitterdemocraticpartydebates/
+
 ## Team members 
 
 Joanne Crean [ [creanj@seas.upenn.edu](mailto:creanj@seas.upenn.edu) ]
