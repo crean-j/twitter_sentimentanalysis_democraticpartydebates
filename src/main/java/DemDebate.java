@@ -22,10 +22,7 @@ public class DemDebate {
 		ArrayList<Tweet> sanders = new ArrayList<>();
 		ArrayList<Tweet> pete = new ArrayList<>();
 
-		/*
-		 * Analysis of all tweets
-		 */
-
+		// Analyze all tweets and sort into different candidate ArrayLists
 		System.out.println("===================================================================================");
 		System.out.println("Analyzing all tweets");
 		System.out.println("===================================================================================");
@@ -33,7 +30,7 @@ public class DemDebate {
 		// Initialize sentiment analyzer
 		NLPAnalyser nlp = new NLPAnalyser();
 		int current = 0;
-		// iterate over tweets and analyze
+		// iterate over tweets, analyze, and sort
 		for (Tweet tweet : tweets) {
 			List<CoreMap> sentences = nlp.nlpPipeline(tweet.getTextInTweet());
 			double sentimentScore = nlp.getSentimentScore(sentences);
@@ -79,107 +76,96 @@ public class DemDebate {
 		 * Analysis specific to Elizabeth Warren
 		 */
 
-		System.out.println("===================================================================================");
+		System.out.println("\n\n===================================================================================");
 		System.out.println("Analyzing tweets about Elizabeth Warren");
-		System.out.println("===================================================================================");
-		System.out.println("Initiating sentiment analysis.");
-		System.out.println("===================================================================================");
+		System.out.println("===================================================================================\n");
 
 		TweetsByState tbsWarren = new TweetsByState(warren);
-		System.out.println(tbsWarren.states.get("DC").size());
-		int countWarren = 0;
+
 		for (String state : tbsWarren.states.keySet()) {
-			System.out.println(state + " " + tbsWarren.states.get(state).size());
-			count += tbsWarren.states.get(state).size();
+			System.out.print("Tweets by State: " + state + "=" + tbsWarren.states.get(state).size() + ", ");
 		}
 
-		System.out.println(countWarren);
-
 		DataAnalysis daWarren = new DataAnalysis(warren);
-		System.out.println(daWarren.sentimentState(tbsWarren));
-		System.out.println(daWarren.topPositiveWords());
-		System.out.println(daWarren.topNegativeWords());
-		System.out.println(daWarren.topNPos(10));
-		System.out.println(daWarren.topNNeg(3));
+		System.out.println("Sentiment by State: " + daWarren.sentimentState(tbsWarren));
+		System.out.println("Positive words: " + daWarren.topPositiveWords());
+		System.out.println("Negative words: " + daWarren.topNegativeWords());
+
+		System.out.println("\nTop 5 positive words: " + daWarren.topNPos(5));
+		System.out.println("Top 5 negative words: " + daWarren.topNNeg(5));
 		System.out.println(daWarren.topPosStates(5, tbsWarren));
 		System.out.println(daWarren.topNegStates(5, tbsWarren));
 
 		/*
 		 * Analysis specific to Bernie Sanders
 		 */
-		System.out.println("===================================================================================");
+		System.out.println("\n\n===================================================================================");
 		System.out.println("Analyzing tweets about Bernie Sanders");
-		System.out.println("===================================================================================");
-		System.out.println("Initiating sentiment analysis.");
-		System.out.println("===================================================================================");
+		System.out.println("===================================================================================\n");
 
 		TweetsByState tbsSanders = new TweetsByState(sanders);
-		System.out.println(tbsSanders.states.get("DC").size());
-		int countSanders = 0;
+
 		for (String state : tbsSanders.states.keySet()) {
-			System.out.println(state + " " + tbsSanders.states.get(state).size());
-			count += tbsSanders.states.get(state).size();
+			System.out.print("Tweets by State: " + state + "=" + tbsSanders.states.get(state).size() + ", ");
 		}
 
-		System.out.println(countSanders);
-
 		DataAnalysis daSanders = new DataAnalysis(sanders);
-		System.out.println(daSanders.sentimentState(tbsSanders));
-		System.out.println(daSanders.topPositiveWords());
-		System.out.println(daSanders.topNegativeWords());
+		System.out.println("Sentiment by State: " + daSanders.sentimentState(tbsSanders));
+		System.out.println("Positive words: " + daSanders.topPositiveWords());
+		System.out.println("Negative words: " + daSanders.topNegativeWords());
+
+		System.out.println("\nTop 5 positive words: " + daSanders.topNPos(5));
+		System.out.println("Top 5 negative words: " + daSanders.topNNeg(5));
+		System.out.println(daSanders.topPosStates(5, tbsSanders));
+		System.out.println(daSanders.topNegStates(5, tbsSanders));
 
 		/*
 		 * Analysis specific to Joe Biden
 		 */
 
-		System.out.println("===================================================================================");
+		System.out.println("\n\n===================================================================================");
 		System.out.println("Analyzing tweets about Joe Biden");
-		System.out.println("===================================================================================");
-		System.out.println("Initiating sentiment analysis.");
-		System.out.println("===================================================================================");
+		System.out.println("===================================================================================\n");
 
 		TweetsByState tbsBiden = new TweetsByState(biden);
-		System.out.println(tbsBiden.states.get("DC").size());
-		int countBiden = 0;
 		for (String state : tbsBiden.states.keySet()) {
-			System.out.println(state + " " + tbsBiden.states.get(state).size());
-			count += tbsBiden.states.get(state).size();
+			System.out.print("Tweets by State: " + state + "=" + tbsBiden.states.get(state).size() + ", ");
 		}
-
-		System.out.println(countBiden);
-
+		
 		DataAnalysis daBiden = new DataAnalysis(biden);
-		System.out.println(daBiden.sentimentState(tbsBiden));
-		System.out.println(daBiden.topPositiveWords());
-		System.out.println(daBiden.topNegativeWords());
+		System.out.println("Sentiment by State: " + daBiden.sentimentState(tbsBiden));
+		System.out.println("Positive words: " + daBiden.topPositiveWords());
+		System.out.println("Negative words: " + daBiden.topNegativeWords());
+
+		System.out.println("\nTop 5 positive words: " + daBiden.topNPos(5));
+		System.out.println("Top 5 negative words: " + daBiden.topNNeg(5));
+		System.out.println(daBiden.topPosStates(5, tbsBiden));
+		System.out.println(daBiden.topNegStates(5, tbsBiden));
 
 		/*
 		 * Analysis specific to Pete Buttigieg
 		 */
-		System.out.println("===================================================================================");
+		System.out.println("\n\n===================================================================================");
 		System.out.println("Analyzing tweets about Pete Buttigieg");
-		System.out.println("===================================================================================");
-		System.out.println("Initiating sentiment analysis.");
-		System.out.println("===================================================================================");
+		System.out.println("===================================================================================\n");
 
 		TweetsByState tbsPete = new TweetsByState(pete);
-		System.out.println(tbsPete.states.get("DC").size());
-		int countPete = 0;
 		for (String state : tbsPete.states.keySet()) {
-			System.out.println(state + " " + tbsPete.states.get(state).size());
-			count += tbsPete.states.get(state).size();
+			System.out.print("Tweets by State: " + state + "=" + tbsPete.states.get(state).size() + ", ");
 		}
 
-		System.out.println(countPete);
-
 		DataAnalysis daPete = new DataAnalysis(pete);
-		System.out.println(daPete.sentimentState(tbsPete));
-		System.out.println(daPete.topPositiveWords());
-		System.out.println(daPete.topNegativeWords());
+		System.out.println("Sentiment by State: " + daPete.sentimentState(tbsPete));
+		System.out.println("Positive words: " + daPete.topPositiveWords());
+		System.out.println("Negative words: " + daPete.topNegativeWords());
 
-		/*
-		 * Write CSV with results
-		 */
+		System.out.println("\nTop 5 positive words: " + daPete.topNPos(5));
+		System.out.println("Top 5 negative words: " + daPete.topNNeg(5));
+		System.out.println(daPete.topPosStates(5, tbsPete));
+		System.out.println(daPete.topNegStates(5, tbsPete));
+		
+		
+		// Write CSV with results by State		
 		try (PrintWriter writer = new PrintWriter(new File("DataByState.csv"))) {
 			StringBuilder sb = new StringBuilder();
 			// Create Headers
@@ -232,7 +218,8 @@ public class DemDebate {
 		} catch (FileNotFoundException e) {
 			System.out.println(e.getMessage());
 		}
-
+		
+		//Create CSV that includes results per candidate
 		try (PrintWriter writer = new PrintWriter(new File("DataByCandidate.csv"))) {
 			StringBuilder sb = new StringBuilder();
 			// Create Headers
@@ -304,12 +291,21 @@ public class DemDebate {
 		/*
 		 * Print out final report:
 		 */
-		System.out.println("\n\n===================================================================================");
+		System.out.println("\n\n\n\n===================================================================================");
 		System.out.println("A N A L Y S I S   C O M P L E T E");
-		System.out.println("===================================================================================\n\n");
+		System.out.println("===================================================================================\n");
 
 		System.out.println("\nTotal number of tweets in sample: " + tweets.size() + ".");
 		System.out.println("Total number of tweets with matched location: " + count + ".\n");
+		
+		// Biden
+		System.out.println("\nCandidate: JOE BIDEN\n");
+		System.out.println("Total number of tweets: " + biden.size());
+		System.out.println("Average sentiment score: " + daBiden.sentimentScore());
+		System.out.println("Most used positive words: " + daBiden.topNPos(5));
+		System.out.println("Most used negative words: " + daBiden.topNNeg(5));
+		System.out.println(daBiden.topPosStates(5, tbsBiden));
+		System.out.println(daBiden.topNegStates(5, tbsBiden));
 
 		// Warren
 		System.out.println("\nCandidate: ELIZABETH WARREN\n");
@@ -329,7 +325,7 @@ public class DemDebate {
 		System.out.println(daSanders.topPosStates(5, tbsSanders));
 		System.out.println(daSanders.topNegStates(5, tbsSanders));
 
-		// Bernie
+		// Pete
 		System.out.println("\nCandidate: PETE BUTTIGIEG\n");
 		System.out.println("Total number of tweets: " + pete.size());
 		System.out.println("Average sentiment score: " + daPete.sentimentScore());
@@ -338,19 +334,14 @@ public class DemDebate {
 		System.out.println(daPete.topPosStates(5, tbsPete));
 		System.out.println(daPete.topNegStates(5, tbsPete));
 
-		// Biden
-		System.out.println("\nCandidate: JOE BIDEN\n");
-		System.out.println("Total number of tweets: " + biden.size());
-		System.out.println("Average sentiment score: " + daBiden.sentimentScore());
-		System.out.println("Most used positive words: " + daBiden.topNPos(5));
-		System.out.println("Most used negative words: " + daBiden.topNNeg(5));
-		System.out.println(daBiden.topPosStates(5, tbsBiden));
-		System.out.println(daBiden.topNegStates(5, tbsBiden));
 
-		System.out.println("\n\n======================================================================================");
+
+		System.out
+				.println("\n\n======================================================================================");
 		System.out.println("A CSV file with data by state and candidate called 'DataByState.csv' has been saved.");
 		System.out.println("======================================================================================");
 		System.out.println("A CSV file with data by candidate called 'DataByCandidate.csv' has been saved.");
-		System.out.println("======================================================================================\n\n");
+		System.out
+				.println("======================================================================================\n\n");
 	}
 }
