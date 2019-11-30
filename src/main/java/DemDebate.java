@@ -8,6 +8,8 @@
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -79,7 +81,8 @@ public class DemDebate {
 
 		System.out.println("===================================================================================");
 		System.out.println("Total number of tweets with matched location: " + count + ".");
-
+		
+		DataAnalysis da = new DataAnalysis(tweets);
 		/*
 		 * Analysis specific to Elizabeth Warren
 		 */
@@ -299,51 +302,65 @@ public class DemDebate {
 		/*
 		 * Print out final report:
 		 */
+	
+		
 		System.out.println("\n\n\n\n===================================================================================");
 		System.out.println("A N A L Y S I S   C O M P L E T E");
 		System.out.println("===================================================================================\n");
 
 		System.out.println("\nTotal number of tweets in sample: " + tweets.size() + ".");
 		System.out.println("Total number of tweets with matched location: " + count + ".\n");
+		System.out.println("Most influential Tweets: " + da.topNInf(5));
 		
 		// Biden
 		System.out.println("\nCandidate: JOE BIDEN\n");
 		System.out.println("Total number of tweets: " + biden.size());
 		System.out.println("Average sentiment score: " + daBiden.sentimentScore());
+		System.out.println("Median sentiment score: " + daBiden.calculateMedian(biden));
+		System.out.println("Mode sentiment score: " + daBiden.calculateMode(biden) + "\n");
 		System.out.println("Most used positive words: " + daBiden.topNPos(5));
 		System.out.println("Most used negative words: " + daBiden.topNNeg(5));
 		System.out.println(daBiden.topPosStates(5, tbsBiden));
 		System.out.println(daBiden.topNegStates(5, tbsBiden));
+		System.out.println("Most influential Tweets: " + daBiden.topNInf(3));
 
 		// Warren
 		System.out.println("\nCandidate: ELIZABETH WARREN\n");
 		System.out.println("Total number of tweets: " + warren.size());
 		System.out.println("Average sentiment score: " + daWarren.sentimentScore());
+		System.out.println("Median sentiment score: " + daWarren.calculateMedian(warren));
+		System.out.println("Mode sentiment score: " + daWarren.calculateMode(warren) + "\n");
 		System.out.println("Most used positive words: " + daWarren.topNPos(5));
 		System.out.println("Most used negative words: " + daWarren.topNNeg(5));
 		System.out.println(daWarren.topPosStates(5, tbsWarren));
 		System.out.println(daWarren.topNegStates(5, tbsWarren));
+		System.out.println("Most influential Tweets: " + daWarren.topNInf(3));
 
 		// Bernie
 		System.out.println("\nCandidate: BERNIE SANDERS\n");
 		System.out.println("Total number of tweets: " + sanders.size());
 		System.out.println("Average sentiment score: " + daSanders.sentimentScore());
+		System.out.println("Median sentiment score: " + daSanders.calculateMedian(sanders));
+		System.out.println("Mode sentiment score: " + daSanders.calculateMode(sanders) + "\n");
 		System.out.println("Most used positive words: " + daSanders.topNPos(5));
 		System.out.println("Most used negative words: " + daSanders.topNNeg(5));
 		System.out.println(daSanders.topPosStates(5, tbsSanders));
 		System.out.println(daSanders.topNegStates(5, tbsSanders));
+		System.out.println("Most influential Tweets: " + daSanders.topNInf(3));
 
 		// Pete
 		System.out.println("\nCandidate: PETE BUTTIGIEG\n");
 		System.out.println("Total number of tweets: " + pete.size());
 		System.out.println("Average sentiment score: " + daPete.sentimentScore());
+		System.out.println("Median sentiment score: " + daPete.calculateMedian(pete));
+		System.out.println("Mode sentiment score: " + daPete.calculateMode(pete) + "\n");
 		System.out.println("Most used positive words: " + daPete.topNPos(5));
 		System.out.println("Most used negative words: " + daPete.topNNeg(5));
 		System.out.println(daPete.topPosStates(5, tbsPete));
 		System.out.println(daPete.topNegStates(5, tbsPete));
+		System.out.println("Most influential Tweets: " + daPete.topNInf(3));
 
-
-
+		
 		System.out
 				.println("\n\n======================================================================================");
 		System.out.println("A CSV file with data by state and candidate called 'DataByState.csv' has been saved.");
@@ -352,4 +369,5 @@ public class DemDebate {
 		System.out
 				.println("======================================================================================\n\n");
 	}
-}
+
+	}
