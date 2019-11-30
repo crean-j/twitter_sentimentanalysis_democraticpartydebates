@@ -41,12 +41,12 @@ The program can be used in real-time to get the sentiment around a candidate on 
 * To do the analysis, instead of querying for new tweets, the text file was read to get tweets. 
 * The results of the static analysis can be viewed in the xxxx file. 
 * The following questions were answered for each candidate:
-      1. What is the average sentiment of the tweets for this candidate on this date?
-      2. What are the most used positive adjectives in tweets mentioning the candidate on this date?
-      3. What are the most used negative adjectives in tweets mentioning the candidates on this date?
-      4. Which are the 5 states with the highest sentiment score on this date?
-      5. Which are the 5 states with the lowest sentiment score on this date?
-      6. Total number of tweets about the candidate?  
+   * What is the average sentiment of the tweets for this candidate on this date?
+   * What are the most used positive adjectives in tweets mentioning the candidate on this date?
+   * What are the most used negative adjectives in tweets mentioning the candidates on this date?
+   * Which are the 5 states with the highest sentiment score on this date?
+   * Which are the 5 states with the lowest sentiment score on this date?
+   * Total number of tweets about the candidate?  
 
 ## Real-time user flow
 1. User input
