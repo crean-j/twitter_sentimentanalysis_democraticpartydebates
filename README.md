@@ -19,7 +19,7 @@ This was to demonstrate the output of the program.
 The program can be used in real-time to get the sentiment around a candidate on a given date.
 
 ## Limitations
-*We are using a free Twitter account so: 
+* We are using a free Twitter account so: 
   * The Twitter API will only give data for the last seven days. 
   * The Twitter API will only return 100 tweets for a search. 
 * Stanford CoreNLP API was trained on movie reviews so may not be as accurate for Tweets. 
