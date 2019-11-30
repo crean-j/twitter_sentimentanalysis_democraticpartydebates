@@ -205,7 +205,7 @@ public class NLPAnalyser {
         return tokens;
     }*/
 
-    public static void main(String[] args) {
+    /*public static void main(String[] args) {
     	Tweet tweet = new Tweet();
     	tweet.setTextInTweet("RT This is really awful bad; glad @JeremyKappell is standing up against #ROC’s disgusting worst mayor. \"\n" +
                 "        \t\t+ \"Former TV meteorologist Jeremy Kappell suing good Mayor Lovely Warren\"\n" +
@@ -224,7 +224,7 @@ public class NLPAnalyser {
         		+ "Former TV meteorologist Jeremy Kappell suing Mayor Lovely Warren"
         		+ "https://t.co/rJIV5SN9vB (Via NEWS 8 WROC)";
         String finalText = tp.removeNoise(test);
-        System.out.println(finalText);*/
-    }
+        System.out.println(finalText);
+    }*/
 }
 
