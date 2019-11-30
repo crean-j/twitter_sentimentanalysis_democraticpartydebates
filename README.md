@@ -34,10 +34,45 @@ The program can be used in real-time to get the sentiment around a candidate on 
 * Dependencies:
   * Twitter4j library: need to create and account and store a twitter4j.properties file in the main project folder to run.
   * Standford CoreNLP API: no credentials needed.
+  
+## Real-time user flow
+1. User input
+    1. User asked to enter keyword to search for.
+2. Query for keyword.
+    1. Will get the user up to 18,000 tweets. Analysis starts today and then keeps scanning back over the last 7 days until          it's reached the query limit. 
+4. Read response and store to text file.
+5. Store variables for each tweet in a tweet object:
+    1. Date of tweet
+    2. Candidate mentioned
+    3. Tweet text
+    4. User who created tweet
+    5. Number of followers that user had
+    6. Location of user
+    7. Retweet count
+    8. Influence score (weight tweets based on the num of followers and number of retweets that the tweet had)
+5. Add tweets to an ArrayList.
+6. Pre-process each tweet's text for sentiment analysis: remove urls, hashtags, user mentions.
+7. Get sentiment for tweet using Stanford CoreNlP:
+    1. Prepare tweet for analysis: tokenise, point-of-speech tagging, split into sentences
+    2. Get sentiment score for tweet
+    3. Add sentiment score to tweet object
+8. Get the adjectives in the tweet, alongside their sentiment score and store in a HashMap. 
+    1. Removes commonly used words that don't support the analysis
+    2. Add to the tweet object
+9. Analyser pulls in ArrayList of tweets to answer questions:
+    1. What is the average sentiment of the tweets for this candidate on this date?
+    2. What are the most used positive adjectives in tweets mentioning the candidate on this date?
+    3. What are the most used negative adjectives in tweets mentioning the candidates on this date?
+    4. Which are the 5 states with the highest sentiment score on this date?
+    5. Which are the 5 states with the lowest sentiment score on this date?
+    6. Total number of tweets about the candidate?
+10. Output results: 
+    1. Display in console
+    2. Text file of tweets
 
-## Static analysis
+## Static analysis around Nov 20th debate
 * The static analysis was done on tweets from Nov 13 - Nov 20th and Nov 22nd - 30th.  
-  * Batches of tweets were collected and added to a TweetArchive text file from 7 days before to 7 days after the democratic debate on Nov 20th. 
+  * Batches of tweets were collected and added to a TweetArchive text file
 * ArrayList of tweets formed for each candidate.
 * Analysed by states.
 * Analysed by candidates.
@@ -50,40 +85,12 @@ The program can be used in real-time to get the sentiment around a candidate on 
    * What are the most used negative adjectives in tweets mentioning the candidates on this date?
    * Which are the 5 states with the highest sentiment score on this date?
    * Which are the 5 states with the lowest sentiment score on this date?
-   * Total number of tweets about the candidate?  
+   * Total number of tweets about the candidate? 
+* Output results:
+   * 2 csv files
+   * Statics analysis in console
+* Website created from csv files of results: https://upenn-cit599.github.io/final-project-twitterdemocraticpartydebates/
 
-## Real-time user flow
-1. User input
-    1. User asked to enter keyword to search for.
-    2. Will give the user the last 180 tweets or up to 7 days.
-2. Query for tweets sent on that date that mention the selected candidate.
-4. Read response and store variables for each tweet in a tweet object:
-    1. Date of tweet
-    2. Candidate mentioned
-    3. Tweet text
-    4. User who created tweet
-    5. Number of followers that user had
-    6. Location of user
-    7. //Retweet count
-    8. Influence score (to weight tweets based on the num of followers and number of retweets that the tweet had)
-5. Add tweets to an ArrayList.
-6. Pre-process each tweet's text for sentiment analysis: remove urls, hashtags, user mentions.
-7. Get sentiment for tweet using Stanford CoreNlP:
-    1. Prepare tweet for analysis: tokenise, point-of-speech tagging, split into sentences
-    2. Get sentiment score for tweet
-    3. Add sentiment score to tweet object
-8. Get the adjectives in the tweet, alongside their sentiment score and store in a HashMap. 
-    1. Add to the tweet object.
-9. Analyser pulls in ArrayList of tweets to answer questions:
-    1. What is the average sentiment of the tweets for this candidate on this date?
-    2. What are the most used positive adjectives in tweets mentioning the candidate on this date?
-    3. What are the most used negative adjectives in tweets mentioning the candidates on this date?
-    4. Which are the 5 states with the highest sentiment score on this date?
-    5. Which are the 5 states with the lowest sentiment score on this date?
-    6. Total number of tweets about the candidate? (max 100 in real-time)   
-10. Output results: 
-    1. Display in console
-    2. Write to text file
 
 ## Presentation (5 mins)
 
