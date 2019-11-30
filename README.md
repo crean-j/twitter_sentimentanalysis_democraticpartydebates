@@ -34,34 +34,22 @@ The program can be used in real-time to get the sentiment around a candidate on 
 * Dependencies:
   * Twitter4j library: need to create and account and store a twitter4j.properties file in the main project folder to run.
   * Standford CoreNLP API: no credentials needed.
-
-## Static analysis
-* The static analysis was done on tweets for each candidate 7 days before and 7 days after the debate. 
-* Batches of tweets were collected and added to a text file from 7 days before to 7 days after the democratic debate on Nov 20th. 
-* To do the analysis, instead of querying for new tweets, the text file was read to get tweets. 
-* The results of the static analysis can be viewed in the xxxx file. 
-* The following questions were answered for each candidate:
-   * What is the average sentiment of the tweets for this candidate on this date?
-   * What are the most used positive adjectives in tweets mentioning the candidate on this date?
-   * What are the most used negative adjectives in tweets mentioning the candidates on this date?
-   * Which are the 5 states with the highest sentiment score on this date?
-   * Which are the 5 states with the lowest sentiment score on this date?
-   * Total number of tweets about the candidate?  
-
+  
 ## Real-time user flow
 1. User input
-    1. User asked to select democratic candidate to search for.
-    2. Used asked for date in the last 7 days that they'd like to look at.
-2. Query for tweets sent on that date that mention the selected candidate.
-4. Read response and store variables for each tweet in a tweet object:
+    1. User asked to enter keyword to search for.
+2. Query for keyword.
+    1. Will get the user up to 18,000 tweets. Analysis starts today and then keeps scanning back over the last 7 days until          it's reached the query limit. 
+4. Read response and store to text file.
+5. Store variables for each tweet in a tweet object:
     1. Date of tweet
     2. Candidate mentioned
     3. Tweet text
     4. User who created tweet
     5. Number of followers that user had
     6. Location of user
-    7. //Retweet count
-    8. Influence score (to weight tweets based on the num of followers and number of retweets that the tweet had)
+    7. Retweet count
+    8. Influence score (weight tweets based on the num of followers and number of retweets that the tweet had)
 5. Add tweets to an ArrayList.
 6. Pre-process each tweet's text for sentiment analysis: remove urls, hashtags, user mentions.
 7. Get sentiment for tweet using Stanford CoreNlP:
@@ -69,17 +57,40 @@ The program can be used in real-time to get the sentiment around a candidate on 
     2. Get sentiment score for tweet
     3. Add sentiment score to tweet object
 8. Get the adjectives in the tweet, alongside their sentiment score and store in a HashMap. 
-    1. Add to the tweet object.
+    1. Removes commonly used words that don't support the analysis
+    2. Add to the tweet object
 9. Analyser pulls in ArrayList of tweets to answer questions:
     1. What is the average sentiment of the tweets for this candidate on this date?
     2. What are the most used positive adjectives in tweets mentioning the candidate on this date?
     3. What are the most used negative adjectives in tweets mentioning the candidates on this date?
     4. Which are the 5 states with the highest sentiment score on this date?
     5. Which are the 5 states with the lowest sentiment score on this date?
-    6. Total number of tweets about the candidate? (max 100 in real-time)   
+    6. Total number of tweets about the candidate?
 10. Output results: 
     1. Display in console
-    2. Write to text file
+    2. Text file of tweets
+
+## Static analysis around Nov 20th debate
+* The static analysis was done on tweets from Nov 13 - Nov 20th and Nov 22nd - 30th.  
+  * Batches of tweets were collected and added to a TweetArchive text file
+* ArrayList of tweets formed for each candidate.
+* Analysed by states.
+* Analysed by candidates.
+* The results of the static analysis can be viewed in two csvs files:
+ * DataByStates
+ * DataByCandidate
+* The following questions were answered for each candidate:
+   * What is the average sentiment of the tweets for this candidate on this date?
+   * What are the most used positive adjectives in tweets mentioning the candidate on this date?
+   * What are the most used negative adjectives in tweets mentioning the candidates on this date?
+   * Which are the 5 states with the highest sentiment score on this date?
+   * Which are the 5 states with the lowest sentiment score on this date?
+   * Total number of tweets about the candidate? 
+* Output results:
+   * 2 csv files
+   * Statics analysis in console
+* Website created from csv files of results: https://upenn-cit599.github.io/final-project-twitterdemocraticpartydebates/
+
 
 ## Presentation (5 mins)
 
@@ -593,7 +604,7 @@ Timeline
    <td colspan="2" >
 <h3>Notes:</h3>
 <ul>
-<li>This was the main method for running the sentiment analysis.</li>
+<li>This was the main method for running the static sentiment analysis of the debates.</li>
 </ul>
 
    </td>
@@ -644,30 +655,20 @@ Timeline
 </ul>
    </td>
   </tr>
+  <tr>
+   <td colspan="2" >
+<h3>Notes:</h3>
+<ul>
+<li>This was the main method for real-time sentiment analysis of tweets for a candidate on a given day.</li>
+</ul>
+   </td>
+  </tr>
 </table>
 
 ## Future improvements
-* Visual representation of output
-* Train our own NLP model on Tweets to get more accurate results
-
-## Questions
-
-1. Will the program let a user interact with it, or will we output static reports, e.g. analysis of tweets before, during and post primary?
-    1. User input?
-        1. Date of event, candidate
-2. What do we do with:
-    2. Tweets that mention two candidates.
-        2. Disqualify? Will decide later on
-    3. Re-tweets.
-        4. Disqualify? No
-        5. Endorsements - adds a vote for the candidate
-        6. Influencers - more followers 
-    4. Cases where there are big differences in the number of tweets mentioning a candidate, how do we compare? 
-        7. Need to do a weighted analysis
-        8. Is there a minimum number of tweets we should use: ‘[Sentiment analysis](https://monkeylearn.com/sentiment-analysis/) needs at least 500 examples per tag (sentiment) to produce good results.’
-3. Should we take a candidates number of followers into account? Could create a candidate class and capture number of followers pre and post debate from Twitter and then report on this as part of the analysis.
-4. Should we pass around tweet objects in an array list or a csv file
-5. What is required as an output, is a static visualisation enough? How will it be graded?
+* Visual representation of output in real-time.
+* Train our own NLP model on Tweets to get more accurate results.
+* Use a paid Twitter account to get more data back for analysis.
 
 
 ### References
