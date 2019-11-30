@@ -51,8 +51,8 @@ The program can be used in real-time to get the sentiment around a candidate on 
 ## Real-time user flow
 1. User input
     1. User asked to select democratic candidate to search for.
-    e. Used asked for date in the last 7 days that they'd like to look at.
-2. Query for tweets sent from 7 days before event to event and from event to 7 days after event that mention any of the selected candidates.
+    2. Used asked for date in the last 7 days that they'd like to look at.
+2. Query for tweets sent on that date that mention the selected candidate.
 4. Read response and store variables for each tweet in a tweet object:
     1. Date of tweet
     2. Candidate mentioned
