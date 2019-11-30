@@ -1,3 +1,11 @@
+/*
+ * @author: Federica Pelzel 
+ * 
+ * DemDebate instantiates other classes and creates a runner around the 
+ * democratic primary debate which happened on nov 20th 2019.
+ * It returns analysis results and creates 2 CSV files with the results.
+ */
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;

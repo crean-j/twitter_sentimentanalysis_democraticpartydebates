@@ -1,8 +1,11 @@
 
 /*
- * This class takes in Tweet objects and analyzes them for sentiment
- * in different ways
+ * @author: Federica Pelzel
+ * 
+ * This class takes in Tweet objects and analyzes them according to different criteria
  * Constructor (takes in Tweets and makes ArrayList)
+ * Includes: Total tweets, Avg sentiment score, top positive and negative words,
+ * most retweeted, tweets by state, sentiment by state, top positive and negative states
  */
 
 import java.text.DecimalFormat;
@@ -72,11 +75,12 @@ public class DataAnalysis {
 		// sort hashmap using Comparator
 		LinkedHashMap<String, Integer> topPositive = new LinkedHashMap<>();
 		positive.entrySet().stream().sorted(Map.Entry.comparingByValue(Comparator.reverseOrder()))
-				.forEachOrdered(x -> topPositive.put(x.getKey(), x.getValue()));
+		.forEachOrdered(x -> topPositive.put(x.getKey(), x.getValue()));
 
 		return topPositive;
 	}
 
+	//returns a sorted hashmap of negative word count
 	public HashMap<String, Integer> topNegativeWords() {
 		HashMap<String, Integer> negative = new HashMap<String, Integer>();
 		for (Tweet t : tweets) {
@@ -93,11 +97,12 @@ public class DataAnalysis {
 		// sort hashmap using Comparator
 		LinkedHashMap<String, Integer> topNegative = new LinkedHashMap<>();
 		negative.entrySet().stream().sorted(Map.Entry.comparingByValue(Comparator.reverseOrder()))
-				.forEachOrdered(x -> topNegative.put(x.getKey(), x.getValue()));
+		.forEachOrdered(x -> topNegative.put(x.getKey(), x.getValue()));
 
 		return topNegative;
 	}
-
+	
+	//from the hashmap created by TopPositiveWords return n top results
 	public String topNPos(int numResults) {
 		String output = new String();
 		List<String> topPosKeys = new ArrayList<String>(topPositiveWords().keySet());
@@ -115,7 +120,8 @@ public class DataAnalysis {
 			return "Not enough data available";
 		}
 	}
-
+	
+	//from the hashmap created by TopNegativeWords return n top results
 	public String topNNeg(int numResults) {
 		String output = new String();
 		List<String> topNegKeys = new ArrayList<String>(topNegativeWords().keySet());
@@ -159,18 +165,17 @@ public class DataAnalysis {
 			}
 		}
 		return mostRetweeted.getUser() + ": " + mostRetweeted.getTextInTweet() + "retweeted: "
-				+ mostRetweeted.getRetweetedCount() + " times."; // to be formatted
+		+ mostRetweeted.getRetweetedCount() + " times."; // to be formatted
 	}
 
 	/**
 	 * sentiment by state. Create a Hashmap with the average sentiment by state
 	 * could return most postive or negative states.
-	 * 
-	 * Issues to solve: returns same average score for each state
 	 */
 	public HashMap<String, Double> sentimentState(TweetsByState tbs2) {
 		HashMap<String, Double> sentState = new HashMap<String, Double>();
-
+		
+		//instantiate TweetsByState class
 		TweetsByState tbs = new TweetsByState(tweets);
 		for (String state : tbs.states.keySet()) {
 			DecimalFormat numberFormat = new DecimalFormat("#.00");
@@ -188,14 +193,16 @@ public class DataAnalysis {
 				sentState.put(state, d);
 			}
 		}
-
+		
+		//Sort in descending order using Comparator
 		LinkedHashMap<String, Double> sentStateSorted = new LinkedHashMap<>();
 		sentState.entrySet().stream().sorted(Map.Entry.comparingByValue(Comparator.reverseOrder()))
-				.forEachOrdered(x -> sentStateSorted.put(x.getKey(), x.getValue()));
+		.forEachOrdered(x -> sentStateSorted.put(x.getKey(), x.getValue()));
 
 		return sentStateSorted;
 	}
-
+	
+	//Return a HashMap with sentiment by state from low to high
 	public HashMap<String, Double> lowSentState(TweetsByState tbs2) {
 		HashMap<String, Double> sentState = new HashMap<String, Double>();
 
@@ -218,13 +225,16 @@ public class DataAnalysis {
 
 		LinkedHashMap<String, Double> sentStateSorted = new LinkedHashMap<>();
 		sentState.entrySet().stream().sorted(Map.Entry.comparingByValue())
-				.forEachOrdered(x -> sentStateSorted.put(x.getKey(), x.getValue()));
+		.forEachOrdered(x -> sentStateSorted.put(x.getKey(), x.getValue()));
 
 		return sentStateSorted;
 	}
-
+	
+	//Return a Top n states with positive sentiment
 	public String topPosStates(int numResults, TweetsByState tbs3) {
 		String output = "Top " + numResults + " States with the highest Sentiment Score: ";
+		
+		//Create ArrayLists from sorted HashMap in order to be able to call by index
 		List<String> topPosKeys = new ArrayList<String>(sentimentState(tbs3).keySet());
 		List<Double> topPosValues = new ArrayList<Double>(sentimentState(tbs3).values());
 		DecimalFormat numberFormat = new DecimalFormat("#.00");
@@ -243,13 +253,17 @@ public class DataAnalysis {
 			return "Not enough data available";
 		}
 	}
-
+	
+	//Return top n states with negative sentiment
 	public String topNegStates(int numResults, TweetsByState tbs4) {
 		String output = "Top " + numResults + " States with the lowest Sentiment Score: ";
+		
+		//Create ArrayLists from sorted HashMap in order to be able to call by index
 		List<String> topNegKeys = new ArrayList<String>(lowSentState(tbs4).keySet());
 		List<Double> topNegValues = new ArrayList<Double>(lowSentState(tbs4).values());
 		DecimalFormat numberFormat = new DecimalFormat("#.00");
-
+		
+		// iterate through ArrayList and add each result to the output string
 		if (topNegKeys.size() > numResults) {
 			for (int i = 0; i < numResults; i++) {
 				output += topNegKeys.get(i) + "= " + numberFormat.format(topNegValues.get(i)) + ", ";
