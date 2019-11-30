@@ -43,7 +43,7 @@ public class TwitterSearch {
 	TwitterFactory tf = new TwitterFactory(cf.build());
 	ArrayList<Tweet> queryResult = new ArrayList<>(); // Stores tweet objects as elements of an array
 	long lastTweetMaxId = -1; // tracks the latest tweet retrieved
-	final int MAXSEARCHREQUESTS = 36; // Number of requests to be sent (API allows up to 180 requests every 15
+	final int MAXSEARCHREQUESTS = 10; // Number of requests to be sent (API allows up to 180 requests every 15
 	// minutes
 
 	// Runs the query for the candidate and the date range
@@ -87,7 +87,7 @@ public class TwitterSearch {
 			    lastTweetMaxId = status.getId();
 			}
 			// Populates the tweet object witht he search result
-			Tweet tw = new Tweet(status.getId(), status.getUser(), status.getUser().getFollowersCount(),
+			Tweet tw = new Tweet(status.getId(), (String)status.getUser().getName(), status.getUser().getFollowersCount(),
 				status.getUser().getLocation(), text, status.getCreatedAt(), candidate, 0,
 				status.getRetweetCount(), status.isRetweet(), status.getGeoLocation());
 			queryResult.add(tw);
@@ -102,9 +102,10 @@ public class TwitterSearch {
 		    break;
 		}
 	    } catch (NullPointerException f) {
-		System.out.println("The search did not rerieve any results. Please try again.");
+		System.out.println("The search did not retrieve any results. Please try again.");
 	    }
 	}
+	System.out.println(queryResult.size());
 	return queryResult;
 
     }
