@@ -50,14 +50,17 @@
   
 
   <div class="container">
-
     <div class="row mt-3">
-     <h2>The Candidates</h2>
-   </div>
-   <div class="row">
-    <p>We decided to look at the top 4 polling candidates</p>
+     <p class="lead">The following analysis looks at over 200k Tweets between November 13th and November 27th, and analyses them for sentiment by candidate and state. Sentiment is scored from 0 to 4, 0 being extremely negative and 4 extremely positive.</h2>
+     </div>
+
+     <div class="row mt-3">
+       <h2>The Candidates</h2>
+     </div>
+     <div class="row">
+      <p>We decided to look at the top 4 polling candidates</p>
+    </div>
   </div>
-</div>
 </div>
 <div class="container">
   <div class="row">
@@ -84,10 +87,10 @@
    <div class="card-body">
     <h4 class="card-title width">Elizabeth Warren</h4>
     <p class="card-text">
-      <strong>Total Tweets:</strong> 24,119
+      <strong>Total Tweets:</strong> 41,258
     </p>
     <p>
-      <strong>Avg Sentiment:</strong> 1.36 / 4.0
+      <strong>Avg Sentiment:</strong> 1.37 / 4.0
     </p>
     <p>
       <strong>Top Positive Words:</strong> Word, word, word, word, word.
@@ -102,10 +105,10 @@
  <div class="card-body">
    <h4 class="card-title width">Bernie Sanders</h4>
    <p class="card-text">
-    <strong>Total Tweets:</strong> 24,119
+    <strong>Total Tweets:</strong> 24,390
   </p>
   <p>
-    <strong>Avg Sentiment:</strong> 1.36 / 4.0
+    <strong>Avg Sentiment:</strong> 1.46 / 4.0
   </p>
   <p>
     <strong>Top Positive Words:</strong> Word, word, word, word, word.
@@ -120,10 +123,10 @@
  <div class="card-body">
   <h4 class="card-title width">Pete Buttigieg</h4>
   <p class="card-text">
-    <strong>Total Tweets:</strong> 24,119
+    <strong>Total Tweets:</strong> 22,221
   </p>
   <p>
-    <strong>Avg Sentiment:</strong> 1.36 / 4.0
+    <strong>Avg Sentiment:</strong> 1.42 / 4.0
   </p>
   <p>
     <strong>Top Positive Words:</strong> Word, word, word, word, word.
@@ -137,6 +140,10 @@
 </div>
 <div class="row mt-5">
 
+
+
+
+  
   <h2>Analysis of Sentiment by State</h2>
   <p>Click the drop icon in each candidate widget to color the map according to their sentiment analysis results</p>
 </div>
@@ -150,10 +157,10 @@
   <p>Map created using the generated "TweetsByState" CSV from the static debate analysis</p>
 </div>
 
-<div class="container">
+<div class="container mb-5">
   <div class="row mt-5">
     <div class="text-center" style="width: 100%">
-    <h1>About the Project</h1>
+      <h1>About the Project</h1>
     </div>
   </div>
   <div class="row">
@@ -168,41 +175,65 @@
   </div>
   <div class="row mt-2">
     <div class="text-center" style="width: 100%">
-    <a class="btn btn-primary btn-lg" href="output/report.txt" role="button" target="_blank"><i class="fas fa-download mr-2"></i>Download Report.txt</a>
-    <a class="btn btn-primary btn-lg" href="output/DataByState.csv" role="button" target="_blank"><i class="fas fa-download mr-2"></i>Download DataByState.csv</a>
-    <a class="btn btn-primary btn-lg" href="output/DataByCandidate.csv" role="button" target="_blank"><i class="fas fa-download mr-2"></i>Download DataByCandidate.csv</a>
-    
+      <a class="btn btn-primary btn-lg" href="output/report.txt" role="button" target="_blank"><i class="fas fa-download mr-2"></i>Download Report.txt</a>
+      <a class="btn btn-primary btn-lg" href="output/DataByState.csv" role="button" target="_blank"><i class="fas fa-download mr-2"></i>Download DataByState.csv</a>
+      <a class="btn btn-primary btn-lg" href="output/DataByCandidate.csv" role="button" target="_blank"><i class="fas fa-download mr-2"></i>Download DataByCandidate.csv</a>
+    </div>
+  </div>
+</div>
+</div>
+</div>
+<div class="jumbotron-fluid jumbotron bg-dark">
+  <div class="container">
+
+    <div class="row">
+      <div class="card col mt-3">
+        <div class="card-body">
+          <h2 class="card-header mb-3" style="background: #fff"><i class="fas fa-heart mr-2"></i>   Sentiment Analysis</h2>
+          <p class="card-text">The sentiment analysis was performed using the Stanford CoreNLP toolkit. The Stanford NLP Group makes some of our Natural Language Processing software available for anyone to use.</p>
+          <p>Sentiment is computed using a deep learning model which builds up a representation of whole sentences based on the sentence structure, instead of looking at individual words in isolation. 
+          Their model was trained on a dataset of 11,855 sentences taken from movie reviews. This includes 215,154 unique phrases, each annotated by 3 different people. </p>
+          <p>The sentiment scores returned are: <br>0 = very negative, 1 = negative, 2 = neutral, 3 = positive, 4 = very positive
+
+          </p>
+          <p>More information can be found on the <a href="https://stanfordnlp.github.io/CoreNLP/" target="_blank">Stanford NLP Group website.</a></p>
+        </div>
+      </div>
     </div>
   </div>
 </div>
 
-<div class="container" style="margin-top: 40px;">
-  <div class="row mb-3">
+<div class="container text-center">
+  <div class="container mb-5" style="margin-top: 40px;">
+    <div class="text-center" style="width: 100%">
+      <h2 class="text-center mb-3">Modalities</h2>
+    </div>
+    <div class="row mb-3">
+      <div class="card col mr-3 text-center">
+        <div class="card-body">
+          <h4 class="card-title width"><i class="fas fa-history mr-2"></i>    Static Analysis of Debate Tweets</h4>
+          <p class="card-text">The static analysis was done on tweets from Nov 13 - Nov 20th and Nov 22nd - 30th. Batches of tweets were collected and added to a TweetArchive text file. Analysis consisted on reading tweets from file and generating Tweet objects for each, creating ArrayLists of tweets, for each candidate, natural language location assignment, and analysis for sentiment at the state and candidate level.</p>
+          <p>
+          2 CSVs (TweetsByState and TweetsByCandidate) as well as a .txt report are generated.</p>
+
+        </p>
+      </div>
+    </div>
     <div class="card col mr-3 text-center">
       <div class="card-body">
-        <h4 class="card-title width"><i class="fas fa-history"></i>    Static Analysis of Debate Tweets</h4>
-        <p class="card-text">The static analysis was done on tweets from Nov 13 - Nov 20th and Nov 22nd - 30th. Batches of tweets were collected and added to a TweetArchive text file. Analysis consisted on reading tweets from file and generating Tweet objects for each, creating ArrayLists of tweets, for each candidate, natural language location assignment, and analysis for sentiment at the state and candidate level.</p>
-        <p>
-        2 CSVs (TweetsByState and TweetsByCandidate) as well as a .txt report are generated.</p>
+        <h4 class="card-title width"><i class="fas fa-user mr-2"></i>   Real-time user flow</h4>
+        <p class="card-text">Takes in user input for a keyword. Returns an ArrayList of Tweet obejcts up to 18,000 tweets or 7 days before the query date (whichever is hit first). Pre-process each tweet's text for sentiment analysis: remove urls, hashtags, user mentions. Get sentiment for tweet using Stanford CoreNlP. The resulting ArrayList is run through the data analyzer similarly to the static modality.
+        </p>
+        <p>Returns console data analysis and .txt files containing tweets.</p>
+      </div>
+    </div>
 
-      </p>
-    </div>
   </div>
-  <div class="card col mr-3 text-center">
-    <div class="card-body">
-      <h4 class="card-title width"><i class="fas fa-user"></i>   Real-time user flow</h4>
-      <p class="card-text">Takes in user input for a keyword. Returns an ArrayList of Tweet obejcts up to 18,000 tweets or 7 days before the query date (whichever is hit first). Pre-process each tweet's text for sentiment analysis: remove urls, hashtags, user mentions. Get sentiment for tweet using Stanford CoreNlP. The resulting ArrayList is run through the data analyzer similarly to the static modality.
-      </p>
-      <p>Returns console data analysis and .txt files containing tweets.</p>
-    </div>
-  </div>
-</div>
-</div>
-<!-- Bootstrap core JavaScript -->
-<script src="https://kit.fontawesome.com/90f52afe76.js" crossorigin="anonymous"></script>
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+  <!-- Bootstrap core JavaScript -->
+  <script src="https://kit.fontawesome.com/90f52afe76.js" crossorigin="anonymous"></script>
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 
 
 
