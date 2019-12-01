@@ -22,6 +22,7 @@ The program can be used in real-time to get the sentiment around a candidate on 
 * We are using a free Twitter account so: 
   * The Twitter API will only give data for the last seven days. 
   * The Twitter API will only return 100 tweets for a search. 
+  * The Twitter API will only allow 180 searches every 15 minutes.
 * Stanford CoreNLP API was trained on movie reviews so may not be as accurate for Tweets. 
 * Tweets often have slang, misspellings and emojis that cannot be accurately analyzed.
 
