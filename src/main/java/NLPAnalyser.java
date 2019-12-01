@@ -177,6 +177,29 @@ public class NLPAnalyser {
         return adjectivesScore;
     }
 
+    /**
+     * Getter to get the properties applied
+     * @return properties
+     */
+    public Properties getProps() {
+        return props;
+    }
+
+    /**
+     * Getter to get the Tweet
+     * @return Tweet
+     */
+    public Tweet getTweet() {
+        return tweet;
+    }
+
+    /**
+     * Getter to get array of common words
+     * @return array of common words
+     */
+    public String[] getCommonWords() {
+        return commonWords;
+    }
 
     /**
      * Method to get the individual words in a tweet
