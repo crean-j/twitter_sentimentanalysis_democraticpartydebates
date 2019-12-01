@@ -31,7 +31,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="https://github.com/UPenn-CIT599/final-project-twitterdemocraticpartydebates" target="_blank">View on GitHub</a>
+            <a class="nav-link" href="https://github.com/UPenn-CIT599/final-project-twitterdemocraticpartydebates" target="_blank"><i class="fab fa-github-alt mr-2 ml-2"></i>View on GitHub</a>
           </li>
         </ul>
       </div>
@@ -102,53 +102,46 @@
 </div>
 <div class="card mr-3" style="width: 16rem;" >
  <img class="card-img-top" src="img/sanders.png" alt="Card image cap">
- <div class="card-body">
-   <h4 class="card-title width">Bernie Sanders</h4>
-   <p class="card-text">
-    <strong>Total Tweets:</strong> 24,390
-  </p>
-  <p>
-    <strong>Avg Sentiment:</strong> 1.46 / 4.0
-  </p>
-  <p>
-    <strong>Top Positive Words:</strong> Word, word, word, word, word.
-  </p>
-  <p>
-    <strong>Top Negative Words:</strong> Word, word, word, word, word.
-  </p>
-</div>
+   <div class="card-body">
+     <h4 class="card-title width">Bernie Sanders</h4>
+     <p class="card-text">
+      <strong>Total Tweets:</strong> 24,390
+    </p>
+    <p>
+      <strong>Avg Sentiment:</strong> 1.46 / 4.0
+    </p>
+    <p>
+      <strong>Top Positive Words:</strong> Word, word, word, word, word.
+    </p>
+    <p>
+      <strong>Top Negative Words:</strong> Word, word, word, word, word.
+    </p>
+  </div>
 </div>
 <div class="card mr-3" style="width: 16rem;" >
  <img class="card-img-top" src="img/buttigieg.png" alt="Card image cap">
- <div class="card-body">
-  <h4 class="card-title width">Pete Buttigieg</h4>
-  <p class="card-text">
-    <strong>Total Tweets:</strong> 22,221
-  </p>
-  <p>
-    <strong>Avg Sentiment:</strong> 1.42 / 4.0
-  </p>
-  <p>
-    <strong>Top Positive Words:</strong> Word, word, word, word, word.
-  </p>
-  <p>
-    <strong>Top Negative Words:</strong> Word, word, word, word, word.
-  </p>
-</div>
+   <div class="card-body">
+    <h4 class="card-title width">Pete Buttigieg</h4>
+    <p class="card-text">
+      <strong>Total Tweets:</strong> 22,221
+    </p>
+    <p>
+      <strong>Avg Sentiment:</strong> 1.42 / 4.0
+    </p>
+    <p>
+      <strong>Top Positive Words:</strong> Word, word, word, word, word.
+    </p>
+    <p>
+      <strong>Top Negative Words:</strong> Word, word, word, word, word.
+    </p>
+  </div>
 </div>
 
 </div>
 <div class="row mt-5">
-
-
-
-
-  
-  <h2>Analysis of Sentiment by State</h2>
+<h2>Analysis of Sentiment by State</h2>
   <p>Click the drop icon in each candidate widget to color the map according to their sentiment analysis results</p>
 </div>
-</div>
-
 </div>
 <div class="container-fluid">
   <div class="row">
@@ -182,23 +175,41 @@
   </div>
 </div>
 </div>
-</div>
 <div class="jumbotron-fluid jumbotron bg-dark">
   <div class="container">
 
     <div class="row">
-      <div class="card col mt-3">
+      <div class="card col mr-3">
         <div class="card-body">
-          <h2 class="card-header mb-3" style="background: #fff"><i class="fas fa-heart mr-2"></i>   Sentiment Analysis</h2>
+          <h3 class="card-header mb-3" style="background: #fff"><i class="fas fa-heart mr-2"></i>   Sentiment Analysis</h3>
           <p class="card-text">The sentiment analysis was performed using the Stanford CoreNLP toolkit. The Stanford NLP Group makes some of our Natural Language Processing software available for anyone to use.</p>
           <p>Sentiment is computed using a deep learning model which builds up a representation of whole sentences based on the sentence structure, instead of looking at individual words in isolation. 
           Their model was trained on a dataset of 11,855 sentences taken from movie reviews. This includes 215,154 unique phrases, each annotated by 3 different people. </p>
-          <p>The sentiment scores returned are: <br>0 = very negative, 1 = negative, 2 = neutral, 3 = positive, 4 = very positive
+          <p>The sentiment scores returned are: 0 = very negative, 1 = negative, 2 = neutral, 3 = positive, 4 = very positive.
 
           </p>
           <p>More information can be found on the <a href="https://stanfordnlp.github.io/CoreNLP/" target="_blank">Stanford NLP Group website.</a></p>
         </div>
       </div>
+      <div class="card col">
+        <img src="img/saexample.png" class="img-fluid mt-5" alt="">
+      </div>
+    </div>
+    <div class="row">
+      <div class="card col mt-3">
+        <div class="card-body">
+          <h3 class="card-header mb-3" style="background: #fff"><i class="fab fa-twitter mr-2"></i></i>   Twitter4J API</h3>
+          <p class="card-text">The Twitter search uses the Twitter4j API. In order to execute the search, we opened a developer account with Twitter and obtained keys to integrate our Java application with the Twitter service.</p>
+          <p>As search term, we used the candidates last name and limited the results to dates before and after the Nov20th debate and to texts in Engligh. Once the search results were retrieved, the code filters out retweeted tweets and tweets that don't contain the name of candidate in the main text. For tweets saved in the text file, the code also checks the id of the latest retrieved tweet to ensure tweets are not saved twice in the file.</p>
+          <p>
+
+            More details on Twitter4j API can be found on <a href="http://twitter4j.org/en/" target="_blank">twitter4j.org</a><br>
+            More details on Twitter developer account: <a href="https://developer.twitter.com">developer.twitter.com</a></p>
+
+          </p>
+        </div>
+      </div>
+      
     </div>
   </div>
 </div>
@@ -229,11 +240,23 @@
     </div>
 
   </div>
-  <!-- Bootstrap core JavaScript -->
-  <script src="https://kit.fontawesome.com/90f52afe76.js" crossorigin="anonymous"></script>
-  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+</div>
+</div>
+<div class="container-fluid" style="width: 100%;">
+  <div class="row bg-primary">
+    <div class="text-center" style="width: 100%;">
+      <p class="text-light mt-3">Made by: Joanne Crean, Juan Goleniowski, and Federica Pelzel. <br>
+
+        <a class="text-light" href="https://github.com/UPenn-CIT599/final-project-twitterdemocraticpartydebates" target="_blank"><i class="fab fa-github-alt mr-2 ml-2"></i>Visit the project on GitHub</a></p>
+    </div>
+    
+  </div>
+</div>
+<!-- Bootstrap core JavaScript -->
+<script src="https://kit.fontawesome.com/90f52afe76.js" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 
 
 
