@@ -129,6 +129,7 @@ public class SaveTweets {
 		String[] rowArr = row.split("@@@");
 		try {
 			long id = rowArr[0].length() == 0 ? -1 : Long.parseLong(rowArr[0]);
+			String user = rowArr[3];
 			int numberOfFollowers = rowArr[5].length() == 0 ? -1 : Integer.parseInt(rowArr[5]);
 			String location = rowArr[4];
 			String textInTweet = rowArr[6];
@@ -141,7 +142,7 @@ public class SaveTweets {
 			double sentimentScore = rowArr[11].length() == 0 ? -1 : Double.parseDouble(rowArr[11]);
 			boolean isRetweet = rowArr[12].equals("true");
 
-			Tweet t = new Tweet(id, null, numberOfFollowers, location, textInTweet, tweetDate, candidate,
+			Tweet t = new Tweet(id, user, numberOfFollowers, location, textInTweet, tweetDate, candidate,
 					influenceScore, retweetedCount, isRetweet, null);
 			
 			return t;
