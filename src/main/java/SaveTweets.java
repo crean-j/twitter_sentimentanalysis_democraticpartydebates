@@ -22,8 +22,10 @@ import java.text.SimpleDateFormat;
 public class SaveTweets {
 	ArrayList<Tweet> queryResult = new ArrayList<>(); // Stores the result of latest search
 	ArrayList<String> tweetsAlreadyStored = new ArrayList<>(); // Stores the tweet that are saved in the txt file
-	Timestamp timestamp = new Timestamp(System.currentTimeMillis()); // Creates a new timestamp
-	static private String filename = "TweetArchive_small.txt";
+	static SimpleDateFormat dateFormat = new SimpleDateFormat("dd_MM_yyyy-HH_mm_ss");  
+	static Date dateForFile = new Date();  
+	static private Timestamp timestamp = new Timestamp(System.currentTimeMillis()); // Creates a new timestamp
+	private static String filename = "Tweet_Analysis_" + dateFormat.format(dateForFile) +  ".txt";
 
 	/**
 	 * Constructor
@@ -60,7 +62,8 @@ public class SaveTweets {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			e1.printStackTrace();
+			System.out.println("A file called " + filename + " will be created.");
+		//	e1.printStackTrace();
 
 		}
 
@@ -94,13 +97,13 @@ public class SaveTweets {
 	 * adds them to an ArrayList of Tweets
 	 */
 
-	static public ArrayList<Tweet> loadFile() {
+	static public ArrayList<Tweet> loadFile(String fileToRead) {
 
 		Scanner in;
 		ArrayList<Tweet> tweets = new ArrayList<Tweet>();
 		// read tweets file and add to array list
 		try {
-			in = new Scanner(new FileReader(filename));
+			in = new Scanner(new FileReader(fileToRead));
 
 			// read column headers
 			while (in.hasNextLine()) {
