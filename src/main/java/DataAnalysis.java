@@ -135,7 +135,7 @@ public class DataAnalysis {
 		ArrayList<Tweet> totalPos = new ArrayList<>();
 		
 		for (Tweet t : tweets) {
-			if(t.getSentimentScore()>1.9) {
+			if(t.getSentimentScore()>=2.0) {
 				totalPos.add(t);
 			}
 		}

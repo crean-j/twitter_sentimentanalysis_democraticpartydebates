@@ -1,3 +1,6 @@
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -37,6 +40,7 @@ public class Runner {
 					+ "; adj =" + as);
 			current += 1;
 		}
+		DataAnalysis da = new DataAnalysis(result);
 		
 		TweetsByState tbs = new TweetsByState(result);
 		int count = 0;
@@ -44,21 +48,61 @@ public class Runner {
 			count += tbs.states.get(state).size();
 		}
 		
+		try (PrintWriter writer = new PrintWriter(new File("report_live.txt"))) {
+			StringBuilder sb = new StringBuilder();
+			sb.append(
+					"\n==========================================================================================================\n");
+			sb.append("A N A L Y S I S   R E P O R T\n\n");
+			sb.append(
+					"\n==========================================================================================================\n");
+			sb.append(
+					"Tweet sentiment is measured in a 0 to 4 scale. 0 being extremely negative and 4 extremely positive");
+			sb.append(
+					"\n==========================================================================================================\n");
+
+			sb.append("\nTotal number of tweets in sample: " + result.size() + ".");
+			sb.append(System.getProperty("line.separator"));
+			sb.append("\nTotal number of tweets with matched location: " + count + ".\n");
+			sb.append(System.getProperty("line.separator"));
+
+			sb.append("\nAverage sentiment score: " + da.sentimentScore());
+			sb.append("\nPercentage of tweets with positive sentiment (2 or higher): " + da.posPercent(result));
+			sb.append("\nPercentage of tweets with negative sentiment (under 2): " + da.negPercent(result));
+			sb.append("\nMedian sentiment score: " + da.calculateMedian(result));
+			sb.append("\nMode sentiment score: " + da.calculateMode(result) + "\n");
+			sb.append("\nMost used positive words: " + da.topNPos(5));
+			sb.append("\nMost used negative words: " + da.topNNeg(5));
+			sb.append("\n" + da.topPosStates(5, tbs));
+			sb.append("\n" + da.topNegStates(5, tbs));
+			sb.append("\n\nMost influential Tweets: " + da.topNInf(5));
+
+			writer.write(sb.toString());
+
+		} catch (FileNotFoundException e) {
+			System.out.println(e.getMessage());
+		}
+
+		
 		System.out.println("\n\n===================================================================================");
 		System.out.println("A N A L Y S I S   C O M P L E T E");
 		System.out.println("===================================================================================\n");
-
+		System.out.println("A file containing the report called 'report_live.txt' has been saved");
+		System.out.println("===================================================================================\n");
+		System.out.println("Tweet sentiment is measured in a 0 to 4 scale. 0 being extremely negative and 4 extremely positive\n\n");
 		System.out.println("Total number of tweets in sample: " + result.size() + ".");
 		System.out.println("Total number of tweets with matched location: " + count + ".\n");
 
-		DataAnalysis da = new DataAnalysis(result);
-		
-		System.out.println("\nAverage sentiment score: " + da.sentimentScore() + "\n");
-		
+		System.out.println("Average sentiment score: " + da.sentimentScore());
+		System.out.println("Percentage of tweets with positive sentiment (2 or higher): " + da.posPercent(result));
+		System.out.println("Percentage of tweets with negative sentiment (under 2): " + da.negPercent(result));
+		System.out.println("Median sentiment score: " + da.calculateMedian(result));
+		System.out.println("Mode sentiment score: " + da.calculateMode(result));
 		System.out.println("Most used positive words: " + da.topNPos(5));
 		System.out.println("Most used negative words: " + da.topNNeg(5));
 		System.out.println(da.topPosStates(5, tbs));
 		System.out.println(da.topNegStates(5, tbs));
+		System.out.println("\nMost influential Tweets: " + da.topNInf(3));
+
 
 	}
 }
