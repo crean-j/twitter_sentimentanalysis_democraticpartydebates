@@ -305,23 +305,31 @@ public class DemDebate {
 	
 		try (PrintWriter writer = new PrintWriter(new File("report.txt"))) {
 			StringBuilder sb = new StringBuilder();
-			sb.append("\n===================================================================================\n");
+			sb.append("\n==========================================================================================================\n");
 			sb.append("A N A L Y S I S   R E P O R T\n\n");
 			sb.append("5th Democratic Primary Debate\n");
 			sb.append("November 20th, 2019.\n");
-			sb.append("\n===================================================================================\n");
+			sb.append("\n==========================================================================================================\n");
+			sb.append("Tweet sentiment is measured in a 0 to 4 scale. 0 being extremely negative and 4 extremely positive\n");
+			sb.append("\n==========================================================================================================\n");
 
 			sb.append("\nTotal number of tweets in sample: " + tweets.size() + ".");
 			sb.append(System.getProperty("line.separator"));
 			sb.append("\nTotal number of tweets with matched location: " + count + ".\n");
 			sb.append(System.getProperty("line.separator"));
+			sb.append("\nPercentage of tweets with positive sentiment (2 or higher): " + da.posPercent(tweets));
+			sb.append("\nPercentage of tweets with negative sentiment (under 2): " + da.negPercent(tweets));
+			sb.append(System.getProperty("line.separator"));
 			sb.append("\nMost influential Tweets: " + da.topNInf(5));
 			sb.append(System.getProperty("line.separator"));
+
 			
 			// Biden
 			sb.append("\n\nCandidate: JOE BIDEN\n");
 			sb.append("\nTotal number of tweets: " + biden.size());
 			sb.append("\nAverage sentiment score: " + daBiden.sentimentScore());
+			sb.append("\nPercentage of tweets with positive sentiment (2 or higher): " + daBiden.posPercent(biden));
+			sb.append("\nPercentage of tweets with negative sentiment (under 2): " + daBiden.negPercent(biden));
 			sb.append("\nMedian sentiment score: " + daBiden.calculateMedian(biden));
 			sb.append("\nMode sentiment score: " + daBiden.calculateMode(biden) + "\n");
 			sb.append("\nMost used positive words: " + daBiden.topNPos(5));
@@ -334,6 +342,8 @@ public class DemDebate {
 			sb.append("\n\nCandidate: ELIZABETH WARREN\n");
 			sb.append("\nTotal number of tweets: " + warren.size());
 			sb.append("\nAverage sentiment score: " + daWarren.sentimentScore());
+			sb.append("\nPercentage of tweets with positive sentiment (2 or higher): " + daWarren.posPercent(warren));
+			sb.append("\nPercentage of tweets with negative sentiment (under 2): " + daWarren.negPercent(warren));
 			sb.append("\nMedian sentiment score: " + daWarren.calculateMedian(warren));
 			sb.append("\nMode sentiment score: " + daWarren.calculateMode(warren) + "\n");
 			sb.append("\nMost used positive words: " + daWarren.topNPos(5));
@@ -346,6 +356,8 @@ public class DemDebate {
 			sb.append("\n\nCandidate: BERNIE SANDERS\n");
 			sb.append("\nTotal number of tweets: " + sanders.size());
 			sb.append("\nAverage sentiment score: " + daSanders.sentimentScore());
+			sb.append("\nPercentage of tweets with positive sentiment (2 or higher): " + daSanders.posPercent(sanders));
+			sb.append("\nPercentage of tweets with negative sentiment (under 2): " + daSanders.negPercent(sanders));
 			sb.append("\nMedian sentiment score: " + daSanders.calculateMedian(sanders));
 			sb.append("\nMode sentiment score: " + daSanders.calculateMode(sanders) + "\n");
 			sb.append("\nMost used positive words: " + daSanders.topNPos(5));
@@ -358,6 +370,8 @@ public class DemDebate {
 			sb.append("\n\nCandidate: PETE BUTTIGIEG\n");
 			sb.append("\nTotal number of tweets: " + pete.size());
 			sb.append("\nAverage sentiment score: " + daPete.sentimentScore());
+			sb.append("\nPercentage of tweets with positive sentiment (2 or higher): " + daPete.posPercent(pete));
+			sb.append("\nPercentage of tweets with negative sentiment (under 2): " + daPete.negPercent(pete));
 			sb.append("\nMedian sentiment score: " + daPete.calculateMedian(pete));
 			sb.append("\nMode sentiment score: " + daPete.calculateMode(pete) + "\n");
 			sb.append("\nMost used positive words: " + daPete.topNPos(5));
@@ -378,58 +392,69 @@ public class DemDebate {
 		System.out.println("\n\n\n\n===================================================================================");
 		System.out.println("A N A L Y S I S   C O M P L E T E");
 		System.out.println("===================================================================================\n");
+		System.out.println("Tweet sentiment is measured in a 0 to 4 scale. 0 being extremely negative and 4 extremely positive\n");
 
 		System.out.println("\nTotal number of tweets in sample: " + tweets.size() + ".");
-		System.out.println("Total number of tweets with matched location: " + count + ".\n");
-		System.out.println("Most influential Tweets: " + da.topNInf(5));
+		System.out.println("Total number of tweets with matched location: " + count + ".");
+		System.out.println("Percentage of tweets with positive sentiment (2 or higher): " + da.posPercent(tweets));
+		System.out.println("Percentage of tweets with negative sentiment (under 2): " + da.negPercent(tweets));
+		System.out.println("\nMost influential Tweets: " + da.topNInf(5));
 		
 		// Biden
 		System.out.println("\nCandidate: JOE BIDEN\n");
 		System.out.println("Total number of tweets: " + biden.size());
 		System.out.println("Average sentiment score: " + daBiden.sentimentScore());
+		System.out.println("Percentage of tweets with positive sentiment (2 or higher): " + daBiden.posPercent(biden));
+		System.out.println("Percentage of tweets with negative sentiment (under 2): " + daBiden.negPercent(biden));
 		System.out.println("Median sentiment score: " + daBiden.calculateMedian(biden));
-		System.out.println("Mode sentiment score: " + daBiden.calculateMode(biden) + "\n");
+		System.out.println("Mode sentiment score: " + daBiden.calculateMode(biden));
 		System.out.println("Most used positive words: " + daBiden.topNPos(5));
 		System.out.println("Most used negative words: " + daBiden.topNNeg(5));
 		System.out.println(daBiden.topPosStates(5, tbsBiden));
 		System.out.println(daBiden.topNegStates(5, tbsBiden));
-		System.out.println("/n/nMost influential Tweets: " + daBiden.topNInf(3));
+		System.out.println("\nMost influential Tweets: " + daBiden.topNInf(3));
 
 		// Warren
 		System.out.println("\nCandidate: ELIZABETH WARREN\n");
 		System.out.println("Total number of tweets: " + warren.size());
 		System.out.println("Average sentiment score: " + daWarren.sentimentScore());
+		System.out.println("Percentage of tweets with positive sentiment (2 or higher): " + daWarren.posPercent(warren));
+		System.out.println("Percentage of tweets with negative sentiment (under 2): " + daWarren.negPercent(warren));
 		System.out.println("Median sentiment score: " + daWarren.calculateMedian(warren));
-		System.out.println("Mode sentiment score: " + daWarren.calculateMode(warren) + "\n");
+		System.out.println("Mode sentiment score: " + daWarren.calculateMode(warren));
 		System.out.println("Most used positive words: " + daWarren.topNPos(5));
 		System.out.println("Most used negative words: " + daWarren.topNNeg(5));
 		System.out.println(daWarren.topPosStates(5, tbsWarren));
 		System.out.println(daWarren.topNegStates(5, tbsWarren));
-		System.out.println("/n/nMost influential Tweets: " + daWarren.topNInf(3));
+		System.out.println("\nMost influential Tweets: " + daWarren.topNInf(3));
 
 		// Bernie
 		System.out.println("\nCandidate: BERNIE SANDERS\n");
 		System.out.println("Total number of tweets: " + sanders.size());
 		System.out.println("Average sentiment score: " + daSanders.sentimentScore());
+		System.out.println("Percentage of tweets with positive sentiment (2 or higher): " + daSanders.posPercent(sanders));
+		System.out.println("Percentage of tweets with negative sentiment (under 2): " + daSanders.negPercent(sanders));
 		System.out.println("Median sentiment score: " + daSanders.calculateMedian(sanders));
-		System.out.println("Mode sentiment score: " + daSanders.calculateMode(sanders) + "\n");
+		System.out.println("Mode sentiment score: " + daSanders.calculateMode(sanders));
 		System.out.println("Most used positive words: " + daSanders.topNPos(5));
 		System.out.println("Most used negative words: " + daSanders.topNNeg(5));
 		System.out.println(daSanders.topPosStates(5, tbsSanders));
 		System.out.println(daSanders.topNegStates(5, tbsSanders));
-		System.out.println("\n\nMost influential Tweets: " + daSanders.topNInf(3));
+		System.out.println("\nMost influential Tweets: " + daSanders.topNInf(3));
 
 		// Pete
 		System.out.println("\nCandidate: PETE BUTTIGIEG\n");
 		System.out.println("Total number of tweets: " + pete.size());
 		System.out.println("Average sentiment score: " + daPete.sentimentScore());
+		System.out.println("Percentage of tweets with positive sentiment (2 or higher): " + daPete.posPercent(pete));
+		System.out.println("Percentage of tweets with negative sentiment (under 2): " + daPete.negPercent(pete));
 		System.out.println("Median sentiment score: " + daPete.calculateMedian(pete));
-		System.out.println("Mode sentiment score: " + daPete.calculateMode(pete) + "\n");
+		System.out.println("Mode sentiment score: " + daPete.calculateMode(pete));
 		System.out.println("Most used positive words: " + daPete.topNPos(5));
 		System.out.println("Most used negative words: " + daPete.topNNeg(5));
 		System.out.println(daPete.topPosStates(5, tbsPete));
 		System.out.println(daPete.topNegStates(5, tbsPete));
-		System.out.println("\n\nMost influential Tweets: " + daPete.topNInf(3));
+		System.out.println("\nMost influential Tweets: " + daPete.topNInf(3));
 
 		
 		System.out

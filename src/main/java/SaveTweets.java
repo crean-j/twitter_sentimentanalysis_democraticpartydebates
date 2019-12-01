@@ -23,7 +23,7 @@ public class SaveTweets {
 	ArrayList<Tweet> queryResult = new ArrayList<>(); // Stores the result of latest search
 	ArrayList<String> tweetsAlreadyStored = new ArrayList<>(); // Stores the tweet that are saved in the txt file
 	Timestamp timestamp = new Timestamp(System.currentTimeMillis()); // Creates a new timestamp
-	static private String filename = "TweetArchive.txt";
+	static private String filename = "TweetArchive_small.txt";
 
 	/**
 	 * Constructor
