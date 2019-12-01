@@ -41,6 +41,8 @@ public class Tweet {
         this.geoLocation = geoLocation;
     }
 
+    public Tweet(){}
+
     /**
      * @return the geoLocation
      */
