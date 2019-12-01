@@ -2,20 +2,14 @@
 <html lang="en">
 
 <head>
-
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
-
   <title>Dem Debate Analysis</title>
-
   <!-- Bootstrap core CSS -->
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
 </head>
-
 <body>
-
   <!-- Navigation -->
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark static-top">
     <div class="container">
@@ -45,10 +39,6 @@
       <p class="lead text-white">MCIT 591 Final Project by: Joanne Crean, Juan Goleniowski, and Federica Pelzel.</p>
     </div>
   </div>
-
-
-  
-
   <div class="container">
     <div class="row mt-3">
      <p class="lead">The following analysis looks at over 200k Tweets between November 13th and November 27th, and analyses them for sentiment by candidate and state. Sentiment is scored from 0 to 4, 0 being extremely negative and 4 extremely positive.</h2>
@@ -102,44 +92,44 @@
 </div>
 <div class="card mr-3" style="width: 16rem;" >
  <img class="card-img-top" src="img/sanders.png" alt="Card image cap">
-   <div class="card-body">
-     <h4 class="card-title width">Bernie Sanders</h4>
-     <p class="card-text">
-      <strong>Total Tweets:</strong> 24,390
-    </p>
-    <p>
-      <strong>Avg Sentiment:</strong> 1.46 / 4.0
-    </p>
-    <p>
-      <strong>Top Positive Words:</strong> Word, word, word, word, word.
-    </p>
-    <p>
-      <strong>Top Negative Words:</strong> Word, word, word, word, word.
-    </p>
-  </div>
+ <div class="card-body">
+   <h4 class="card-title width">Bernie Sanders</h4>
+   <p class="card-text">
+    <strong>Total Tweets:</strong> 24,390
+  </p>
+  <p>
+    <strong>Avg Sentiment:</strong> 1.46 / 4.0
+  </p>
+  <p>
+    <strong>Top Positive Words:</strong> Word, word, word, word, word.
+  </p>
+  <p>
+    <strong>Top Negative Words:</strong> Word, word, word, word, word.
+  </p>
+</div>
 </div>
 <div class="card mr-3" style="width: 16rem;" >
  <img class="card-img-top" src="img/buttigieg.png" alt="Card image cap">
-   <div class="card-body">
-    <h4 class="card-title width">Pete Buttigieg</h4>
-    <p class="card-text">
-      <strong>Total Tweets:</strong> 22,221
-    </p>
-    <p>
-      <strong>Avg Sentiment:</strong> 1.42 / 4.0
-    </p>
-    <p>
-      <strong>Top Positive Words:</strong> Word, word, word, word, word.
-    </p>
-    <p>
-      <strong>Top Negative Words:</strong> Word, word, word, word, word.
-    </p>
-  </div>
+ <div class="card-body">
+  <h4 class="card-title width">Pete Buttigieg</h4>
+  <p class="card-text">
+    <strong>Total Tweets:</strong> 22,221
+  </p>
+  <p>
+    <strong>Avg Sentiment:</strong> 1.42 / 4.0
+  </p>
+  <p>
+    <strong>Top Positive Words:</strong> Word, word, word, word, word.
+  </p>
+  <p>
+    <strong>Top Negative Words:</strong> Word, word, word, word, word.
+  </p>
+</div>
 </div>
 
 </div>
 <div class="row mt-5">
-<h2>Analysis of Sentiment by State</h2>
+  <h2>Analysis of Sentiment by State</h2>
   <p>Click the drop icon in each candidate widget to color the map according to their sentiment analysis results</p>
 </div>
 </div>
@@ -202,14 +192,11 @@
           <p class="card-text">The Twitter search uses the Twitter4j API. In order to execute the search, we opened a developer account with Twitter and obtained keys to integrate our Java application with the Twitter service.</p>
           <p>As search term, we used the candidates last name and limited the results to dates before and after the Nov20th debate and to texts in Engligh. Once the search results were retrieved, the code filters out retweeted tweets and tweets that don't contain the name of candidate in the main text. For tweets saved in the text file, the code also checks the id of the latest retrieved tweet to ensure tweets are not saved twice in the file.</p>
           <p>
-
             More details on Twitter4j API can be found on <a href="http://twitter4j.org/en/" target="_blank">twitter4j.org</a><br>
             More details on Twitter developer account: <a href="https://developer.twitter.com">developer.twitter.com</a></p>
-
           </p>
         </div>
       </div>
-      
     </div>
   </div>
 </div>
@@ -226,7 +213,6 @@
           <p class="card-text">The static analysis was done on tweets from Nov 13 - Nov 20th and Nov 22nd - 30th. Batches of tweets were collected and added to a TweetArchive text file. Analysis consisted on reading tweets from file and generating Tweet objects for each, creating ArrayLists of tweets, for each candidate, natural language location assignment, and analysis for sentiment at the state and candidate level.</p>
           <p>
           2 CSVs (TweetsByState and TweetsByCandidate) as well as a .txt report are generated.</p>
-
         </p>
       </div>
     </div>
@@ -238,7 +224,6 @@
         <p>Returns console data analysis and .txt files containing tweets.</p>
       </div>
     </div>
-
   </div>
 </div>
 </div>
@@ -248,18 +233,13 @@
       <p class="text-light mt-3">Made by: Joanne Crean, Juan Goleniowski, and Federica Pelzel. <br>
 
         <a class="text-light" href="https://github.com/UPenn-CIT599/final-project-twitterdemocraticpartydebates" target="_blank"><i class="fab fa-github-alt mr-2 ml-2"></i>Visit the project on GitHub</a></p>
+      </div>
     </div>
-    
   </div>
-</div>
-<!-- Bootstrap core JavaScript -->
-<script src="https://kit.fontawesome.com/90f52afe76.js" crossorigin="anonymous"></script>
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-
-
-
+  <!-- Bootstrap core JavaScript -->
+  <script src="https://kit.fontawesome.com/90f52afe76.js" crossorigin="anonymous"></script>
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 </body>
-
 </html>
