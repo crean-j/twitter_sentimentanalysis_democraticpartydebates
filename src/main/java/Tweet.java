@@ -41,6 +41,9 @@ public class Tweet {
         this.geoLocation = geoLocation;
     }
 
+    /**
+     * Alt constructor used for tests
+     */
     public Tweet(){}
 
     /**
