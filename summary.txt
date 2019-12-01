@@ -1,0 +1,25 @@
+Project 591 Group 41
+
+Github link: https://github.com/UPenn-CIT599/final-project-twitterdemocraticpartydebates
+
+Team members
+* Joanne Crean [ creanj@seas.upenn.edu ]
+* Juan Goleniowski [ juangole@seas.upenn.edu ]
+* Federica Pelzel [ fpelzel@seas.upenn.edu ]
+
+Project Idea
+Perform a sentiment analysis on tweets mentioning a user-specified keyword. 
+
+The user can decide what keyword they are interested in and the program will query Twitter to get relevant tweets, analyze these and then output the analysis results in the console. The analysis of tweets mentioning this keyword indicates the average sentiment, most common positive and negative adjectives, and the states that have the lowest and highest average sentiment.
+
+After some research, the Stanford CoreNLP toolkit was chosen for the sentiment analysis as it's freely available, could analyse short blocks of text, and uses a deep learning model that took whole sentences into account as opposed to assessing words individually.
+
+A static analysis was also done to analyze tweets mentioning Democratic candidates around the 5th Democratic debate of November 20th. This was to demonstrate the capacity of the program. A website was build to display the results: https://upenn-cit599.github.io/final-project-twitterdemocraticpartydebates/
+
+Contributions
+* Juan Goleniowski: Getting Twitter data and creating tweet objects for analysis.
+* Joanne Crean: Prepping tweets for sentiment analysis, getting sentiment score for tweets.
+* Federica Pelzel: Analysing tweets, producing console output and website to display static analysis.
+
+All contributors were involved in planning, testing, maintaining README file. 
+
