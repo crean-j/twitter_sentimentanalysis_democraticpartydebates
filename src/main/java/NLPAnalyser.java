@@ -51,7 +51,7 @@ public class NLPAnalyser {
 
     /**
      * Method runs NLP pipeline on a tweet
-     * <p>
+     *
      * The following steps take place in the pipeline:
      * Tokenisation - breaks down into words
      * Sentence split - combines the words into sentences
@@ -79,7 +79,7 @@ public class NLPAnalyser {
 
     /**
      * Method gets a sentiment score for a tweet.
-     * <p>
+     *
      * Once the sentiment has been calculated for each line then the average sentiment is found to give
      * the overall tweet sentiment
      *
@@ -89,24 +89,28 @@ public class NLPAnalyser {
         int totalSentiment = 0;
         double tweetSentiment = 0;
 
-        // Loop through each sentence and get the sentiment score
-        for (CoreMap sentence : sentences) {
+        if (sentences.size() == 0) {
+            tweetSentiment = 2;
+        } else {
+            // Loop through each sentence and get the sentiment score
+            for (CoreMap sentence : sentences) {
 
-            // Create a Tree object containing the sentiment score for each sentence
-            Tree tree = sentence.get(SentimentCoreAnnotations.SentimentAnnotatedTree.class);
+                // Create a Tree object containing the sentiment score for each sentence
+                Tree tree = sentence.get(SentimentCoreAnnotations.SentimentAnnotatedTree.class);
 
-            // Assign the sentiment score the sentence to an integer
-            int sentimentSentence = RNNCoreAnnotations.getPredictedClass(tree);
+                // Assign the sentiment score the sentence to an integer
+                int sentimentSentence = RNNCoreAnnotations.getPredictedClass(tree);
 
-            //System.out.println("Sentiment Score:" + sentimentSentence); // to delete
+                //System.out.println("Sentiment Score:" + sentimentSentence); // to delete
 
-            // Add the sentiment score for this sentence to the total sentiment for the tweet
-            totalSentiment = totalSentiment + sentimentSentence;
+                // Add the sentiment score for this sentence to the total sentiment for the tweet
+                totalSentiment = totalSentiment + sentimentSentence;
+
+                // Get the total sentiment for the tweet by getting the average sentiment for all
+                // sentences in the tweet
+                tweetSentiment = Math.round((double) totalSentiment / (double) sentences.size());
+            }
         }
-
-        // Get the total sentiment for the tweet by getting the average sentiment for all
-        // sentences in the tweet
-        tweetSentiment = Math.round((double) totalSentiment / (double) sentences.size());
         //System.out.println("Tweet sentiment: " + tweetSentiment);
         return tweetSentiment;
     }
@@ -226,26 +230,24 @@ public class NLPAnalyser {
         return tokens;
     }*/
 
-    /*public static void main(String[] args) {
+    public static void main(String[] args) {
     	Tweet tweet = new Tweet();
-    	tweet.setTextInTweet("RT This is really awful bad; glad @JeremyKappell is standing up against #ROC’s disgusting worst mayor. \"\n" +
-                "        \t\t+ \"Former TV meteorologist Jeremy Kappell suing good Mayor Lovely Warren\"\n" +
-                "        \t\t+ \"https://t.co/rJIV5SN9vB (Via NEWS 8 WROC)\"");
+    	tweet.setTextInTweet("");
     	NLPAnalyser nlp = new NLPAnalyser();
     	List<CoreMap> sentences = nlp.nlpPipeline(tweet.getTextInTweet());
-    	//System.out.println(nlp.getSentimentScore(sentences));
+    	System.out.println(nlp.getSentimentScore(sentences));
     	//ArrayList<String> adjectives = nlp.adjectives(sentences);
     	//System.out.println(adjectives.toString());
     	//ArrayList<String> words = nlp.getImportantWords(sentences);
     	//System.out.println(words);
     	HashMap<String, Double> as = nlp.adjectivesScoring(sentences);
     	//System.out.println("done");
-    	/*TweetProcessor tp = new TweetProcessor();
+    	TweetProcessor tp = new TweetProcessor();
         String test = "RT This made my day; glad @JeremyKappell is standing up against #ROC’s disgusting mayor. "
         		+ "Former TV meteorologist Jeremy Kappell suing Mayor Lovely Warren"
         		+ "https://t.co/rJIV5SN9vB (Via NEWS 8 WROC)";
         String finalText = tp.removeNoise(test);
         System.out.println(finalText);
-    }*/
+    }
 }
 
