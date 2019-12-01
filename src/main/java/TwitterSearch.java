@@ -49,7 +49,7 @@ public class TwitterSearch {
 	// Runs the query for the candidate and the date range
 	Query query = new Query(candidate); // Search term
 	query.setSince(sinceDate(date)); // Lower limit date for the search
-	query.setUntil(toDate(date)); // Upper limit date for the search
+	query.setUntil(date);//toDate(date)); // Upper limit date for the search
 	query.count(100);// Number of tweet to be retrieved in each request (max 100)
 	query.lang("en");// Limits search to tweets in English
 	QueryResult result;
@@ -65,7 +65,7 @@ public class TwitterSearch {
 	    // Executes the search
 	    try {
 		result = twitter.search(query);
-		System.out.println(result.getRateLimitStatus().getRemaining());// Shows how many searches are left
+	//	System.out.println(result.getRateLimitStatus().getRemaining());// Shows how many searches are left
 		// before we have to wait
 
 		// Checks if there are still any tweets to retrieve or if we don't have any
@@ -99,7 +99,8 @@ public class TwitterSearch {
 		if (e.exceededRateLimitation()) {
 		    System.out.println("Rate of searchs exceeded. Please wait "
 			    + e.getRateLimitStatus().getSecondsUntilReset() + " seconds and try again.");
-		    break;
+		    System.exit(0); 
+		  //  break;
 		}
 	    } catch (NullPointerException f) {
 		System.out.println("The search did not retrieve any results. Please try again.");
