@@ -1,0 +1,110 @@
+
+===================================================================================
+A N A L Y S I S   R E P O R T
+
+5th Democratic Primary Debate
+November 20th, 2019.
+
+===================================================================================
+
+Total number of tweets in sample: 523.
+
+Total number of tweets with matched location: 251.
+
+
+Most influential Tweets: 
+Username: Scap 🌹 left turn at Albuquerque; User Followers: 11606; Times Retweeted: 92; Tweet Influence Score: 92.0.
+Tweet: It's time for Warren, Buttigieg, and Biden to drop out.Bernie Sanders has this wrapped up with a bow.#Bernie2020https://t.co/CXBqagVmDG.
+Username: John Iadarola; User Followers: 180070; Times Retweeted: 55; Tweet Influence Score: 55.0.
+Tweet: Sanders: 'Your $8.99 Netflix subscription is more than the company paid in federal income taxes' https://t.co/61juDAtPeC.
+Username: Saint Anselm Poll; User Followers: 271; Times Retweeted: 20; Tweet Influence Score: 20.0.
+Tweet: NH General Election Matchup:Biden 51% (+8)Trump 43%-Buttigieg 49% (+7)Trump 42%-Sanders 49% (+3)Trump 46%-Warren 47% (+1)Trump 46%Saint Anselm Poll of NH Voters (11/13-11/18)https://t.co/UVzESFwWUb.
+Username: Ryan Knight 🗽; User Followers: 361768; Times Retweeted: 17; Tweet Influence Score: 17.0.
+Tweet: There are so many RED FLAGS with Pete Buttigieg, but per usual white moderates cannot see any of them. MLK was right..
+Username: ProsperousUSA; User Followers: 24167; Times Retweeted: 5; Tweet Influence Score: 5.0.
+Tweet: Electability problem': Warren sputters, Buttigieg surges into debate clash https://t.co/2AjkHu1hSG via @washtimes@ewarren sinks out of lead, unable to answer simple questions about ‘health care for all’..Tweet@1e47cb59
+
+
+
+Candidate: JOE BIDEN
+
+Total number of tweets: 75
+Average sentiment score: 1.45
+Median sentiment score: 1.0
+Mode sentiment score: 1.0
+
+Most used positive words: personal; amazing; high; traditional; interesting; true
+Most used negative words: corrupt; stupid; impossible; dumb; foolish; wrong
+Top 5 States with the highest Sentiment Score: MO= 2.00, OR= 2.00, FL= 2.00, WA= 2.00, AZ= 2.00, TN= 2.00.
+Top 5 States with the lowest Sentiment Score: IA= .50, MN= 1.00, VA= 1.00, NY= 1.00, CO= 1.00, MA= 1.00.
+
+Most influential Tweets: 
+Username: Minh Ngo; User Followers: 39365; Times Retweeted: 4; Tweet Influence Score: 4.0.
+Tweet: "After a lot of soul-searching, and significantly more poll-testing, it turns out that I am a centrist in the mold of Joe Biden. Amazing timing, right?If it’s easier, though, you can just think of me as an elfin Michael Bloomberg, or a Republican" 😅🤣😂 https://t.co/SOWQe0g4MA.
+Username: Stacy; User Followers: 5; Times Retweeted: 1; Tweet Influence Score: 1.0.
+Tweet: @GOPLeader @RepMikeTurner @GOPLeader proved just how lousy he is at his job probably the worse guy in history to ever hold the position I mean he calls the one guy as a rep fact witness that would totally destroy @realDonaldTrump and the reps phony narrative. “Biden story was a Trump conspiracy theory”.
+Username: KSDK News; User Followers: 235884; Times Retweeted: 0; Tweet Influence Score: 0.0.
+Tweet: Pete Buttigieg has gained significant ground. He'll likely be a target on the debate stage just like Joe Biden, Elizabeth Warren and Bernie Sanders. https://t.co/WgLWpzm4iM.Tweet@7bc6dec4
+
+
+Candidate: ELIZABETH WARREN
+
+Total number of tweets: 249
+Average sentiment score: 1.53
+Median sentiment score: 1.0
+Mode sentiment score: 1.0
+
+Most used positive words: new; strong; smartest; free; funny; cool
+Most used negative words: sick; dead; ignorant; weird; disingenuous; obvious
+Top 5 States with the highest Sentiment Score: OK= 3.00, NV= 2.00, WA= 2.00, MO= 2.00, IN= 2.00, MS= 2.00.
+Top 5 States with the lowest Sentiment Score: NH= .00, HI= 1.00, MA= 1.00, OH= 1.00, KY= 1.00, LA= 1.00.
+
+Most influential Tweets: 
+Username: Scap 🌹 left turn at Albuquerque; User Followers: 11606; Times Retweeted: 92; Tweet Influence Score: 92.0.
+Tweet: It's time for Warren, Buttigieg, and Biden to drop out.Bernie Sanders has this wrapped up with a bow.#Bernie2020https://t.co/CXBqagVmDG.
+Username: Saint Anselm Poll; User Followers: 271; Times Retweeted: 20; Tweet Influence Score: 20.0.
+Tweet: NH General Election Matchup:Biden 51% (+8)Trump 43%-Buttigieg 49% (+7)Trump 42%-Sanders 49% (+3)Trump 46%-Warren 47% (+1)Trump 46%Saint Anselm Poll of NH Voters (11/13-11/18)https://t.co/UVzESFwWUb.
+Username: Another Asian 🧢☂️; User Followers: 658; Times Retweeted: 4; Tweet Influence Score: 4.0.
+Tweet: @wow712 @FbayareaS @TammyT01 @Hangry4Life @witchyactivist @ewarren This is the reason why UBI by just anyone is not a good idea, it should be done by someone who is trustful & knowledgeable how to fund it. Would u trust Warren with that policy? I wouldnt. But I trust Yang bec he had been planning on this for several years w other UBI advocates.Tweet@4564e44b
+
+
+Candidate: BERNIE SANDERS
+
+Total number of tweets: 98
+Average sentiment score: 1.46
+Median sentiment score: 1.0
+Mode sentiment score: 1.0
+
+Most used positive words: rich; popular; masterful; credible; available; wonderful
+Most used negative words: exploitative; drab; oppressive; alarming; sick; obnoxious
+Top 5 States with the highest Sentiment Score: SD= 3.00, MD= 2.00, IA= 2.00, MI= 2.00, IL= 2.00, IN= 2.00.
+Top 5 States with the lowest Sentiment Score: TX= 1.00, FL= 1.00, WI= 1.00, MA= 1.00, OH= 1.00, MO= 1.00.
+
+Most influential Tweets: 
+Username: John Iadarola; User Followers: 180070; Times Retweeted: 55; Tweet Influence Score: 55.0.
+Tweet: Sanders: 'Your $8.99 Netflix subscription is more than the company paid in federal income taxes' https://t.co/61juDAtPeC.
+Username: 𝓔𝓶𝓲𝓵𝔂; User Followers: 705; Times Retweeted: 1; Tweet Influence Score: 1.0.
+Tweet: @NessiePeyote @SFL4Hillary I think it started on December of last year when a Bernie Sanders supporter wrote a hit-piece on Beto on why is he not "progressive enough" for her because he is not a socialist. https://t.co/WctykS8Bkj.
+Username: военачальник; User Followers: 2472; Times Retweeted: 1; Tweet Influence Score: 1.0.
+Tweet: Bernie Sanders just broke into my house searching for Apple Sauce, and won’t stop talking about aliens, who do I call? https://t.co/cwgze0lfC3.Tweet@76f71345
+
+
+Candidate: PETE BUTTIGIEG
+
+Total number of tweets: 101
+Average sentiment score: 1.45
+Median sentiment score: 1.0
+Mode sentiment score: 1.0
+
+Most used positive words: new; higher; explosive; ultimate; bigger; happy
+Most used negative words: stupid; unable; ridiculous; appalling; corny; ugly
+Top 5 States with the highest Sentiment Score: MN= 2.00, IN= 2.00, FL= 2.00, SC= 2.00, DC= 2.00, NY= 1.67.
+Top 5 States with the lowest Sentiment Score: IL= .50, MO= 1.00, OR= 1.00, KS= 1.00, CO= 1.00, MA= 1.00.
+
+Most influential Tweets: 
+Username: Ryan Knight 🗽; User Followers: 361768; Times Retweeted: 17; Tweet Influence Score: 17.0.
+Tweet: There are so many RED FLAGS with Pete Buttigieg, but per usual white moderates cannot see any of them. MLK was right..
+Username: ProsperousUSA; User Followers: 24167; Times Retweeted: 5; Tweet Influence Score: 5.0.
+Tweet: Electability problem': Warren sputters, Buttigieg surges into debate clash https://t.co/2AjkHu1hSG via @washtimes@ewarren sinks out of lead, unable to answer simple questions about ‘health care for all’..
+Username: Miss Aja; User Followers: 16217; Times Retweeted: 4; Tweet Influence Score: 4.0.
+Tweet: In the past year, there have been 596 media mentions of Pete Buttigieg being a Rhodes scholar. But Cory Booker is also a Rhodes scholar. Why has his scholarship been mentioned only 79 times? https://t.co/vKay44hdEb via @HuffPostPol.Tweet@17ecaafb

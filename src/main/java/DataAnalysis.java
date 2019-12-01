@@ -127,7 +127,37 @@ public class DataAnalysis {
 
 		return mode;
 	}
-
+	/**
+	 * % Positive and negative tweets
+	 */
+	
+	public String posPercent(ArrayList<Tweet> tweets){
+		ArrayList<Tweet> totalPos = new ArrayList<>();
+		
+		for (Tweet t : tweets) {
+			if(t.getSentimentScore()>=2.0) {
+				totalPos.add(t);
+			}
+		}
+		DecimalFormat numberFormat = new DecimalFormat("#.00");
+		double percent = (totalPos.size() * 100) / tweets.size();
+		return numberFormat.format(percent) + "%";
+	}
+	
+	public String negPercent(ArrayList<Tweet> tweets){
+		ArrayList<Tweet> totalNeg = new ArrayList<>();
+		
+		for (Tweet t : tweets) {
+			if(t.getSentimentScore()<2.0) {
+				totalNeg.add(t);
+			}
+		}
+		DecimalFormat numberFormat = new DecimalFormat("#.00");
+		double percent = (totalNeg.size() * 100) / tweets.size();
+		return numberFormat.format(percent) + "%";
+	}
+	
+	
 	/**
 	 * highest influence score. Create sorted arraylist of tweets by descending
 	 * influence score
@@ -155,13 +185,13 @@ public class DataAnalysis {
 		// iterate through ArrayList and add each result to the output string
 		if (topInf.size() > numResults) {
 			for (int i = 0; i < numResults; i++) {
-				output += "\n\nUsername: " + topInf.get(i).getUser() + "; User Followers: "
-						+ topInf.get(i).getNumberOfFollowers() + "; Times Retweeted: " + topInf.get(i).getRetweetedCount()
+				output += "\nUsername: " + topInf.get(i).getUser() + "; User Followers: "
+						+ topInf.get(i).getNumberOfFollowers() + "; Tweet ID" + topInf.get(i).getId() +"; Times Retweeted: " + topInf.get(i).getRetweetedCount()
 						+ "; Tweet Influence Score: " + topInf.get(i).getInfluenceScore() + ".\nTweet: "
-						+ topInf.get(i).getTextInTweet() + ".";
+						+ topInf.get(i).getTextInTweet() + ".\n";
 			}
 			// add last one with special formatting
-			output += topInf.get(numResults) +"\n";
+			output += topInf.get(numResults);
 
 			// return String containing all top n results
 			return output;
