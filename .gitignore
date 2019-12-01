@@ -2,6 +2,11 @@ twitter4j.properties
 /TweetArchive2.txt
 /TweetArchive.txt
 /TweetArchive1.txt
+/DataByCandidate.csv
+/DataByState.csv
+/report.txt
+/TweetArchive_full.txt
+/TweetArchivePostDebate.txt
 
 # Eclipse
 .classpath
