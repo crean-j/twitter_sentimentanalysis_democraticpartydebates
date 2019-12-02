@@ -42,6 +42,11 @@ public class Tweet {
     }
 
     /**
+     * Alt constructor used for tests
+     */
+    public Tweet(){}
+
+    /**
      * @return the geoLocation
      */
     public GeoLocation getGeoLocation() {

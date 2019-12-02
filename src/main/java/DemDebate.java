@@ -15,15 +15,20 @@ import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Scanner;
+
 import edu.stanford.nlp.util.CoreMap;
 
 public class DemDebate {
 
 	public static void main(String[] args) {
 		// Start analysis welcome message
+	    	Scanner in = new Scanner(System.in);
+	    	System.out.println("Please enter the file name to analyze: ");
+	    	String fileToRead = in.nextLine();
 		System.out.println("===================================================================================");
 		System.out.println("Analysis started");
-		ArrayList<Tweet> tweets = SaveTweets.loadFile();
+		ArrayList<Tweet> tweets = SaveTweets.loadFile(fileToRead);
 		System.out.println("The selected file contains: " + tweets.size() + " tweets.");
 		System.out.println("===================================================================================");
 

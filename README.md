@@ -22,6 +22,7 @@ The program can be used in real-time to get the sentiment around a candidate on 
 * We are using a free Twitter account so: 
   * The Twitter API will only give data for the last seven days. 
   * The Twitter API will only return 100 tweets for a search. 
+  * The Twitter API will only allow 180 searches every 15 minutes.
 * Stanford CoreNLP API was trained on movie reviews so may not be as accurate for Tweets. 
 * Tweets often have slang, misspellings and emojis that cannot be accurately analyzed.
 
@@ -73,24 +74,31 @@ The program can be used in real-time to get the sentiment around a candidate on 
 ## Static analysis around Nov 20th debate
 * The static analysis was done on tweets from Nov 13 - Nov 20th and Nov 22nd - 30th.  
   * Batches of tweets were collected and added to a TweetArchive text file
+* Takes in file and parses each row into a Tweet object.  
 * ArrayList of tweets formed for each candidate.
-* Analysed by states.
-* Analysed by candidates.
-* The results of the static analysis can be viewed in two csvs files:
- * DataByStates
- * DataByCandidate
+* Tweet location is analyzed using natural language sorting and stored into state ArrayLists.
+* Analysis is run at the candidate level include state analysis.
+* The results of the static analysis can be viewed in two csvs files and a txt report:
+ * DataByStates.csv
+ * DataByCandidate.csv
+ * report.txt
 * The following questions were answered for each candidate:
-   * What is the average sentiment of the tweets for this candidate on this date?
+   * Total number of tweets
+   * Number of tweets with mathced location
+   * What is the average sentiment of the tweets for this candidate?
+   * What percent of tweets have a positive sentiment, or negative sentiment?
+   * What is the median sentiment of the tweets for this candidate?
+   * What is the mode sentiment of the tweets for this candidate?
    * What are the most used positive adjectives in tweets mentioning the candidate on this date?
    * What are the most used negative adjectives in tweets mentioning the candidates on this date?
    * Which are the 5 states with the highest sentiment score on this date?
    * Which are the 5 states with the lowest sentiment score on this date?
-   * Total number of tweets about the candidate? 
+
 * Output results:
    * 2 csv files
+   * txt report
    * Statics analysis in console
-* Website created from csv files of results: https://upenn-cit599.github.io/final-project-twitterdemocraticpartydebates/
-
+  
 
 ## Presentation (5 mins)
 
