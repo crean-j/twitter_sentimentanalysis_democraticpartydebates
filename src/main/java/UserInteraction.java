@@ -54,7 +54,7 @@ public class UserInteraction {
 	//	    break;
 	//	}
 	System.out.println("\t\t\t *****\tYou have selected " + candidate + "\t*****\n");
-	System.out.println("\t We are goint to search for tweets starting from today's date and go back as far as possible, up to seven days");
+	System.out.println("\t We are going to search for tweets starting from today's date and go back as far as possible, up to seven days");
     }
 	//	System.out.println("\t We are going to analyze tweets seven days before and after the date selected.");
 	//	System.out.println("\t Please note that Tweeter limits the search to seven days from today's date.");

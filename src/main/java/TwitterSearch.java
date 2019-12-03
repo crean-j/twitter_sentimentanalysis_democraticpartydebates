@@ -49,7 +49,7 @@ public class TwitterSearch {
 	// Runs the query for the candidate and the date range
 	Query query = new Query(candidate); // Search term
 	query.setSince(sinceDate(date)); // Lower limit date for the search
-	query.setUntil(date);//toDate(date)); // Upper limit date for the search
+	query.setUntil(toDate(date)); // Upper limit date for the search
 	query.count(100);// Number of tweet to be retrieved in each request (max 100)
 	query.lang("en");// Limits search to tweets in English
 	QueryResult result;
@@ -164,7 +164,7 @@ public class TwitterSearch {
 	int month = Integer.valueOf(date.substring(5, 7));
 	int day = Integer.valueOf(date.substring(8, 10));
 
-	day = day + 7;
+	day = day + 1;
 
 	if ((month == 1 || month == 3 || month == 5 || month == 7 || month == 8 || month == 10 || month == 12)
 		&& day > 31) {

@@ -41,54 +41,58 @@ public class Runner {
 			current += 1;
 		}
 		DataAnalysis da = new DataAnalysis(result);
-		
+
 		TweetsByState tbs = new TweetsByState(result);
 		int count = 0;
 		for (String state : tbs.states.keySet()) {
 			count += tbs.states.get(state).size();
 		}
-		
-		try (PrintWriter writer = new PrintWriter(new File("report_live.txt"))) {
-			StringBuilder sb = new StringBuilder();
-			sb.append(
-					"\n==========================================================================================================\n");
-			sb.append("A N A L Y S I S   R E P O R T\n\n");
-			sb.append(
-					"\n==========================================================================================================\n");
-			sb.append(
-					"Tweet sentiment is measured in a 0 to 4 scale. 0 being extremely negative and 4 extremely positive");
-			sb.append(
-					"\n==========================================================================================================\n");
 
-			sb.append("\nTotal number of tweets in sample: " + result.size() + ".");
-			sb.append(System.getProperty("line.separator"));
-			sb.append("\nTotal number of tweets with matched location: " + count + ".\n");
-			sb.append(System.getProperty("line.separator"));
+		if (result.size() > 0) {
+			try (PrintWriter writer = new PrintWriter(new File("report_live.txt"))) {
+				StringBuilder sb = new StringBuilder();
+				sb.append(
+						"\n==========================================================================================================\n");
+				sb.append("A N A L Y S I S   R E P O R T + \n\n");
+				sb.append(
+						"\n==========================================================================================================\n");
+				sb.append(
+						"Tweet sentiment is measured in a 0 to 4 scale. 0 being extremely negative and 4 extremely positive");
+				sb.append(
+						"\n==========================================================================================================\n");
 
-			sb.append("\nAverage sentiment score: " + da.sentimentScore());
-			sb.append("\nPercentage of tweets with positive sentiment (2 or higher): " + da.posPercent(result));
-			sb.append("\nPercentage of tweets with negative sentiment (under 2): " + da.negPercent(result));
-			sb.append("\nMedian sentiment score: " + da.calculateMedian(result));
-			sb.append("\nMode sentiment score: " + da.calculateMode(result) + "\n");
-			sb.append("\nMost used positive words: " + da.topNPos(5));
-			sb.append("\nMost used negative words: " + da.topNNeg(5));
-			sb.append("\n" + da.topPosStates(5, tbs));
-			sb.append("\n" + da.topNegStates(5, tbs));
-			sb.append("\n\nMost influential Tweets: " + da.topNInf(5));
+				sb.append("\nTotal number of tweets in sample: " + result.size() + ".");
+				sb.append(System.getProperty("line.separator"));
+				sb.append("\nTotal number of tweets with matched location: " + count + ".\n");
+				sb.append(System.getProperty("line.separator"));
 
-			writer.write(sb.toString());
+				sb.append("\nAverage sentiment score: " + da.sentimentScore());
+				sb.append("\nPercentage of tweets with positive sentiment (2 or higher): " + da.posPercent(result));
+				sb.append("\nPercentage of tweets with negative sentiment (under 2): " + da.negPercent(result));
+				sb.append("\nMedian sentiment score: " + da.calculateMedian(result));
+				sb.append("\nMode sentiment score: " + da.calculateMode(result) + "\n");
+				sb.append("\nMost used positive words: " + da.topNPos(5));
+				sb.append("\nMost used negative words: " + da.topNNeg(5));
+				sb.append("\n" + da.topPosStates(5, tbs));
+				sb.append("\n" + da.topNegStates(5, tbs));
+				sb.append("\n\nMost influential Tweets: " + da.topNInf(5));
 
-		} catch (FileNotFoundException e) {
-			System.out.println(e.getMessage());
+				writer.write(sb.toString());
+
+			} catch (FileNotFoundException e) {
+				System.out.println(e.getMessage());
+			}
 		}
-
 		
+		if(result.size() == 0) {System.out.println("Your search returned no results");}
+		else {
 		System.out.println("\n\n===================================================================================");
 		System.out.println("A N A L Y S I S   C O M P L E T E");
 		System.out.println("===================================================================================\n");
 		System.out.println("A file containing the report called 'report_live.txt' has been saved");
 		System.out.println("===================================================================================\n");
-		System.out.println("Tweet sentiment is measured in a 0 to 4 scale. 0 being extremely negative and 4 extremely positive\n\n");
+		System.out.println(
+				"Tweet sentiment is measured in a 0 to 4 scale. 0 being extremely negative and 4 extremely positive\n\n");
 		System.out.println("Total number of tweets in sample: " + result.size() + ".");
 		System.out.println("Total number of tweets with matched location: " + count + ".\n");
 
@@ -102,7 +106,6 @@ public class Runner {
 		System.out.println(da.topPosStates(5, tbs));
 		System.out.println(da.topNegStates(5, tbs));
 		System.out.println("\nMost influential Tweets: " + da.topNInf(3));
-
-
+		}
 	}
 }
