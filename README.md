@@ -21,7 +21,7 @@ After some research, the Stanford CoreNLP toolkit was chosen for the sentiment a
 A static analysis was also done to analyze tweets mentioning Democratic candidates around the 5th Democratic debate of November 20th. This was to demonstrate the capacity of the program. A website was build to display the results: https://upenn-cit599.github.io/final-project-twitterdemocraticpartydebates/
 
 ### Set-up the program
-1 You will need a Maven plugin in your IDE to build the project. 
+* You will need a Maven plugin in your IDE to build the project. 
   * For Eclipse: 
     * Install the plugin: m2eclipse
     * Convert the project to be a Maven project
