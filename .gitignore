@@ -7,6 +7,7 @@ twitter4j.properties
 /report.txt
 /TweetArchive_full.txt
 /TweetArchivePostDebate.txt
+/readmecopy
 
 # Eclipse
 .classpath
