@@ -111,17 +111,17 @@ A static analysis was also done to analyze tweets mentioning Democratic candidat
    4. Website: https://upenn-cit599.github.io/final-project-twitterdemocraticpartydebates/
 
 ### Classes
-1. Tweet 
-2. TwitterSearch 
-3. InfluenceScore 
-4. TweetProcessor
-5. NLPAnalyser 
-6. DataAnalysis 
-7. DemDebate
-8. UserInteraction 
-9. SaveTweets
-10.TweetsByState
-11.Runner
+* Tweet 
+* UserInteraction
+* TwitterSearch 
+* SaveTweets
+* InfluenceScore 
+* TweetProcessor
+* NLPAnalyser 
+* DataAnalysis 
+* Runner
+* TweetsByState
+* DemDebate
 
 ### Limitations
 * We are using a free Twitter account so: 
