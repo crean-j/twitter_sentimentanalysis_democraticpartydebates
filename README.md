@@ -110,7 +110,7 @@ A static analysis was also done to analyze tweets mentioning Democratic candidat
    1. 2 csv files
       1. DataByStates.csv
       2. DataByCandidate.csv
-   2. report.txt,a txt report.
+   2. report_live.txt,a txt report.
    3. Statics analysis in console, same as the txt report.
    4. Website: https://upenn-cit599.github.io/final-project-twitterdemocraticpartydebates/
 
