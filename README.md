@@ -17,12 +17,11 @@ Perform a sentiment analysis on tweets mentioning a user-specified keyword.
 
 The user can decide what keyword they are interested in and the program will query Twitter to get relevant tweets, analyze these and then output the analysis results in the console. The analysis of tweets mentioning this keyword gives the average sentiment, most common positive and negative adjectives, and the states that have the lowest and highest average sentiment.
 
-After some research, the Stanford CoreNLP toolkit was chosen for the sentiment analysis as it's freely available, could analyse short blocks of text, and uses a deep learning model that took whole sentences into account as opposed to assessing words individually.
-
+After some research, the Stanford CoreNLP toolkit was chosen for the sentiment analysis as it's freely available, could analyse short blocks of text, and uses a deep learning model that took whole sentences into account as opposed to assessing words individually. The sentiment score ranges from 0 - 4. O = very negative, 1= negative, 2 = neutral, 3 = positive, 4 = very positive.
 A static analysis was also done to analyze tweets mentioning Democratic candidates around the 5th Democratic debate of November 20th. This was to demonstrate the capacity of the program. A website was build to display the results: https://upenn-cit599.github.io/final-project-twitterdemocraticpartydebates/
 
 ## Set-up the program
-* You will need a Maven plugin in your IDE to build the project. 
+1 You will need a Maven plugin in your IDE to build the project. 
   * For Eclipse: 
     * Install the plugin: m2eclipse
     * Convert the project to be a Maven project
