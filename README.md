@@ -33,16 +33,16 @@ A static analysis was also done to analyze tweets mentioning Democratic candidat
   * These libraries will be automatically imported when the project is run. 
   
 ### Real-time running of the program
-1. Open the *Runner class* and run the main method. 
-2. User input (*UserInteraction class*)
+1. Open the **Runner class** and run the main method. 
+2. User input (**UserInteraction class**)
     1. User asked to enter keyword to search for.
     2. User told when the search begins.
 ![userinteraction](img/userinteraction.png)
-3. Query for keyword (*TwitterSearch class*)
+3. Query for keyword (**TwitterSearch class**)
     1. Queries Twitter for Tweets mentioning the key-word, starting on today's date.
     2. Will get the user up to 18,000 tweets. Analysis starts today and then keeps scanning back over the last 7 days until          it's reached the query limit. 
-4. Store Tweets to text file.(*TwitterSearch class*)
-5. Additionally, create a Tweet object for each Tweet from the results(*Tweet class*), the following variables are stored:
+4. Store Tweets to text file.(**SaveTweets class**)
+5. Additionally, create a Tweet object for each Tweet from the results(**Tweet class**), the following variables are stored:
     1. Date of tweet
     2. Candidate mentioned
     3. Tweet text
@@ -51,10 +51,10 @@ A static analysis was also done to analyze tweets mentioning Democratic candidat
     6. Location of user
     7. Retweet count
 6. Add tweets to an ArrayList.
-7. Influence score is calculated for each Tweet and added to the Tweet object.(*InfluenceScore class*)
+7. Influence score is calculated for each Tweet and added to the Tweet object.(**InfluenceScore class**)
    1. Calculation based on the num of followers and number of retweets that the tweet had  
-8. Pre-process each tweet's text for sentiment analysis: remove urls, hashtags, user mentions.(*TweetProcessor class*)
-9. Get sentiment for tweet using Stanford CoreNlP (*NLPAnalyser class*)
+8. Pre-process each tweet's text for sentiment analysis: remove urls, hashtags, user mentions.(**TweetProcessor class**)
+9. Get sentiment for tweet using Stanford CoreNlP (**NLPAnalyser class**)
     1. Prepare tweet for analysis: 
        1. Tokenise: break down the tweet into words.
        2. Ssplit: divide into sentences.
@@ -63,9 +63,9 @@ A static analysis was also done to analyze tweets mentioning Democratic candidat
     2. Get sentiment score for prepared tweet
     3. Add sentiment score to Tweet object
 ![sentimentscorewhilerunning](img/nlpanalyser.png)
-10. Get the adjectives in the tweet, alongside their sentiment score and store in a HashMap.(*NLPAnalyser class*)
+10. Get the adjectives in the tweet, alongside their sentiment score and store in a HashMap.(**NLPAnalyser class**)
     1. Add to the tweet object
-11. Analyser pulls in ArrayList of tweets to answer questions:(*DataAnalysis class*)
+11. Analyser pulls in ArrayList of tweets to answer questions:(**DataAnalysis class**)
     1. What is the average sentiment for the tweets mentioning the keyword?
     2. What is the mode sentiment for the tweets mentioning the keyword?
     3. What is the median sentiment for the tweets mentioning the keyword?
@@ -77,19 +77,19 @@ A static analysis was also done to analyze tweets mentioning Democratic candidat
     9. Total number of tweets mentioning the keyword that were analysed?
 12. As the program runs the tweets, their sentiment scores and the adjectives found are listed. This gives the user an insight into the analysis as it's happening.
 ![analysisprint](img/analysisprint.png)
-12. Output results:(*DataAnalysis class*)
+12. Output results:(**DataAnalysis class**)
     1. Display in console
     ![realtimeanalysis](img/realtimeanalysis.png)
     2. Text file of tweets
 
 ### Static analysis around Nov 20th debate
-1. The static analysis was done on tweets gathered from Nov 13 - Nov 20th and Nov 22nd - 30th.(*SaveTweets class*)
+1. The static analysis was done on tweets gathered from Nov 13 - Nov 20th and Nov 22nd - 30th.(**SaveTweets class**)
    1. Batches of tweets were collected and added to a TweetArchive.txt file.
-2. The *DemDebate class* was run on this tweet file to start the analysis. 
+2. The **DemDebate class** was run on this tweet file to start the analysis. 
    1. Takes in file and parses each row into a Tweet object.  
 3. ArrayList of tweets formed for each candidate. 
 4. Tweets give influence score, sentiment score and adjectives, as described under the real-time running section, steps 5-10.
-5. Tweet location is analyzed using natural language sorting and stored into state ArrayLists. (*TweetsByState class*)
+5. Tweet location is analyzed using natural language sorting and stored into state ArrayLists. (**TweetsByState class**)
 6. Analysis is run at the candidate level include state analysis.
 7. The results of the static analysis can be viewed in two csvs files and a txt report:
    1. DataByStates.csv
