@@ -57,7 +57,7 @@ A static analysis was also done to analyze tweets mentioning Democratic candidat
 9. Get sentiment for tweet using Stanford CoreNlP (*NLPAnalyser class*)
     1. Prepare tweet for analysis: 
        1. Tokenise: break down the tweet into words.
-       2. SSplit: divide into sentences.
+       2. Ssplit: divide into sentences.
        2. Point-of-speech tag: tag each type of word, e.g. verb, noun.
        3. Parse: figure out the grammatical structure of the sentence.
     2. Get sentiment score for prepared tweet
