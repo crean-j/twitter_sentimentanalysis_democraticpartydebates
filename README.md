@@ -86,7 +86,7 @@ A static analysis was also done to analyze tweets mentioning Democratic candidat
    1. Takes in file and parses each row into a Tweet object.  
 3. ArrayList of tweets formed for each candidate. 
 4. Tweets give influence score, sentiment score and adjectives, as described under the real-time running section, steps 5-10.
-5. Tweet location is analyzed using natural language sorting and stored into state ArrayLists. (*DemDebate class*)
+5. Tweet location is analyzed using natural language sorting and stored into state ArrayLists. (*TweetsByState class*)
 6. Analysis is run at the candidate level include state analysis.
 7. The results of the static analysis can be viewed in two csvs files and a txt report:
    1. DataByStates.csv
