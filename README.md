@@ -4,7 +4,7 @@ final-project-twitterdemocraticpartydebates created by GitHub Classroom
 
 Project landing page: https://upenn-cit599.github.io/final-project-twitterdemocraticpartydebates/
 
-## Team members 
+### Team members 
 
 Joanne Crean [ [creanj@seas.upenn.edu](mailto:creanj@seas.upenn.edu) ]
 
@@ -12,7 +12,7 @@ Juan Goleniowski [ [juangole@seas.upenn.edu](mailto:juangole@seas.upenn.edu) ]
 
 Federica Pelzel [ [fpelzel@seas.upenn.edu](mailto:fpelzel@seas.upenn.edu) ]
 
-## Project Idea
+### Project Idea
 Perform a sentiment analysis on tweets mentioning a user-specified keyword. 
 
 The user can decide what keyword they are interested in and the program will query Twitter to get relevant tweets, analyze these and then output the analysis results in the console. The analysis of tweets mentioning this keyword gives the average sentiment, most common positive and negative adjectives, and the states that have the lowest and highest average sentiment.
@@ -20,7 +20,7 @@ The user can decide what keyword they are interested in and the program will que
 After some research, the Stanford CoreNLP toolkit was chosen for the sentiment analysis as it's freely available, could analyse short blocks of text, and uses a deep learning model that took whole sentences into account as opposed to assessing words individually. The sentiment score ranges from 0 - 4. O = very negative, 1= negative, 2 = neutral, 3 = positive, 4 = very positive.
 A static analysis was also done to analyze tweets mentioning Democratic candidates around the 5th Democratic debate of November 20th. This was to demonstrate the capacity of the program. A website was build to display the results: https://upenn-cit599.github.io/final-project-twitterdemocraticpartydebates/
 
-## Set-up the program
+### Set-up the program
 1 You will need a Maven plugin in your IDE to build the project. 
   * For Eclipse: 
     * Install the plugin: m2eclipse
@@ -32,7 +32,7 @@ A static analysis was also done to analyze tweets mentioning Democratic candidat
   * Standford CoreNLP API: No credentials needed to use.
   * These libraries will be automatically imported when the project is run. 
   
-## Real-time running of the program
+### Real-time running of the program
 1. Open the *Runner class* and run the main method. 
 2. User input (*UserInteraction class*)
     1. User asked to enter keyword to search for.
@@ -78,8 +78,8 @@ A static analysis was also done to analyze tweets mentioning Democratic candidat
     1. Display in console
     2. Text file of tweets
 
-## Static analysis around Nov 20th debate
-1. The static analysis was done on tweets gathered from Nov 13 - Nov 20th and Nov 22nd - 30th.  
+### Static analysis around Nov 20th debate
+1. The static analysis was done on tweets gathered from Nov 13 - Nov 20th and Nov 22nd - 30th.(*SaveTweets class*)
    1. Batches of tweets were collected and added to a TweetArchive.txt file.
 2. The *DemDebate class* was run on this tweet file to start the analysis. 
    1. Takes in file and parses each row into a Tweet object.  
@@ -110,7 +110,7 @@ A static analysis was also done to analyze tweets mentioning Democratic candidat
    3. Statics analysis in console, same as the txt report.
    4. Website: https://upenn-cit599.github.io/final-project-twitterdemocraticpartydebates/
 
-## Classes
+### Classes
 1. Tweet 
 2. TwitterSearch 
 3. InfluenceScore 
@@ -123,7 +123,7 @@ A static analysis was also done to analyze tweets mentioning Democratic candidat
 10.TweetsByState
 11.Runner
 
-## Limitations
+### Limitations
 * We are using a free Twitter account so: 
   * The Twitter API will only give data for the last seven days. 
   * The Twitter API will only return 100 tweets for a search. 
@@ -131,12 +131,11 @@ A static analysis was also done to analyze tweets mentioning Democratic candidat
 * Stanford CoreNLP API was trained on movie reviews so may not be as accurate for Tweets. 
 * Tweets often have slang, misspellings and emojis that cannot be accurately analyzed.
 
-## Future improvements
+### Future improvements
 * Visual representation of results in real-time.
 * Train our own NLP model on Tweets to get more accurate results.
 * Use a paid Twitter account to get more data back for analysis.
 * Expand the analysis.
-
 
 ### References 
 1. Stanford CoreNLP API: https://stanfordnlp.github.io/CoreNLP/index.html
