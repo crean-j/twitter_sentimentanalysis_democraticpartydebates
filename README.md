@@ -37,6 +37,7 @@ A static analysis was also done to analyze tweets mentioning Democratic candidat
 2. User input (*UserInteraction class*)
     1. User asked to enter keyword to search for.
     2. User told when the search begins.
+![userinteraction](img/userinteraction.png)
 3. Query for keyword (*TwitterSearch class*)
     1. Queries Twitter for Tweets mentioning the key-word, starting on today's date.
     2. Will get the user up to 18,000 tweets. Analysis starts today and then keeps scanning back over the last 7 days until          it's reached the query limit. 
@@ -61,6 +62,7 @@ A static analysis was also done to analyze tweets mentioning Democratic candidat
        3. Parse: figure out the grammatical structure of the sentence.
     2. Get sentiment score for prepared tweet
     3. Add sentiment score to Tweet object
+![sentimentscorewhilerunning](img/nlpanalyser.png)
 10. Get the adjectives in the tweet, alongside their sentiment score and store in a HashMap.(*NLPAnalyser class*)
     1. Add to the tweet object
 11. Analyser pulls in ArrayList of tweets to answer questions:(*DataAnalysis class*)
@@ -74,8 +76,10 @@ A static analysis was also done to analyze tweets mentioning Democratic candidat
     8. Which are the 5 states with the lowest sentiment score?
     9. Total number of tweets mentioning the keyword that were analysed?
 12. As the program runs the tweets, their sentiment scores and the adjectives found are listed. This gives the user an insight into the analysis as it's happening.
+![analysisprint](img/analysisprint.png)
 12. Output results:(*DataAnalysis class*)
     1. Display in console
+    ![realtimeanalysis](img/realtimeanalysis.png)
     2. Text file of tweets
 
 ### Static analysis around Nov 20th debate
