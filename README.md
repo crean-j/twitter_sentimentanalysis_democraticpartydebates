@@ -40,8 +40,10 @@ A static analysis was also done to analyze tweets mentioning Democratic candidat
 ![userinteraction](img/userinteraction.png)
 3. Query for keyword (**TwitterSearch class**)
     1. Queries Twitter for Tweets mentioning the key-word, starting on today's date.
-    2. Will get the user up to 18,000 tweets. Analysis starts today and then keeps scanning back over the last 7 days until          it's reached the query limit. 
-4. Store Tweets to text file.(**SaveTweets class**)
+    2. Query limited to tweets in English.
+    3. User will get up to 100 search results in every search. The number of searches that can be excuted is controlled by value in MAXSEARCHREQUESTS. Twitter allows up to 180 searches every 15 minutes.
+    4. Analysis starts today and then keeps scanning back over the last 7 days until it's reached the query limit. 
+4. Store Tweets to text file.(**SaveTweets class**). The name of the text file is time stamped: Tweet\_Analysis\_dd\_MM\_yyyy-HH\_mm\_ss.
 5. Additionally, create a Tweet object for each Tweet from the results(**Tweet class**), the following variables are stored:
     1. Date of tweet
     2. Candidate mentioned
@@ -144,4 +146,5 @@ A static analysis was also done to analyze tweets mentioning Democratic candidat
 ### References 
 1. Stanford CoreNLP API: https://stanfordnlp.github.io/CoreNLP/index.html
 2. [https://towardsdatascience.com/sentiment-analysis-for-text-with-deep-learning-2f0a0c6472b5]
+3. Twitter4j API: http://twitter4j.org/en/
 
