@@ -41,7 +41,7 @@ public class TwitterSearch {
 	ConfigurationBuilder cf = new ConfigurationBuilder().setTweetModeExtended(true);
 	Twitter twitter = TwitterFactory.getSingleton();
 	TwitterFactory tf = new TwitterFactory(cf.build());
-	ArrayList<Tweet> queryResult = new ArrayList<>(); // Stores tweet objects as elements of an array
+	ArrayList<Tweet> queryResult = new ArrayList<>(); // Stores tweet objects as elements in an array
 	long lastTweetMaxId = -1; // tracks the latest tweet retrieved
 	final int MAXSEARCHREQUESTS = 10; // Number of requests to be sent (API allows up to 180 requests every 15
 	// minutes
@@ -50,7 +50,7 @@ public class TwitterSearch {
 	Query query = new Query(candidate); // Search term
 	query.setSince(sinceDate(date)); // Lower limit date for the search
 	query.setUntil(toDate(date)); // Upper limit date for the search
-	query.count(100);// Number of tweet to be retrieved in each request (max 100)
+	query.count(100);// Number of tweets to be retrieved in each request (max 100)
 	query.lang("en");// Limits search to tweets in English
 	QueryResult result;
 
@@ -58,6 +58,7 @@ public class TwitterSearch {
 	for (int numberOfQueries = 0; numberOfQueries < MAXSEARCHREQUESTS; numberOfQueries++) {
 
 	    // Sets the last tweet ID retrieved, so we retrieve a different batch of tweets
+	    // in every search
 	    if (lastTweetMaxId != -1) {
 		query.setMaxId(lastTweetMaxId - 1);
 	    }
@@ -65,8 +66,6 @@ public class TwitterSearch {
 	    // Executes the search
 	    try {
 		result = twitter.search(query);
-	//	System.out.println(result.getRateLimitStatus().getRemaining());// Shows how many searches are left
-		// before we have to wait
 
 		// Checks if there are still any tweets to retrieve or if we don't have any
 		// requests left
@@ -79,28 +78,29 @@ public class TwitterSearch {
 		for (Status status : result.getTweets()) {
 		    String text = status.getRetweetedStatus() != null ? status.getRetweetedStatus().getText()
 			    : status.getText();
-		    // Added if condition to check the candidate name is in the main text and to
+		    // Added condition to check the candidate name is in the main text and to
 		    // excludes retweets
 		    if (text.contains(candidate) && !status.isRetweet()) {
 			// Updates the highest ID in the tweets retrieved
 			if (lastTweetMaxId == -1 || status.getId() < lastTweetMaxId) {
 			    lastTweetMaxId = status.getId();
 			}
-			// Populates the tweet object witht he search result
-			Tweet tw = new Tweet(status.getId(), (String)status.getUser().getName(), status.getUser().getFollowersCount(),
-				status.getUser().getLocation(), text, status.getCreatedAt(), candidate, 0,
-				status.getRetweetCount(), status.isRetweet(), status.getGeoLocation());
+			// Populates the tweet object with the search result
+			Tweet tw = new Tweet(status.getId(), (String) status.getUser().getName(),
+				status.getUser().getFollowersCount(), status.getUser().getLocation(), text,
+				status.getCreatedAt(), candidate, 0, status.getRetweetCount(), status.isRetweet(),
+				status.getGeoLocation());
 			queryResult.add(tw);
 		    }
 		}
 
 	    } catch (TwitterException e) {
-		// TODO Auto-generated catch block
 		if (e.exceededRateLimitation()) {
+		    // Catches if we have exceeded the 180 searches limit and shows how long we have
+		    // to wait to run a new query
 		    System.out.println("Rate of searchs exceeded. Please wait "
 			    + e.getRateLimitStatus().getSecondsUntilReset() + " seconds and try again.");
-		    System.exit(0); 
-		  //  break;
+		    System.exit(0);
 		}
 	    } catch (NullPointerException f) {
 		System.out.println("The search did not retrieve any results. Please try again.");
@@ -125,7 +125,7 @@ public class TwitterSearch {
 	int month = Integer.valueOf(date.substring(5, 7));
 	int day = Integer.valueOf(date.substring(8, 10));
 
-	day = day - 7;
+	day = day - 7; // Seven days prior to the date entered
 	if (day <= 0) {
 	    month--;
 	}
@@ -152,7 +152,7 @@ public class TwitterSearch {
     }
 
     /**
-     * Calculates the date seven days after the date entered
+     * Calculates the date one day after the date entered
      *
      * @param year  year entered by the user
      * @param month month entered by the user
@@ -164,7 +164,7 @@ public class TwitterSearch {
 	int month = Integer.valueOf(date.substring(5, 7));
 	int day = Integer.valueOf(date.substring(8, 10));
 
-	day = day + 1;
+	day = day + 1;// One day after entered date
 
 	if ((month == 1 || month == 3 || month == 5 || month == 7 || month == 8 || month == 10 || month == 12)
 		&& day > 31) {
