@@ -15,9 +15,10 @@ import java.util.Properties;
 /**
  * Class uses the Stanford CoreNLP API to analyse tweet text
  * It includes methods to:
+ * Create an nlp pipeline to prep a tweet for analysis
+ * Get the sentiment score for a tweet
  * Get the adjectives in a tweet
  * Get the sentiment analysis of a tweet
- * Get the individual words in a tweet
  *
  * The sentiment score for a tweet can be:
  * very negative = 0
