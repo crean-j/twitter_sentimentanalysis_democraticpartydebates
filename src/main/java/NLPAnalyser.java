@@ -18,14 +18,14 @@ import java.util.Properties;
  * Get the adjectives in a tweet
  * Get the sentiment analysis of a tweet
  * Get the individual words in a tweet
- * <p>
+ *
  * The sentiment score for a tweet can be:
  * very negative = 0
  * negative = 1
  * neutral = 2
  * positive = 3
  * very positive = 4
- * <p>
+ *
  * Link to Stanford CoreNLP documentation: https://stanfordnlp.github.io/CoreNLP/index.html
  *
  * @author joannecrean
@@ -34,8 +34,8 @@ public class NLPAnalyser {
 
     private Properties props; //new properties file from Stanford CoreNLP library
     private StanfordCoreNLP pipeline; // sets up a new pipeline
-    private Tweet tweet; // tweet to analyse
     private TweetProcessor tp = new TweetProcessor(); // to clean up Tweets
+    // list of over-used words that are removed from the adjectives list for all tweets
     private String[] commonWords = {"best", "good", "bad", "better", "great", "real",
             "worst", "trump", "lovely", "wrong", "right", "worse", "least"};
 
@@ -83,35 +83,34 @@ public class NLPAnalyser {
      * Once the sentiment has been calculated for each line then the average sentiment is found to give
      * the overall tweet sentiment
      *
-     * @return int containing the sentiment for the tweet
+     * @return double containing the sentiment for the tweet
      */
     public double getSentimentScore(List<CoreMap> sentences) {
-        int totalSentiment = 0;
-        double tweetSentiment = 0;
+        int totalSentiment = 0; // running total of sentiment for a tweet sentiment
+        double tweetSentiment = 0; // total tweet sentiment
 
+        // if the text passed into the tweet is an empty string, a neutral value is assigned to the tweet
         if (sentences.size() == 0) {
             tweetSentiment = 2;
         } else {
             // Loop through each sentence and get the sentiment score
             for (CoreMap sentence : sentences) {
 
-                // Create a Tree object containing the sentiment score for each sentence
+                // Create a Tree object containing the sentence broken into a tree structure for sentiment analysis
                 Tree tree = sentence.get(SentimentCoreAnnotations.SentimentAnnotatedTree.class);
 
-                // Assign the sentiment score the sentence to an integer
+                // Assign the sentiment score for the sentence to an integer
                 int sentimentSentence = RNNCoreAnnotations.getPredictedClass(tree);
-
-                //System.out.println("Sentiment Score:" + sentimentSentence); // to delete
 
                 // Add the sentiment score for this sentence to the total sentiment for the tweet
                 totalSentiment = totalSentiment + sentimentSentence;
 
                 // Get the total sentiment for the tweet by getting the average sentiment for all
                 // sentences in the tweet
+                // round this to the nearest sentiment score value
                 tweetSentiment = Math.round((double) totalSentiment / (double) sentences.size());
             }
         }
-        //System.out.println("Tweet sentiment: " + tweetSentiment);
         return tweetSentiment;
     }
 
@@ -122,62 +121,63 @@ public class NLPAnalyser {
      * @return ArrayList<String> containing adjectives in the tweet
      */
     public ArrayList<String> adjectives(List<CoreMap> sentences) {
-        String adjective = "JJ";
-        ArrayList<String> adjectives = new ArrayList<String>();
-        Boolean flag = false;
+        String adjective = "JJ"; //adjectives are marked by the 'JJ' tag when going through the the NLP pipeline
+        ArrayList<String> adjectives = new ArrayList<String>(); //array list for the adjectives
+        boolean flag = false;
 
         for (CoreMap sentence : sentences) {
-            // traversing the words in the current sentence
+            // Loop through sentences
             // a CoreLabel is a CoreMap with additional token-specific methods
             for (CoreLabel token : sentence.get(CoreAnnotations.TokensAnnotation.class)) {
-                //System.out.println("token: " + token);
-                // this is the text of the token
-
+                // Gets the is the text of the word
                 String word = token.get(CoreAnnotations.TextAnnotation.class);
                 // this is the POS tag of the token
                 String pos = token.get(CoreAnnotations.PartOfSpeechAnnotation.class);
 
                 // if the word is an adjective then add it to the the ArrayList of adjectives
                 if (pos.contains(adjective)) {
-                    //System.out.println("adj: " + word);
                     // check if the word is in the list of common words
                     for (String common : commonWords) {
-                        //System.out.println(common);
+                        // if the word is in the common list, set the flag to true
                         if (word.equals(common)) {
                             flag = true;
-                            //System.out.println("true");
+                            //break the loop once the flag is true
                             break;
                         }
                         else {
                             flag = false;
-                            //System.out.println("false");
                         }
                     }
+                    // if the word was not a common word
                     if (!flag) {
+                        // add the adjectives to the array list in lowercase
                         adjectives.add(word.toLowerCase());
                     }
                 }
             }
         }
-        // might add code to also add sentiment score for the adjectives
         return adjectives;
     }
 
     /**
      * Method to get a list of positive and negative adjectives
+     * Adjective is stored in an array list along with its sentiment score
      *
-     * @return adjectivesScore a HashMap<String, Integer>
+     * @return adjectivesScore as a HashMap<String, Integer>
      */
 
     public HashMap<String, Double> adjectivesScoring(List<CoreMap> sentences) {
-        HashMap<String, Double> adjectivesScore = new HashMap<String, Double>();
-        ArrayList<String> adjectives = adjectives(sentences);
+        HashMap<String, Double> adjectivesScore = new HashMap<String, Double>(); //Hashmap to store the adjectives and their values
+        ArrayList<String> adjectives = adjectives(sentences); //ArrayList of adjectives, calls the adjectives method
+        // loop through the adjectives
         for (String adjective : adjectives) {
+            //run the NLPpipeline on the adjective
             List<CoreMap> tweetAdjectives = nlpPipeline(adjective);
+            // get the sentiment score for the adjective
             double adjSentiment = getSentimentScore(tweetAdjectives);
+            //add the adjective score and its sentiment score to a hashmap
             adjectivesScore.put(adjective.toLowerCase(), adjSentiment);
         }
-        //System.out.println(adjectivesScore);
         return adjectivesScore;
     }
 
@@ -190,64 +190,11 @@ public class NLPAnalyser {
     }
 
     /**
-     * Getter to get the Tweet
-     * @return Tweet
-     */
-    public Tweet getTweet() {
-        return tweet;
-    }
-
-    /**
      * Getter to get array of common words
      * @return array of common words
      */
     public String[] getCommonWords() {
         return commonWords;
-    }
-
-    /**
-     * Method to get the individual words in a tweet
-     * Breaks the tweet down into its individual words
-     *
-     * @return ArrayList<String> containing individual words in the tweet
-     */
-    /*public ArrayList<String> getImportantWords (List <CoreMap> sentences) {
-        ArrayList<String> impWords = new ArrayList<String>();
-        String adjective = "JJ";
-        String noun = "";
-        for (CoreMap sentence : sentences) {
-            // traversing the words in the current sentence
-            // a CoreLabel is a CoreMap with additional token-specific methods
-            for (CoreLabel token : sentence.get(CoreAnnotations.TokensAnnotation.class)) {
-                // this is the text of the token
-            	System.out.println(token);
-                String word = token.get(CoreAnnotations.TextAnnotation.class);
-                System.out.println(word);
-                tokens.add(word);
-            }
-        }
-        // may need to add code to remove stop words
-        return tokens;
-    }*/
-
-    public static void main(String[] args) {
-    	Tweet tweet = new Tweet();
-    	tweet.setTextInTweet("");
-    	NLPAnalyser nlp = new NLPAnalyser();
-    	List<CoreMap> sentences = nlp.nlpPipeline(tweet.getTextInTweet());
-    	System.out.println(nlp.getSentimentScore(sentences));
-    	//ArrayList<String> adjectives = nlp.adjectives(sentences);
-    	//System.out.println(adjectives.toString());
-    	//ArrayList<String> words = nlp.getImportantWords(sentences);
-    	//System.out.println(words);
-    	HashMap<String, Double> as = nlp.adjectivesScoring(sentences);
-    	//System.out.println("done");
-    	TweetProcessor tp = new TweetProcessor();
-        String test = "RT This made my day; glad @JeremyKappell is standing up against #ROC’s disgusting mayor. "
-        		+ "Former TV meteorologist Jeremy Kappell suing Mayor Lovely Warren"
-        		+ "https://t.co/rJIV5SN9vB (Via NEWS 8 WROC)";
-        String finalText = tp.removeNoise(test);
-        System.out.println(finalText);
     }
 }
 
