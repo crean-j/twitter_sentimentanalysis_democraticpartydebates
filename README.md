@@ -140,7 +140,7 @@ A static analysis was also done to analyze tweets mentioning Democratic candidat
   * The Twitter API will only return 100 tweets for a search. 
   * The Twitter API will only allow 180 searches every 15 minutes.
 * Stanford CoreNLP API was trained on movie reviews so may not be as accurate for Tweets. 
-* Tweets often have slang, misspellings and emojis that cannot be accurately analyzed.
+* Tweets often have slang and misspellings that cannot be reliably analyzed.
 
 ### Future improvements
 * Visual representation of results in real-time.
