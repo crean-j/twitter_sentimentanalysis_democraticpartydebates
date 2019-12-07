@@ -39,7 +39,6 @@ A static analysis was also done to analyze tweets mentioning Democratic candidat
 2. User input (**UserInteraction class**)
     1. User asked to enter keyword to search for.
     2. User told when the search begins.
-<img src="img/userinteraction.png" width="200">
 3. Query for keyword (**TwitterSearch class**)
     1. Queries Twitter for Tweets mentioning the key-word, starting on today's date.
     2. Query limited to tweets in English.
