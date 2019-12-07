@@ -68,7 +68,7 @@ A static analysis was also done to analyze tweets mentioning Democratic candidat
        3. Parse: figure out the grammatical structure of the sentence.
     2. Get sentiment score for prepared tweet
     3. Add sentiment score to Tweet object
-![sentimentscorewhilerunning](img/nlpanalyser.png)
+    <img src="img/nlpanalyser.png" width="600">
 10. Get the adjectives in the tweet, alongside their sentiment score and store in a HashMap.(**NLPAnalyser class**)
     1. Add to the tweet object
 11. Analyser pulls in ArrayList of tweets to answer questions:(**DataAnalysis class**)
@@ -82,7 +82,7 @@ A static analysis was also done to analyze tweets mentioning Democratic candidat
     8. Which are the 5 states with the lowest sentiment score?
     9. Total number of tweets mentioning the keyword that were analysed?
 12. As the program runs the tweets, their sentiment scores and the adjectives found are listed. This gives the user an insight into the analysis as it's happening.
-![analysisprint](img/analysisprint.png)
+<img src="img/analysisprint.png" width="600">
 12. Output results:(**DataAnalysis class**)
     1. Display in console
     ![realtimeanalysis](img/realtimeanalysis.png)
