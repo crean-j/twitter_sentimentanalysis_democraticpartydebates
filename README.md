@@ -120,7 +120,7 @@ A static analysis was also done to analyze tweets mentioning Democratic candidat
       3. report.txt (a txt report with the console output)
        <img src="img/output.png" width="200">
    3. Static analysis in console.
-       <img src="img/staticconsole.png" width="600">
+       </br><img src="img/staticconsole.png" width="600">
    4. Website: https://upenn-cit599.github.io/final-project-twitterdemocraticpartydebates/
 
 ### Classes
