@@ -83,12 +83,12 @@ A static analysis was also done to analyze tweets mentioning Democratic candidat
     8. Which are the 5 states with the lowest sentiment score?
     9. Total number of tweets mentioning the keyword that were analysed?
 12. As the program runs the tweets, their sentiment scores and the adjectives found are listed. This gives the user an insight into the analysis as it's happening.
- <img src="img/analysisprint.png" width="600">
+  </br><img src="img/analysisprint.png" width="600">
 12. Output results:(**DataAnalysis class**)
     1. Display in console
-     <img src="img/realtimeanalysis.png">
+     </br><img src="img/realtimeanalysis.png">
     2. Text file of tweets
-     <img src="img/reportlive.png" width="200">
+     </br><img src="img/reportlive.png" width="200">
 
 ### Static analysis around Nov 20th debate
 1. The static analysis was done on tweets gathered from Nov 13 - Nov 20th and Nov 22nd - 30th
