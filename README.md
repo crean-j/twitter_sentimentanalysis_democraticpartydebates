@@ -85,7 +85,7 @@ A static analysis was also done to analyze tweets mentioning Democratic candidat
 <img src="img/analysisprint.png" width="600">
 12. Output results:(**DataAnalysis class**)
     1. Display in console
-    ![realtimeanalysis](img/realtimeanalysis.png)
+    <img src="img/realtimeanalysis.png">
     2. Text file of tweets
 
 ### Static analysis around Nov 20th debate
