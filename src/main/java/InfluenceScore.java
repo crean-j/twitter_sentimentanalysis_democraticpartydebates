@@ -38,7 +38,6 @@ public class InfluenceScore {
             double retweetsScore = (double) (t.getRetweetedCount() - minRetweets) / (maxRetweets - minRetweets);
             t.setInfluenceScore((followersScore + retweetsScore) / 2.0);
         }
-
     }
 }
 
