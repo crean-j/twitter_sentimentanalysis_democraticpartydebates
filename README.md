@@ -28,7 +28,7 @@ A static analysis was also done to analyze tweets mentioning Democratic candidat
 * The Runner class contains the main method for running the program in real-time.
 * The DemDebate class was used to run the static analysis on previously collected tweets around the DemDebate on Nov 20th.
 * Dependencies:
-  * Twitter4j library: To use, you need to create an account and store a twitter4j.properties file in the main project folder.
+  * Twitter4j library: You need to create a developer account and store a twitter4j.properties file in the main project folder.
   * Standford CoreNLP API: No credentials needed to use.
   * These libraries will be automatically imported when the project is run. 
   
