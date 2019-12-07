@@ -19,14 +19,14 @@ import java.util.Properties;
  * Get the sentiment score for a tweet
  * Get the adjectives in a tweet
  * Get the sentiment analysis of a tweet
- *
+ * <p>
  * The sentiment score for a tweet can be:
  * very negative = 0
  * negative = 1
  * neutral = 2
  * positive = 3
  * very positive = 4
- *
+ * <p>
  * Link to Stanford CoreNLP documentation: https://stanfordnlp.github.io/CoreNLP/index.html
  *
  * @author joannecrean
@@ -38,7 +38,8 @@ public class NLPAnalyser {
     private TweetProcessor tp = new TweetProcessor(); // to clean up Tweets
     // list of over-used words that are removed from the adjectives list for all tweets
     private String[] commonWords = {"best", "good", "bad", "better", "great", "real",
-            "worst", "trump", "lovely", "wrong", "right", "worse", "least"};
+            "worst", "trump", "lovely", "wrong", "right", "worse", "least", "many",
+            "nice", "such", "hilary", "kerry", "fine"};
 
     /**
      * Constructor creates a new Sentiment Analyser object
@@ -52,7 +53,7 @@ public class NLPAnalyser {
 
     /**
      * Method runs NLP pipeline on a tweet
-     *
+     * <p>
      * The following steps take place in the pipeline:
      * Tokenisation - breaks down into words
      * Sentence split - combines the words into sentences
@@ -80,7 +81,7 @@ public class NLPAnalyser {
 
     /**
      * Method gets a sentiment score for a tweet.
-     *
+     * <p>
      * Once the sentiment has been calculated for each line then the average sentiment is found to give
      * the overall tweet sentiment
      *
@@ -122,7 +123,9 @@ public class NLPAnalyser {
      * @return ArrayList<String> containing adjectives in the tweet
      */
     public ArrayList<String> adjectives(List<CoreMap> sentences) {
-        String adjective = "JJ"; //adjectives are marked by the 'JJ' tag when going through the the NLP pipeline
+        String adjective = "JJ"; //adjectives are marked with 'JJ' tag when going through the the NLP pipeline
+        String adjectiveComp = "JJR"; // comparative adjectives are marked by the 'JJR' tag
+        String adjectiveSup = "JJS"; // superlative adjectives are marked with the 'JJS' tag
         ArrayList<String> adjectives = new ArrayList<String>(); //array list for the adjectives
         boolean flag = false;
 
@@ -136,7 +139,7 @@ public class NLPAnalyser {
                 String pos = token.get(CoreAnnotations.PartOfSpeechAnnotation.class);
 
                 // if the word is an adjective then add it to the the ArrayList of adjectives
-                if (pos.contains(adjective)) {
+                if (pos.contains(adjective) || pos.contains(adjectiveComp) || pos.contains(adjectiveSup)) {
                     // check if the word is in the list of common words
                     for (String common : commonWords) {
                         // if the word is in the common list, set the flag to true
@@ -144,8 +147,7 @@ public class NLPAnalyser {
                             flag = true;
                             //break the loop once the flag is true
                             break;
-                        }
-                        else {
+                        } else {
                             flag = false;
                         }
                     }
@@ -184,6 +186,7 @@ public class NLPAnalyser {
 
     /**
      * Getter to get the properties applied
+     *
      * @return properties
      */
     public Properties getProps() {
@@ -192,6 +195,7 @@ public class NLPAnalyser {
 
     /**
      * Getter to get array of common words
+     *
      * @return array of common words
      */
     public String[] getCommonWords() {

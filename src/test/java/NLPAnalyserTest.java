@@ -1,9 +1,3 @@
-/**
- * Class tests that the methods in the NLP Analyser class work as expected
- */
-
-
-import edu.stanford.nlp.ling.CoreAnnotations;
 import edu.stanford.nlp.util.CoreMap;
 import org.junit.jupiter.api.Test;
 
@@ -13,6 +7,12 @@ import java.util.List;
 
 import static org.junit.Assert.assertTrue;
 import static org.junit.jupiter.api.Assertions.*;
+
+/**
+ * Class tests that the methods in the NLP Analyser class work as expected
+ *
+ * @author joannecrean
+ */
 
 class NLPAnalyserTest {
 
