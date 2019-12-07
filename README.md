@@ -17,7 +17,8 @@ Perform a sentiment analysis on tweets mentioning a user-specified keyword.
 
 The user can decide what keyword they are interested in and the program will query Twitter to get relevant tweets, analyze these and then output the analysis results in the console. The analysis of tweets mentioning this keyword gives the average sentiment, most common positive and negative adjectives, and the states that have the lowest and highest average sentiment.
 
-After some research, the Stanford CoreNLP toolkit was chosen for the sentiment analysis as it's freely available, could analyse short blocks of text, and uses a deep learning model that took whole sentences into account as opposed to assessing words individually. The sentiment score ranges from 0 - 4. O = very negative, 1= negative, 2 = neutral, 3 = positive, 4 = very positive.
+After some research, the Stanford CoreNLP toolkit was chosen for the sentiment analysis as it's freely available, could analyse short blocks of text, and uses a deep learning model that took whole sentences into account as opposed to assessing words individually. The sentiment score ranges from 0 - 4. Scores: 0 = very negative, 1= negative, 2 = neutral, 3 = positive, 4 = very positive.
+
 A static analysis was also done to analyze tweets mentioning Democratic candidates around the 5th Democratic debate of November 20th. This was to demonstrate the capacity of the program. A website was build to display the results: https://upenn-cit599.github.io/final-project-twitterdemocraticpartydebates/
 
 ### Set-up the program
@@ -28,8 +29,8 @@ A static analysis was also done to analyze tweets mentioning Democratic candidat
 * The Runner class contains the main method for running the program in real-time.
 * The DemDebate class was used to run the static analysis on previously collected tweets around the DemDebate on Nov 20th.
 * Dependencies:
-  * Twitter4j library: You need to create a developer account and store a twitter4j.properties file in the main project folder.
-  ![userinteraction](img/twitterproperties.png)
+  * Twitter4j library: You need to create a developer account and store a twitter4j.properties file in the main project         folder.
+  <img src="img/twitterproperties.png" width="200">
   * Standford CoreNLP API: No credentials needed to use.
   * Emoji Java library: No credentials needed to use
   * These libraries will be automatically imported when the project is run. 
@@ -39,7 +40,7 @@ A static analysis was also done to analyze tweets mentioning Democratic candidat
 2. User input (**UserInteraction class**)
     1. User asked to enter keyword to search for.
     2. User told when the search begins.
-![userinteraction](img/userinteraction.png)
+    <img src="img/userinteraction.png" width="600">
 3. Query for keyword (**TwitterSearch class**)
     1. Queries Twitter for Tweets mentioning the key-word, starting on today's date.
     2. Query limited to tweets in English.
@@ -68,7 +69,7 @@ A static analysis was also done to analyze tweets mentioning Democratic candidat
        3. Parse: figure out the grammatical structure of the sentence.
     2. Get sentiment score for prepared tweet
     3. Add sentiment score to Tweet object
-![sentimentscorewhilerunning](img/nlpanalyser.png)
+    <img src="img/nlpanalyser.png" width="600">
 10. Get the adjectives in the tweet, alongside their sentiment score and store in a HashMap.(**NLPAnalyser class**)
     1. Add to the tweet object
 11. Analyser pulls in ArrayList of tweets to answer questions:(**DataAnalysis class**)
@@ -82,27 +83,26 @@ A static analysis was also done to analyze tweets mentioning Democratic candidat
     8. Which are the 5 states with the lowest sentiment score?
     9. Total number of tweets mentioning the keyword that were analysed?
 12. As the program runs the tweets, their sentiment scores and the adjectives found are listed. This gives the user an insight into the analysis as it's happening.
-![analysisprint](img/analysisprint.png)
+<img src="img/analysisprint.png" width="600">
 12. Output results:(**DataAnalysis class**)
     1. Display in console
-    ![realtimeanalysis](img/realtimeanalysis.png)
+     <img src="img/realtimeanalysis.png">
     2. Text file of tweets
+     <img src="img/reportlive.png" width="200">
 
 ### Static analysis around Nov 20th debate
 1. The static analysis was done on tweets gathered from Nov 13 - Nov 20th and Nov 22nd - 30th
    1. Batches of tweets were collected and added to a TweetArchive.txt file.	
-   2. To test, run the **DemDebate class** and when prompted to type a filename type "TweetArchive_smal.txt". This is a          smaller file with a sample of around 500 tweets that allows for a reduced analysis.
+   <img src="img/tweetarchive.png" width="200">
+   2. To test, run the **DemDebate class** and when prompted to type a filename type "TweetArchive_small.txt". This is a          smaller file with a sample of around 500 tweets that allows for a reduced analysis.
+   <img src="img/tweetarchivesmall.png" width="200">
 2. The **DemDebate class** takes in a text file of tweets and runs debate specific analysis from it.   
    1. Takes in file and parses each row into a Tweet object.  		
 3. ArrayList of tweets is created for each candidate. 
 4. Tweets are analysed for sentiment and given influence score, sentiment score and adjectives, as described under the real-      time running section, steps 5-10.
 5. Tweet location is analyzed using natural language sorting and stored into state ArrayLists.(**TweetsByState class**)
 6. Analysis is run at the candidate level include state analysis.(**DataAnalysis class**
-7. The results of the static analysis can be viewed in two csvs files and a txt report:
-   1. DataByStates.csv
-   2. DataByCandidate.csv
-   3. report.txt
-8. The following questions were answered for each candidate:
+8. For the analysis, the following questions were answered for each candidate:
    1. Total number of tweets
    2. Number of tweets with matched location
    3. What is the average sentiment of the tweets for this candidate?
@@ -114,11 +114,13 @@ A static analysis was also done to analyze tweets mentioning Democratic candidat
    9. Which are the 5 states with the highest sentiment score on this date?
    10. Which are the 5 states with the lowest sentiment score on this date?
 9. Output results:
-   1. 2 csv files
+   1. Output folder:
       1. DataByStates.csv
       2. DataByCandidate.csv
-   2. report.txt,a txt report with the console output.
+      3. report.txt (a txt report with the console output)
+      <img src="img/output.png" width="200">
    3. Statics analysis in console.
+      <img src="img/staticconsole.png" width="200">
    4. Website: https://upenn-cit599.github.io/final-project-twitterdemocraticpartydebates/
 
 ### Classes
