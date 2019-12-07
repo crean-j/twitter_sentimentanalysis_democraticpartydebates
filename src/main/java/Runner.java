@@ -13,7 +13,7 @@ import edu.stanford.nlp.util.CoreMap;
  * It will run all the necessary analysis and print out
  * console responses as well as create a file with the report
  *
- * @author juangoleniowski, federicca, joannecrean
+ * @author juangoleniowski, Federica Pelzel, joannecrean
  */
 
 public class Runner {
