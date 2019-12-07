@@ -29,6 +29,7 @@ A static analysis was also done to analyze tweets mentioning Democratic candidat
 * The DemDebate class was used to run the static analysis on previously collected tweets around the DemDebate on Nov 20th.
 * Dependencies:
   * Twitter4j library: You need to create a developer account and store a twitter4j.properties file in the main project folder.
+  ![userinteraction](img/twitterproperties.png)
   * Standford CoreNLP API: No credentials needed to use.
   * These libraries will be automatically imported when the project is run. 
   
