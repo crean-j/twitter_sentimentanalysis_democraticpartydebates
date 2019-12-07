@@ -101,7 +101,7 @@ A static analysis was also done to analyze tweets mentioning Democratic candidat
 3. ArrayList of tweets is created for each candidate. 
 4. Tweets are analysed for sentiment and given influence score, sentiment score and adjectives, as described under the real-      time running section, steps 5-10.
 5. Tweet location is analyzed using natural language sorting and stored into state ArrayLists.(**TweetsByState class**)
-6. Analysis is run at the candidate level include state analysis.(**DataAnalysis class**
+6. Analysis is run at the candidate level include state analysis.(**DataAnalysis class**)
 8. For the analysis, the following questions were answered for each candidate:
    1. Total number of tweets
    2. Number of tweets with matched location
