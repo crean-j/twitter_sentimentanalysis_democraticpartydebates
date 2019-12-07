@@ -86,12 +86,14 @@ A static analysis was also done to analyze tweets mentioning Democratic candidat
     2. Text file of tweets
 
 ### Static analysis around Nov 20th debate
-1. The static analysis was done on tweets gathered from Nov 13 - Nov 20th and Nov 22nd - 30th.(Source file is defined in **SaveTweets class**)
+1. The static analysis was done on tweets gathered from Nov 13 - Nov 20th and Nov 22nd - 30th
    1. Batches of tweets were collected and added to a TweetArchive.txt file.
-2. The **DemDebate class** was run on this tweet file to start the analysis. 
-   1. Takes in file and parses each row into a Tweet object.  
-3. ArrayList of tweets formed for each candidate. 
-4. Tweets give influence score, sentiment score and adjectives, as described under the real-time running section, steps 5-10.
+   2. To test, run the **DemDebate class** and when prompted to type a filename type "TweetArchive_smal.txt". This is a smaller file with a sample of around 500 tweets that allows for a reduced analysis.
+   
+2. The **DemDebate class** takes in a text file of tweets and runs debate specific analysis from it. 
+   1. Takes in file and parses each row into a Tweet object.
+3. ArrayList of tweets is created for each candidate. 
+4. Tweets are analysed for sentiment and given influence score, sentiment score and adjectives, as described under the real-time running section, steps 5-10.
 5. Tweet location is analyzed using natural language sorting and stored into state ArrayLists. (**TweetsByState class**)
 6. Analysis is run at the candidate level include state analysis(**DataAnalysis class**).
 7. The results of the static analysis can be viewed in two csvs files and a txt report:
