@@ -1,14 +1,10 @@
 import java.util.*;
-import java.util.concurrent.TimeUnit;
-
-import twitter4j.Paging;
 import twitter4j.Query;
 import twitter4j.QueryResult;
 import twitter4j.Status;
 import twitter4j.Twitter;
 import twitter4j.TwitterException;
 import twitter4j.TwitterFactory;
-import twitter4j.User;
 import twitter4j.conf.ConfigurationBuilder;
 
 /**
@@ -44,7 +40,7 @@ public class TwitterSearch {
 	ArrayList<Tweet> queryResult = new ArrayList<>(); // Stores tweet objects as elements in an array
 	long lastTweetMaxId = -1; // tracks the latest tweet retrieved
 	final int MAXSEARCHREQUESTS = 10; // Number of requests to be sent (API allows up to 180 requests every 15
-	// minutes
+	// minutes)
 
 	// Runs the query for the candidate and the date range
 	Query query = new Query(candidate); // Search term
@@ -78,7 +74,7 @@ public class TwitterSearch {
 		for (Status status : result.getTweets()) {
 		    String text = status.getRetweetedStatus() != null ? status.getRetweetedStatus().getText()
 			    : status.getText();
-		    // Added condition to check the candidate name is in the main text and to
+		    // Added condition to check that the candidate name is in the main text and to
 		    // excludes retweets
 		    if (text.contains(candidate) && !status.isRetweet()) {
 			// Updates the highest ID in the tweets retrieved

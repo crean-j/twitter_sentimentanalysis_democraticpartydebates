@@ -1,5 +1,4 @@
-
-/*
+/**
  * @author: Federica Pelzel
  * 
  * This class creates an ArrayList per state in a HashMap with the state name as Key
@@ -14,9 +13,16 @@ import java.util.HashMap;
 public class TweetsByState {
 
 	ArrayList<Tweet> tweets;
-	// Create HashMap with key State code and Value ArrayList of tweets
+	// Create HashMap with key State code and Value ArrayList of tweets for that state
 	HashMap<String, ArrayList<Tweet>> states = new HashMap<String, ArrayList<Tweet>>();
 
+	/**
+	 * TweetsByState takes in an ArrayList of Tweet objects, looks at their location field,
+	 * analyzes location through a matching algorithm, and stores tweets in ArrayLists by state.
+	 * 
+	 * @param tweets
+	 */
+	
 	public TweetsByState(ArrayList<Tweet> tweets) {
 		this.tweets = tweets;
 		// Populate states hashmap and create arraylists of tweets for each
