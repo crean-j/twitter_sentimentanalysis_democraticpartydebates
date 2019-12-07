@@ -83,7 +83,7 @@ A static analysis was also done to analyze tweets mentioning Democratic candidat
     8. Which are the 5 states with the lowest sentiment score?
     9. Total number of tweets mentioning the keyword that were analysed?
 12. As the program runs the tweets, their sentiment scores and the adjectives found are listed. This gives the user an insight into the analysis as it's happening.
-<img src="img/analysisprint.png" width="600">
+ <img src="img/analysisprint.png" width="600">
 12. Output results:(**DataAnalysis class**)
     1. Display in console
      <img src="img/realtimeanalysis.png">
@@ -93,9 +93,9 @@ A static analysis was also done to analyze tweets mentioning Democratic candidat
 ### Static analysis around Nov 20th debate
 1. The static analysis was done on tweets gathered from Nov 13 - Nov 20th and Nov 22nd - 30th
    1. Batches of tweets were collected and added to a TweetArchive.txt file.	
-   <img src="img/tweetarchive.png" width="200">
+    <img src="img/tweetarchive.png" width="200">
    2. To test, run the **DemDebate class** and when prompted to type a filename type "TweetArchive_small.txt". This is a          smaller file with a sample of around 500 tweets that allows for a reduced analysis.
-   <img src="img/tweetarchivesmall.png" width="200">
+    <img src="img/tweetarchivesmall.png" width="200">
 2. The **DemDebate class** takes in a text file of tweets and runs debate specific analysis from it.   
    1. Takes in file and parses each row into a Tweet object.  		
 3. ArrayList of tweets is created for each candidate. 
@@ -118,9 +118,9 @@ A static analysis was also done to analyze tweets mentioning Democratic candidat
       1. DataByStates.csv
       2. DataByCandidate.csv
       3. report.txt (a txt report with the console output)
-      <img src="img/output.png" width="200">
-   3. Statics analysis in console.
-      <img src="img/staticconsole.png" width="200">
+       <img src="img/output.png" width="200">
+   3. Static analysis in console.
+       <img src="img/staticconsole.png" width="200">
    4. Website: https://upenn-cit599.github.io/final-project-twitterdemocraticpartydebates/
 
 ### Classes
