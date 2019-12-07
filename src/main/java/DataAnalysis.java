@@ -5,7 +5,7 @@
  * This class takes in Tweet objects and analyzes them according to different criteria
  * Constructor (takes in Tweets and makes ArrayList)
  * Includes: Total tweets, Avg sentiment score, top positive and negative words,
- * most retweeted, tweets by state, sentiment by state, top positive and negative states
+ * tweets by state, sentiment by state, top positive and negative states
  */
 
 import java.text.DecimalFormat;
