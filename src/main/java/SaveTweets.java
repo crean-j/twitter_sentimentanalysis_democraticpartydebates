@@ -37,9 +37,10 @@ public class SaveTweets {
      * Loads the tweets from the TweetArchive file, then compares the tweet id from
      * the last search and if it can't find it in the TweetArchive file, it adds the
      * whole tweet to the file.
+     * 
      */
     public void saveToFile() {
-	// read file with save tweets into an ArrayList and stores the tweet ID
+	// read file with save tweets into an ArrayList and stores the tweet ID. This section of the code is used when creating the 
 	try {
 	    Scanner in;
 	    File myFile = new File(filename);
