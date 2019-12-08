@@ -22,7 +22,7 @@ public class UserInteraction {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Enter a word to search and do a sentiment analysis: ");
         candidate = scanner.nextLine();
-        System.out.println("\t\t\t *****\tYou have selected " + candidate + "\t*****\n");
+        System.out.println("\t\t\t *****\tYou have selected " + "\"" + candidate + "\"" + "\t*****\n");
         System.out.println(
                 "We are going to search for tweets starting from today's date and go back as far as possible, " +
                         "up to seven days");
