@@ -102,7 +102,7 @@ public class TwitterSearch {
                 System.out.println("The search did not retrieve any results. Please try again.");
             }
         }
-        System.out.println(queryResult.size());
+        //System.out.println(queryResult.size()); shows the query size, commenting out unless needed for debugging
         return queryResult;
 
     }
