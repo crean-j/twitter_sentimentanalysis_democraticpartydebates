@@ -34,7 +34,7 @@ class TweetProcessorTest {
                 "#ROC’s #ROC’s disgusting mayor." +
                 "Former TV meteorologist Jeremy Kappell suing Mayor Lovely Warren" +
                 "https://t.co/rJIV5SN9vB https://t.co/rJIV5SN9vB (Via NEWS 8 WROC)";
-        assertEquals("RT This made my day; glad   is standing up against ROC’s ROC’s disgusting mayor." +
+        assertEquals("RT This made my day; glad   is standing up against ROCs ROCs disgusting mayor." +
                         "Former TV meteorologist Jeremy Kappell suing Mayor Lovely Warren  (Via NEWS 8 WROC)"
                 , tp.removeNoise(test));
     }
