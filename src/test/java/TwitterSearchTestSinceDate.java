@@ -3,14 +3,17 @@ import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.Test;
 
 /**
- * 
- * This test ensures that for a given date, the code calculates the correct date
- * seven days before and on e day after it
+ * These tests ensure that for a given date, the code calculates the correct date
+ * seven days before and one day after it
  *
+ * @author juangoleniowski
  */
 class TwitterSearchTestSinceDate {
 
-    @Test
+	/**
+	 * Test ensures that for a given date, the code calculates the correct date seven days before
+	 */
+	@Test
     void testSinceDate() {
 	TwitterSearch tp = new TwitterSearch("Warren", "20191201");
 	assertEquals("2019-12-07", tp.sinceDate("2019-12-14"));
@@ -20,6 +23,9 @@ class TwitterSearchTestSinceDate {
 	assertEquals("2020-02-28", tp.sinceDate("2020-03-06"));
     }
 
+	/**
+	 * Test ensures that for a given date, the code calculates the correct date one day after
+	 */
     @Test
     void testToDate() {
 	TwitterSearch tp = new TwitterSearch("Warren", "20191201");
