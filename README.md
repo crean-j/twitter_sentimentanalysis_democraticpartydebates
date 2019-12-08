@@ -94,8 +94,10 @@ A static analysis was also done to analyze tweets mentioning Democratic candidat
 14. Output results:(**DataAnalysis class**)
     1. Display in console
      </br><img src="img/realtimeanalysis.png">
-    2. Text file of tweets
+    2. Text file containing console report
      </br><img src="img/reportlive.png" width="200">
+    3. Text file containing the raw tweets that were retrieved.
+     </br><img src="img/rawtweets.png">
 
 ### Static analysis around Nov 20th debate
 1. The static analysis was done on tweets gathered from Nov 13 - Nov 20th and Nov 22nd - 30th
