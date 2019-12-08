@@ -144,7 +144,7 @@ public class DataAnalysis {
         ArrayList<Tweet> totalPos = new ArrayList<>();
         // loop through tweets and store in positive arraylist
         for (Tweet t : tweets) {
-            if (t.getSentimentScore() >= 2.0) {
+            if (t.getSentimentScore() > 2.0) {
                 totalPos.add(t);
             }
         }
@@ -471,7 +471,7 @@ public class DataAnalysis {
      * with the lowest sentiment score and their score
      *
      * @param numResults - int that defines the number of top states you want returned
-     * @param tbs3       - TweetsByState object return a HashMap String,ArrayList with
+     * @param tbs4       - TweetsByState object return a HashMap String,ArrayList with
      *                   an ArrayList of Tweet objects by State
      * @return - output - String that prints out the top numResults states with highest sentiment
      * and their score

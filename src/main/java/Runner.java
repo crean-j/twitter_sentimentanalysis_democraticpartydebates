@@ -93,7 +93,7 @@ public class Runner {
                 sb.append(System.getProperty("line.separator"));
 
                 sb.append("\nAverage sentiment score: " + da.sentimentScore());
-                sb.append("\nPercentage of tweets with positive sentiment (2 or higher): " + da.posPercent(result));
+                sb.append("\nPercentage of tweets with positive sentiment (over 2): " + da.posPercent(result));
                 sb.append("\nPercentage of tweets with negative sentiment (under 2): " + da.negPercent(result));
                 sb.append("\nMedian sentiment score: " + da.calculateMedian(result));
                 sb.append("\nMode sentiment score: " + da.calculateMode(result) + "\n");
@@ -126,7 +126,7 @@ public class Runner {
             System.out.println("Total number of tweets with matched location: " + count + ".\n");
 
             System.out.println("Average sentiment score: " + da.sentimentScore());
-            System.out.println("Percentage of tweets with positive sentiment (2 or higher): " + da.posPercent(result));
+            System.out.println("Percentage of tweets with positive sentiment (over 2): " + da.posPercent(result));
             System.out.println("Percentage of tweets with negative sentiment (under 2): " + da.negPercent(result));
             System.out.println("Median sentiment score: " + da.calculateMedian(result));
             System.out.println("Mode sentiment score: " + da.calculateMode(result));
