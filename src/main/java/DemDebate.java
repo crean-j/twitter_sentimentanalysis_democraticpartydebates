@@ -18,6 +18,10 @@ import edu.stanford.nlp.util.CoreMap;
 
 public class DemDebate {
 
+    /**
+     * Main method run on the TweetArchive_full.txt file to create a static analysis
+     * of the democratic candidates around the Nov 20th debate
+     */
     public static void main(String[] args) {
         // Start analysis welcome message
         Scanner in = new Scanner(System.in);
@@ -85,10 +89,7 @@ public class DemDebate {
         //instantiate general DataAnalysis Class
         DataAnalysis da = new DataAnalysis(tweets);
 
-        /*
-         * Analysis specific to Elizabeth Warren
-         */
-
+        //Analysis specific to Elizabeth Warren
         TweetsByState tbsWarren = new TweetsByState(warren);
 
         for (String state : tbsWarren.states.keySet()) {
@@ -96,10 +97,8 @@ public class DemDebate {
         }
         DataAnalysis daWarren = new DataAnalysis(warren);
 
-        /**
-         * Analysis specific to Bernie Sanders
-         */
 
+        // Analysis specific to Bernie Sanders
         TweetsByState tbsSanders = new TweetsByState(sanders);
 
         for (String state : tbsSanders.states.keySet()) {
@@ -107,20 +106,15 @@ public class DemDebate {
         }
         DataAnalysis daSanders = new DataAnalysis(sanders);
 
-        /**
-         * Analysis specific to Joe Biden
-         */
 
+        // Analysis specific to Joe Biden
         TweetsByState tbsBiden = new TweetsByState(biden);
         for (String state : tbsBiden.states.keySet()) {
             System.out.print("Tweets by State: " + state + "=" + tbsBiden.states.get(state).size() + ", ");
         }
         DataAnalysis daBiden = new DataAnalysis(biden);
 
-        /**
-         * Analysis specific to Pete Buttigieg
-         */
-
+        // Analysis specific to Pete Buttigieg
         TweetsByState tbsPete = new TweetsByState(pete);
         for (String state : tbsPete.states.keySet()) {
             System.out.print("Tweets by State: " + state + "=" + tbsPete.states.get(state).size() + ", ");
@@ -251,10 +245,8 @@ public class DemDebate {
             System.out.println(e.getMessage());
         }
 
-        /*
-         * Print out final report:
-         */
 
+        //Print out final report
         try (PrintWriter writer = new PrintWriter(new File("report.txt"))) {
             StringBuilder sb = new StringBuilder();
             sb.append(
@@ -421,5 +413,4 @@ public class DemDebate {
         System.out.println("A TXT file with the console printout called 'report.txt' has been saved.");
         System.out.println("======================================================================================\n");
     }
-
 }
