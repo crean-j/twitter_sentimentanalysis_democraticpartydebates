@@ -18,8 +18,8 @@ A static analysis was also done to analyze tweets mentioning Democratic candidat
 
 Contributions
 * Juan Goleniowski: Getting Twitter data and creating tweet objects for analysis.
-* Joanne Crean: Prepping tweets for sentiment analysis, getting sentiment score for tweets.
+* Joanne Crean: Prepping tweets for sentiment analysis, doing sentiment analysis on tweets, writing unit tests.
 * Federica Pelzel: Analysing tweets, producing console output and website to display static analysis.
 
 All contributors were involved in planning, testing, maintaining README file. 
-
+The team are adding a video of the project to the Final Project Fair. 
