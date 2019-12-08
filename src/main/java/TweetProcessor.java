@@ -32,7 +32,6 @@ public class TweetProcessor {
 
         //remove underscore from emoji text
         emojiText = emojiText.replaceAll("_", " ");
-        System.out.println("true: " + emojiText);
 
         return emojiText;
     }

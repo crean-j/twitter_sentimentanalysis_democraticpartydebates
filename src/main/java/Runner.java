@@ -4,10 +4,11 @@ import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+
 import edu.stanford.nlp.util.CoreMap;
 
 /**
- * This is the main class for the sentiment analysis.
+ * This is the main class for the sentiment analysis when running in real-time
  * It will take input from the user around which candidate to look at,
  * and the date of interest.
  * It will run all the necessary analysis and print out
@@ -17,21 +18,34 @@ import edu.stanford.nlp.util.CoreMap;
  */
 
 public class Runner {
+
+    /**
+     * Main method to start the program running in real-time
+     */
     public static void main(String[] args) {
 
+        // get keyword from user
         UserInteraction ui = new UserInteraction();
+
+        // search Twitter for tweets mentioning the keyword
         TwitterSearch ts = new TwitterSearch(ui.getCandidate(), ui.getDate());
+
+        // create an ArrayList of Tweet objects from the results
         ArrayList<Tweet> result = ts.mainSearch();
+
+        // calculate the influence score for each tweet and add it to the Tweet object
         InfluenceScore is = new InfluenceScore(result);
+
+        // create a file containing the raw Tweets that were returned
         SaveTweets st = new SaveTweets(result);
         st.saveToFile();
-        // sets up the sentiment analyser and add a sentiment score and a hashmap of
-        // adjectives
-        // and their sentiments scores for each tweet
+
+        // set up the sentiment analyser and add a sentiment score and a HashMap of
+        // adjectives and their sentiments scores for each Tweet in the ArrayList
         System.out.println();
         System.out.println("\nStarting sentiment analysis....\n");
         NLPAnalyser nlp = new NLPAnalyser();
-        int current = 0;
+        int current = 0; //count the Tweets as they are being processed to print
         for (Tweet tweet : result) {
             List<CoreMap> sentences = nlp.nlpPipeline(tweet.getTextInTweet());
             double sentimentScore = nlp.getSentimentScore(sentences);
@@ -44,15 +58,23 @@ public class Runner {
                     + "; adj =" + as);
             current += 1;
         }
+
+        // start the data analysis
         DataAnalysis da = new DataAnalysis(result);
 
+        // get the Tweets by state for analysis
         TweetsByState tbs = new TweetsByState(result);
         int count = 0;
         for (String state : tbs.states.keySet()) {
             count += tbs.states.get(state).size();
         }
 
+        // analysis the Tweets if there are Tweets to analyze
+
+        // check if there area enough Tweets to create an output file
         if (result.size() > 0) {
+
+            // print out a file containing the analysis results
             try (PrintWriter writer = new PrintWriter(new File("report_live.txt"))) {
                 StringBuilder sb = new StringBuilder();
                 sb.append(
@@ -88,9 +110,11 @@ public class Runner {
             }
         }
 
+        // check if there are no results and print out in console that no results were found
         if (result.size() == 0) {
             System.out.println("Your search returned no results");
         } else {
+            // print out the analysis results in the console
             System.out.println("\n\n===================================================================================");
             System.out.println("A N A L Y S I S   C O M P L E T E");
             System.out.println("===================================================================================\n");

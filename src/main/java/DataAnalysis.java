@@ -93,7 +93,7 @@ public class DataAnalysis {
     /**
      * This method computes the mode of the values in the input array.
      *
-     * @param arr - an array of ints
+     * @param tweets - an ArrayList of Tweets
      * @return mode - the mode of the input array
      */
     public double calculateMode(ArrayList<Tweet> tweets) {
@@ -498,5 +498,4 @@ public class DataAnalysis {
             return "Not enough data available";
         }
     }
-
 }
