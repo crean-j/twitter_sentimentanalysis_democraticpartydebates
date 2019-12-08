@@ -1,4 +1,4 @@
-Project 591 Group 41
+Project 591 Group 56
 
 Github link: https://github.com/UPenn-CIT599/final-project-twitterdemocraticpartydebates
 
@@ -22,4 +22,4 @@ Contributions
 * Federica Pelzel: Analysing tweets, producing console output and website to display static analysis.
 
 All contributors were involved in planning, testing, maintaining README file. 
-The team are adding a video of the project to the Final Project Fair. 
+The team are adding a video of the project to the Final Project Fair.
