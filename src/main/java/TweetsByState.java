@@ -11,9 +11,9 @@ import java.util.HashMap;
 
 public class TweetsByState {
 
-    ArrayList<Tweet> tweets;
+    private ArrayList<Tweet> tweets;
     // Create HashMap with key State code and Value ArrayList of tweets for that state
-    HashMap<String, ArrayList<Tweet>> states = new HashMap<String, ArrayList<Tweet>>();
+    private HashMap<String, ArrayList<Tweet>> states = new HashMap<String, ArrayList<Tweet>>();
 
     /**
      * TweetsByState takes in an ArrayList of Tweet objects, looks at their location field,
@@ -356,5 +356,13 @@ public class TweetsByState {
             } else
                 continue;
         }
+    }
+
+    /**
+     * Gets the states array list
+     * @return states hashmap
+     */
+    public HashMap<String, ArrayList<Tweet>> getStates() {
+        return states;
     }
 }

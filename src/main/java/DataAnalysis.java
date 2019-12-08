@@ -17,7 +17,7 @@ import java.util.Collections;
  */
 public class DataAnalysis {
 
-    ArrayList<Tweet> tweets;
+    private ArrayList<Tweet> tweets;
 
     /**
      * Class constructor. Initializes the ArrayList of Tweet objects
@@ -345,8 +345,8 @@ public class DataAnalysis {
     public HashMap<String, Integer> numberOfTweetsState() {
         HashMap<String, Integer> stateTweets = new HashMap<String, Integer>();
         TweetsByState tbs = new TweetsByState(tweets);
-        for (String state : tbs.states.keySet()) {
-            stateTweets.put(state, tbs.states.values().size());
+        for (String state : tbs.getStates().keySet()) {
+            stateTweets.put(state, tbs.getStates().values().size());
             ;
         }
         return stateTweets;
@@ -368,12 +368,12 @@ public class DataAnalysis {
         // instantiate TweetsByState class
         TweetsByState tbs = new TweetsByState(tweets);
         //iterate over each state
-        for (String state : tbs.states.keySet()) {
+        for (String state : tbs.getStates().keySet()) {
             DecimalFormat numberFormat = new DecimalFormat("#.00");
             double totalSent = 0.0;
             int count = 0;
             //iterate over each tweet in each state
-            for (Tweet t : tbs.states.get(state)) {
+            for (Tweet t : tbs.getStates().get(state)) {
                 totalSent += t.getSentimentScore();
                 count += 1;
             }
@@ -444,11 +444,11 @@ public class DataAnalysis {
         // instantiate TweetsByState class
         TweetsByState tbs = new TweetsByState(tweets);
         //iterate over each state
-        for (String state : tbs.states.keySet()) {
+        for (String state : tbs.getStates().keySet()) {
             double totalSent = 0.0;
             int count = 0;
             //iterate over each tweet in each state
-            for (Tweet t : tbs.states.get(state)) {
+            for (Tweet t : tbs.getStates().get(state)) {
                 totalSent += t.getSentimentScore();
                 count += 1;
             }

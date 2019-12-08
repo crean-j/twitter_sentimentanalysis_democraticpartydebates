@@ -19,8 +19,8 @@ import java.text.SimpleDateFormat;
  */
 
 public class SaveTweets {
-    ArrayList<Tweet> queryResult = new ArrayList<>(); // Stores the result of latest search
-    ArrayList<String> tweetsAlreadyStored = new ArrayList<>(); // Stores the tweets that are saved in the txt file
+    private ArrayList<Tweet> queryResult = new ArrayList<>(); // Stores the result of latest search
+    private ArrayList<String> tweetsAlreadyStored = new ArrayList<>(); // Stores the tweets that are saved in the txt file
     // Date stamp and file name to save the tweets
     static SimpleDateFormat dateFormat = new SimpleDateFormat("dd_MM_yyyy-HH_mm_ss");
     static Date dateForFile = new Date();

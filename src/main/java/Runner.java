@@ -65,8 +65,8 @@ public class Runner {
         // get the Tweets by state for analysis
         TweetsByState tbs = new TweetsByState(result);
         int count = 0;
-        for (String state : tbs.states.keySet()) {
-            count += tbs.states.get(state).size();
+        for (String state : tbs.getStates().keySet()) {
+            count += tbs.getStates().get(state).size();
         }
 
         // analysis the Tweets if there are Tweets to analyze

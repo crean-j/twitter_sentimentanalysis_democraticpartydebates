@@ -81,9 +81,9 @@ public class DemDebate {
         System.out.println("Analyzing tweets by state");
         System.out.println("===================================================================================");
         int count = 0;
-        for (String state : tbs.states.keySet()) {
-            System.out.println(state + ": " + tbs.states.get(state).size() + " tweets.");
-            count += tbs.states.get(state).size();
+        for (String state : tbs.getStates().keySet()) {
+            System.out.println(state + ": " + tbs.getStates().get(state).size() + " tweets.");
+            count += tbs.getStates().get(state).size();
         }
 
         //instantiate general DataAnalysis Class
@@ -92,8 +92,8 @@ public class DemDebate {
         //Analysis specific to Elizabeth Warren
         TweetsByState tbsWarren = new TweetsByState(warren);
 
-        for (String state : tbsWarren.states.keySet()) {
-            System.out.print("Tweets by State: " + state + "=" + tbsWarren.states.get(state).size() + ", ");
+        for (String state : tbsWarren.getStates().keySet()) {
+            System.out.print("Tweets by State: " + state + "=" + tbsWarren.getStates().get(state).size() + ", ");
         }
         DataAnalysis daWarren = new DataAnalysis(warren);
 
@@ -101,23 +101,23 @@ public class DemDebate {
         // Analysis specific to Bernie Sanders
         TweetsByState tbsSanders = new TweetsByState(sanders);
 
-        for (String state : tbsSanders.states.keySet()) {
-            System.out.print("Tweets by State: " + state + "=" + tbsSanders.states.get(state).size() + ", ");
+        for (String state : tbsSanders.getStates().keySet()) {
+            System.out.print("Tweets by State: " + state + "=" + tbsSanders.getStates().get(state).size() + ", ");
         }
         DataAnalysis daSanders = new DataAnalysis(sanders);
 
 
         // Analysis specific to Joe Biden
         TweetsByState tbsBiden = new TweetsByState(biden);
-        for (String state : tbsBiden.states.keySet()) {
-            System.out.print("Tweets by State: " + state + "=" + tbsBiden.states.get(state).size() + ", ");
+        for (String state : tbsBiden.getStates().keySet()) {
+            System.out.print("Tweets by State: " + state + "=" + tbsBiden.getStates().get(state).size() + ", ");
         }
         DataAnalysis daBiden = new DataAnalysis(biden);
 
         // Analysis specific to Pete Buttigieg
         TweetsByState tbsPete = new TweetsByState(pete);
-        for (String state : tbsPete.states.keySet()) {
-            System.out.print("Tweets by State: " + state + "=" + tbsPete.states.get(state).size() + ", ");
+        for (String state : tbsPete.getStates().keySet()) {
+            System.out.print("Tweets by State: " + state + "=" + tbsPete.getStates().get(state).size() + ", ");
         }
         DataAnalysis daPete = new DataAnalysis(pete);
 
@@ -147,24 +147,24 @@ public class DemDebate {
             sb.append("ButtigiegSent");
             sb.append('\n');
 
-            for (String state : tbs.states.keySet()) {
+            for (String state : tbs.getStates().keySet()) {
                 sb.append(state);
                 sb.append(',');
-                sb.append(tbs.states.get(state).size());
+                sb.append(tbs.getStates().get(state).size());
                 sb.append(',');
-                sb.append(tbsWarren.states.get(state).size());
+                sb.append(tbsWarren.getStates().get(state).size());
                 sb.append(',');
                 sb.append(daWarren.sentimentState(tbsWarren).get(state));
                 sb.append(',');
-                sb.append(tbsSanders.states.get(state).size());
+                sb.append(tbsSanders.getStates().get(state).size());
                 sb.append(',');
                 sb.append(daSanders.sentimentState(tbsSanders).get(state));
                 sb.append(',');
-                sb.append(tbsBiden.states.get(state).size());
+                sb.append(tbsBiden.getStates().get(state).size());
                 sb.append(',');
                 sb.append(daBiden.sentimentState(tbsBiden).get(state));
                 sb.append(',');
-                sb.append(tbsPete.states.get(state).size());
+                sb.append(tbsPete.getStates().get(state).size());
                 sb.append(',');
                 sb.append(daPete.sentimentState(tbsPete).get(state));
                 sb.append('\n');
