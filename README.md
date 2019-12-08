@@ -45,16 +45,20 @@ A static analysis was also done to analyze tweets mentioning Democratic candidat
     1. Queries Twitter for Tweets mentioning the key-word, starting on today's date.
     2. Query limited to tweets in English.
     3. User will get up to 100 search results in every search. The number of searches that can be excuted is controlled by value in MAXSEARCHREQUESTS. Twitter allows up to 180 searches every 15 minutes.
-    4. Analysis starts today and then keeps scanning back over the last 7 days until it's reached the query limit. 
-4. Store Tweets to text file.(**SaveTweets class**). The name of the text file is time stamped: Tweet\_Analysis\_dd\_MM\_yyyy-HH\_mm\_ss.
-5. Additionally, create a Tweet object for each Tweet from the results(**Tweet class**), the following variables are stored:
-    1. Date of tweet
-    2. Candidate mentioned
-    3. Tweet text
-    4. User who created tweet
-    5. Number of followers that user had
-    6. Location of user
-    7. Retweet count
+    4. Analysis starts with today's tweets and then keeps scanning back over the last 7 days until it's reached the query limit. 
+4. Store Tweets to text file.(**SaveTweets class**). The search result is stored in a file with a time stamped file name: Tweet\_Analysis\_dd\_MM\_yyyy-HH\_mm\_ss.
+5. Additionally, it creates a Tweet object for each Tweet from the results(**Tweet class**); the following variables are stored:
+    1. Tweet ID
+    2. User who created the tweet
+    3. Number of followers that the user has
+    4. User location as entered by the user
+    5. Tweet text
+    6. Tweeter creation date
+    7. Search term used
+    8. A zero to be populated by the influence score later
+    9. Retweet count
+    10. If the tweet is a retweet
+    11. Geolocation from gps if available
 6. Add tweets to an ArrayList.
 7. Influence score is calculated for each Tweet and added to the Tweet object.(**InfluenceScore class**)
    1. Calculation based on the num of followers and number of retweets that the tweet had  
