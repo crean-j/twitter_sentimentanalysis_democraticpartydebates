@@ -21,7 +21,8 @@ public class SaveTweets {
     // Date stamp and file name to save the tweets
     static SimpleDateFormat dateFormat = new SimpleDateFormat("dd_MM_yyyy-HH_mm_ss");
     static Date dateForFile = new Date();
- //   static private Timestamp timestamp = new Timestamp(System.currentTimeMillis()); // Creates a new timestamp
+    // static private Timestamp timestamp = new
+    // Timestamp(System.currentTimeMillis()); // Creates a new timestamp
     private static String filename = "Tweet_Analysis_" + dateFormat.format(dateForFile) + ".txt";
 
     /**
@@ -40,7 +41,9 @@ public class SaveTweets {
      * 
      */
     public void saveToFile() {
-	// read file with save tweets into an ArrayList and stores the tweet ID. This section of the code is used when creating the 
+	// reads file with saved tweets into an ArrayList and stores the tweet ID. This
+	// section of the code was used when extracting tweets for the static analysis
+	// around the democratic debate on Nov 20th
 	try {
 	    Scanner in;
 	    File myFile = new File(filename);
