@@ -18,7 +18,7 @@ public class Tweet {
     private String candidate;
     private double influenceScore;
     private int retweetedCount;
-    private double sentimentScore;
+    private int sentimentScore;
     private boolean isRetweet;
     private GeoLocation geoLocation;
     private HashMap<String, Double> adjSentiment;
@@ -202,7 +202,7 @@ public class Tweet {
     /**
      * @return the sentimentScore
      */
-    public double getSentimentScore() {
+    public int getSentimentScore() {
         return sentimentScore;
     }
 
@@ -216,7 +216,7 @@ public class Tweet {
     /**
      * @param sentimentScore the sentimentScore to set
      */
-    public void setSentimentScore(double sentimentScore) {
+    public void setSentimentScore(int sentimentScore) {
         this.sentimentScore = sentimentScore;
     }
 

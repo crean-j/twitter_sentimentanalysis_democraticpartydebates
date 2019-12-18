@@ -48,14 +48,14 @@ public class Runner {
         int current = 0; //count the Tweets as they are being processed to print
         for (Tweet tweet : result) {
             List<CoreMap> sentences = nlp.nlpPipeline(tweet.getTextInTweet());
-            double sentimentScore = nlp.getSentimentScore(sentences);
+            int sentimentScore = nlp.getSentimentScore(sentences);
             tweet.setSentimentScore(sentimentScore);
             HashMap<String, Double> as = nlp.adjectivesScoring(sentences);
             tweet.setAdjSentiment(as);
 
             // print out result after each tweet is analyzed for progress tracking
-            System.out.println(current + "/" + result.size() + "; " + tweet.getCandidate() + "; Score=" + sentimentScore
-                    + "; adj =" + as);
+            //System.out.println(current + "/" + result.size() + "; " + tweet.getCandidate() + "; Score=" + sentimentScore
+                    //+ "; adj =" + as);
             current += 1;
         }
 

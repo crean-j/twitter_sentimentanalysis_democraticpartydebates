@@ -45,14 +45,13 @@ public class DataAnalysis {
      * points returns average sentiment score for tweets
      */
 
-    public String sentimentScore() {
-        String average;
-        double total = 0.0;
+    public int sentimentScore() {
+        int average;
+        int total = 0;
         for (Tweet t : tweets) {
             total += t.getSentimentScore();
         }
-        DecimalFormat numberFormat = new DecimalFormat("#.00");
-        average = numberFormat.format(total / tweets.size());
+        average = total / tweets.size();
         return average;
     }
 
@@ -62,15 +61,15 @@ public class DataAnalysis {
      * @param tweets - an ArrayList of Tweet objects
      * @return median - double median for the sentiment of Tweets in tweets
      */
-    public double calculateMedian(ArrayList<Tweet> tweets) {
-        List<Double> sent = new ArrayList<Double>();
+    public int calculateMedian(ArrayList<Tweet> tweets) {
+        List<Integer> sent = new ArrayList<Integer>();
         for (Tweet t : tweets) {
             sent.add(t.getSentimentScore());
         }
         // Sort our array
         Collections.sort(sent, Collections.reverseOrder());
 
-        double median = 0;
+        int median = 0;
 
         // If our array's length is even, then we need to find the average of the two
         // centered values
@@ -78,7 +77,7 @@ public class DataAnalysis {
             int indexA = (tweets.size() - 1) / 2;
             int indexB = tweets.size() / 2;
 
-            median = ((double) (sent.get(indexA) + sent.get(indexB))) / 2;
+            median = ((sent.get(indexA) + sent.get(indexB))) / 2;
         }
         // Else if our array's length is odd, then we simply find the value at the
         // center index
@@ -96,17 +95,17 @@ public class DataAnalysis {
      * @param tweets - an ArrayList of Tweets
      * @return mode - the mode of the input array
      */
-    public double calculateMode(ArrayList<Tweet> tweets) {
+    public int calculateMode(ArrayList<Tweet> tweets) {
 
         int modeCount = 0; // The count of the mode value
-        double mode = 0; // The value of the mode
+        int mode = 0; // The value of the mode
 
         int currCount = 0;
 
         // Iterate through all values in our array and consider it as a possible mode
         for (Tweet t : tweets) {
             // Get Sentiment Score
-            double sent = t.getSentimentScore();
+            int sent = t.getSentimentScore();
             // Reset the number of times we have seen the current value
             currCount = 0;
 
@@ -148,9 +147,9 @@ public class DataAnalysis {
                 totalPos.add(t);
             }
         }
-        DecimalFormat numberFormat = new DecimalFormat("#.00");
-        double percent = (totalPos.size() * 100) / tweets.size();
-        return numberFormat.format(percent) + "%";
+        //DecimalFormat numberFormat = new DecimalFormat("#.00");
+        int percent = (totalPos.size() * 100) / tweets.size();
+        return percent + "%";
     }
 
     // start negative tweet analysis
@@ -162,9 +161,9 @@ public class DataAnalysis {
                 totalNeg.add(t);
             }
         }
-        DecimalFormat numberFormat = new DecimalFormat("#.00");
-        double percent = (totalNeg.size() * 100) / tweets.size();
-        return numberFormat.format(percent) + "%";
+        //DecimalFormat numberFormat = new DecimalFormat("#.00");
+        int percent = (totalNeg.size() * 100) / tweets.size();
+        return percent + "%";
     }
 
     /**
@@ -363,14 +362,14 @@ public class DataAnalysis {
      * order.
      */
 
-    public HashMap<String, Double> sentimentState(TweetsByState tbs2) {
-        HashMap<String, Double> sentState = new HashMap<String, Double>();
+    public HashMap<String, Integer> sentimentState(TweetsByState tbs2) {
+        HashMap<String, Integer> sentState = new HashMap<String,Integer>();
         // instantiate TweetsByState class
         TweetsByState tbs = new TweetsByState(tweets);
         //iterate over each state
         for (String state : tbs.getStates().keySet()) {
-            DecimalFormat numberFormat = new DecimalFormat("#.00");
-            double totalSent = 0.0;
+            //DecimalFormat numberFormat = new DecimalFormat("#.00");
+            int totalSent = 0;
             int count = 0;
             //iterate over each tweet in each state
             for (Tweet t : tbs.getStates().get(state)) {
@@ -379,14 +378,14 @@ public class DataAnalysis {
             }
 
             if (count > 0) {
-                String average = numberFormat.format(totalSent / count);
-                double d = Double.parseDouble(average);
-                sentState.put(state, d);
+                int average = totalSent / count;
+                //int d = Integer.parseInt(average);
+                sentState.put(state, average);
             }
         }
 
         // Sort in descending order using Comparator
-        LinkedHashMap<String, Double> sentStateSorted = new LinkedHashMap<>();
+        LinkedHashMap<String, Integer> sentStateSorted = new LinkedHashMap<>();
         sentState.entrySet().stream().sorted(Map.Entry.comparingByValue(Comparator.reverseOrder()))
                 .forEachOrdered(x -> sentStateSorted.put(x.getKey(), x.getValue()));
 
@@ -409,16 +408,16 @@ public class DataAnalysis {
 
         // Create ArrayLists from sorted HashMap in order to be able to call by index
         List<String> topPosKeys = new ArrayList<String>(sentimentState(tbs3).keySet());
-        List<Double> topPosValues = new ArrayList<Double>(sentimentState(tbs3).values());
-        DecimalFormat numberFormat = new DecimalFormat("#.00");
+        List<Integer> topPosValues = new ArrayList<Integer>(sentimentState(tbs3).values());
+        //DecimalFormat numberFormat = new DecimalFormat("#.00");
 
         // iterate through ArrayList and add each result to the output string
         if (topPosKeys.size() > numResults) {
             for (int i = 0; i < numResults; i++) {
-                output += topPosKeys.get(i) + "= " + numberFormat.format(topPosValues.get(i)) + ", ";
+                output += topPosKeys.get(i) + "= " + topPosValues.get(i) + ", ";
             }
             // add last one with special formatting
-            output += topPosKeys.get(numResults) + "= " + numberFormat.format(topPosValues.get(numResults)) + ".";
+            output += topPosKeys.get(numResults) + "= " + topPosValues.get(numResults) + ".";
 
             // return String containing all top n results
             return output;
@@ -439,13 +438,13 @@ public class DataAnalysis {
      * order.
      */
 
-    public HashMap<String, Double> lowSentState(TweetsByState tbs2) {
-        HashMap<String, Double> sentState = new HashMap<String, Double>();
+    public HashMap<String, Integer> lowSentState(TweetsByState tbs2) {
+        HashMap<String, Integer> sentState = new HashMap<String, Integer>();
         // instantiate TweetsByState class
         TweetsByState tbs = new TweetsByState(tweets);
         //iterate over each state
         for (String state : tbs.getStates().keySet()) {
-            double totalSent = 0.0;
+            int totalSent = 0;
             int count = 0;
             //iterate over each tweet in each state
             for (Tweet t : tbs.getStates().get(state)) {
@@ -454,12 +453,12 @@ public class DataAnalysis {
             }
 
             if (count > 0) {
-                double average = totalSent / count;
+                int average = totalSent / count;
                 sentState.put(state, average);
             }
         }
         // Sort in ascending order using Comparator
-        LinkedHashMap<String, Double> sentStateSorted = new LinkedHashMap<>();
+        LinkedHashMap<String, Integer> sentStateSorted = new LinkedHashMap<>();
         sentState.entrySet().stream().sorted(Map.Entry.comparingByValue())
                 .forEachOrdered(x -> sentStateSorted.put(x.getKey(), x.getValue()));
 
@@ -481,16 +480,16 @@ public class DataAnalysis {
 
         // Create ArrayLists from sorted HashMap in order to be able to call by index
         List<String> topNegKeys = new ArrayList<String>(lowSentState(tbs4).keySet());
-        List<Double> topNegValues = new ArrayList<Double>(lowSentState(tbs4).values());
-        DecimalFormat numberFormat = new DecimalFormat("#.00");
+        List<Integer> topNegValues = new ArrayList<Integer>(lowSentState(tbs4).values());
+        //DecimalFormat numberFormat = new DecimalFormat("#.00");
 
         // iterate through ArrayList and add each result to the output string
         if (topNegKeys.size() > numResults) {
             for (int i = 0; i < numResults; i++) {
-                output += topNegKeys.get(i) + "= " + numberFormat.format(topNegValues.get(i)) + ", ";
+                output += topNegKeys.get(i) + "= " + topNegValues.get(i) + ", ";
             }
             // add last one with special formatting
-            output += topNegKeys.get(numResults) + "= " + numberFormat.format(topNegValues.get(numResults)) + ".";
+            output += topNegKeys.get(numResults) + "= " + topNegValues.get(numResults) + ".";
 
             // return String containing all top n results
             return output;

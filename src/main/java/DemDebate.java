@@ -50,7 +50,7 @@ public class DemDebate {
         // iterate over tweets, analyze, and sort
         for (Tweet tweet : tweets) {
             List<CoreMap> sentences = nlp.nlpPipeline(tweet.getTextInTweet());
-            double sentimentScore = nlp.getSentimentScore(sentences);
+            int sentimentScore = nlp.getSentimentScore(sentences);
             tweet.setSentimentScore(sentimentScore);
             HashMap<String, Double> as = nlp.adjectivesScoring(sentences);
             tweet.setAdjSentiment(as);

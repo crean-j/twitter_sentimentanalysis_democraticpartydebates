@@ -87,9 +87,9 @@ public class NLPAnalyser {
      *
      * @return double containing the sentiment for the tweet
      */
-    public double getSentimentScore(List<CoreMap> sentences) {
+    public int getSentimentScore(List<CoreMap> sentences) {
         int totalSentiment = 0; // running total of sentiment for a tweet sentiment
-        double tweetSentiment = 0; // total tweet sentiment
+        int tweetSentiment = 0; // total tweet sentiment
 
         // if the text passed into the tweet is an empty string, a neutral value is assigned to the tweet
         if (sentences.size() == 0) {
@@ -110,7 +110,7 @@ public class NLPAnalyser {
                 // Get the total sentiment for the tweet by getting the average sentiment for all
                 // sentences in the tweet
                 // round this to the nearest sentiment score value
-                tweetSentiment = Math.round((double) totalSentiment / (double) sentences.size());
+                tweetSentiment = totalSentiment / sentences.size();
             }
         }
         return tweetSentiment;
